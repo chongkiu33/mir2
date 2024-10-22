@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     
-    gap: 10px;
+    
 
     position: absolute;
     
@@ -53,7 +53,7 @@
     position: relative; /* 让视频相对于 .box 绝对定位 */
     overflow: hidden; 
     text-align: center; 
-    border: 3px solid #4f4e4e; /* 边框 */
+    border: 2px solid #4f4e4e; /* 边框 */
     margin: 100px;
 }
 
@@ -64,10 +64,11 @@
     justify-content:end;
     height: 100%;
     background-color: #fefefe;
-    border: 3px solid #4f4e4e; 
-    translate: 0px;
+    border: 2px solid #4f4e4e; 
+    
     border-radius: 0 40px 40px 0;
     position: relative;
+    border-left: none;
 }
 
 /* .door::before {
@@ -91,9 +92,9 @@
     justify-content: start;
     background-color: #fffefe;
     border-radius: 40px 0 0 40px;
-    border: 3px solid #4f4e4e; 
+    border: 2px solid #4f4e4e; 
     height: 100%;
-    translate: 0px;
+    border-right: none;
     position: relative;
 
 }
@@ -128,9 +129,8 @@
 @media screen and (max-width: 1280px){
     .textContainer{
         font-size: 2.5rem;
-        gap: 30px;
+        
     }
-
     .box{
         width: 27vw;
     }
@@ -142,7 +142,7 @@
 
     .container{
         flex-direction: column;      
-        gap: 10px;
+        /* gap: 10px; */
     }
 
     .box{
