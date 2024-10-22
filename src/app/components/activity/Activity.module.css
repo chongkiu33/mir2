@@ -1,0 +1,98 @@
+.activity {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .lineWrapper {
+    width: 100%; /* 设置lineWrapper宽度为屏幕的90% */
+    display: flex;
+    justify-content: center;
+   position: absolute;
+   transform: translateY(-60%);
+   display: flex;
+   margin-left: 10%;
+    
+    
+}
+
+.svg {
+    width: 90%;  /*设置SVG宽度为lineWrapper的宽度 */
+    height: 150px;  /*设定高度，可以根据需要调整 */
+    position: relative;
+    z-index: 10;
+    cursor: arrow;
+}
+
+
+
+.svgLine {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+}
+  
+  
+  .activityContent {
+    display: flex;
+    align-items: flex-start; /* 顶端对齐 */
+    width: 90%;
+    
+  }
+  
+  .activityHeader {
+    flex: 0.8;
+    padding-right: 30px;
+  }
+  
+  .activityHeader h2 {
+    margin: 0;
+    font-size: 1.8vw; /* 调整艺术家姓名字体大小 */
+    font-family: 'oppo Sans Heavy';
+  }
+  
+  .activityHeader p {
+    margin: 5px 0 0;
+    font-size: 14px; /* 调整日期字体大小 */
+    color: #888;
+  }
+  
+  .activityDescription {
+    flex: 2;
+    padding-right: 30px;
+    font-family: 'oppo Sans Heavy';
+  }
+  
+  .activityDescription p {
+    margin: 0;
+    font-size: 1.2vw; /* 调整描述字体大小 */
+    
+  }
+  
+  .activityArtist {
+    flex: 1.2;
+    padding-right: 30px;
+  }
+  
+  .activityArtist h3 {
+    margin: 0;
+    font-size: 1.8vw;  /* 调整艺术家姓名字体大小 */
+    font-family: 'oppo Sans Heavy';
+  }
+  
+  .activityArtist p {
+    margin: 5px 0 0;
+    font-size: 20px; /* 调整标签字体大小 */
+    color: #888;
+  }
+  
+  .activityImage {
+    flex: 1.5;
+  }
+  
+  .activityImage img {
+    width: 100%;
+  }
+  

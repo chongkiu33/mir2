@@ -1,0 +1,69 @@
+/* src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'oppo Sans Heavy';
+  src: url('/font/OPPOSansHeavy.ttf');
+}
+
+@font-face {
+  font-family: 'oppo Sans Medium';
+  src: url('/font/OPPOSansMedium.ttf');
+}
+
+:root {
+ 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+    font-family: 'oppo Sans Heavy';
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+main {
+  
+  /* Add top margin to prevent content from being hidden under the fixed navbar */
+}
+
+/* Loading container styling to ensure full screen display */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  z-index: 1000;
+}
+
+/* Styling for the loading video */
+.loading-container video {
+  width: 110%;
+  height: 120%;
+  object-fit: cover;
+}

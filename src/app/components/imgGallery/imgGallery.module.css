@@ -1,0 +1,8 @@
+.container{
+    height: 100vh;
+    cursor: grab;
+}
+
+.container:active{
+    cursor:grabbing;
+}

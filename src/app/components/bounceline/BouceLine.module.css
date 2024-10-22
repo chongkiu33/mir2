@@ -1,0 +1,9 @@
+.container {
+   
+    
+
+   position: absolute;
+   transform: translateY(-60%);
+   display: flex;
+   
+}

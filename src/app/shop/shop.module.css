@@ -1,0 +1,81 @@
+.bigcontainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.textContainer{
+    display: flex;
+    justify-content: center;
+    padding: 3vh;
+    font-family: 'oppo Sans Heavy';
+    font-size: 3rem;
+    margin-top: 6vw;
+}
+
+
+.box:hover{
+    background-color:black;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 23vw;
+    height: 50vh;
+    color: white;
+    /* background-color: rgb(216, 216, 216); */
+    border-radius: 50px;
+    font-size:3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'oppo Sans Medium';
+    position: relative; /* 让视频相对于 .box 绝对定位 */
+    overflow: hidden; /* 确保视频不会超出 .box 的边界 */
+    text-align: center; /* 确保文本居中 */
+}
+
+.video{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持视频的宽高比，并覆盖整个 .box */
+    z-index: -1; /* 确保视频在文本下方 */
+    pointer-events: none; 
+}
+
+@media screen and (max-width: 1280px){
+    .textContainer{
+        font-size: 2.5rem;
+        gap: 30px;
+    }
+
+    .box{
+        width: 27vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    .textContainer{
+        font-size: 2rem;
+    }
+
+    .container{
+        flex-direction: column;      
+        gap: 30px;
+    }
+
+    .box{
+        width: 60vw;
+        height: 30vh;
+        font-size:2rem;
+    }
+    
+}
