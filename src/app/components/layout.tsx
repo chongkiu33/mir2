@@ -1,7 +1,7 @@
 "use client"; // 客户端渲染
 
-import { useEffect, useState } from 'react'; // React 的 Hooks，用于状态管理和副作用处理
-import { useRouter, usePathname } from 'next/navigation'; // 使用 next/navigation 获取路由和路径名
+import { useEffect, useState } from 'react';  
+import { usePathname } from 'next/navigation'; 
 import Link from "next/link"; 
 import { ReactNode } from "react";
 import "../globals.css"; 
@@ -17,85 +17,90 @@ export default function Layout({ children }: LayoutProps) {
   const [mouseY, setMouseY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const logo = document.querySelector(`.${styles.logoItem}`);
-      const links = document.querySelectorAll(`.${styles.navLink}`);
-      const scrollTop = window.scrollY;
-      const logo2 = document.querySelector(`.${styles.navImage}`) as HTMLImageElement;
+    if (pathname !== '/') {
+      const handleScroll = () => {
+        if (typeof window !== 'undefined') { // 确保在客户端执行
+          const logo = document.querySelector(`.${styles.logoItem}`);
+          const links = document.querySelectorAll(`.${styles.navLink}`);
+          const scrollTop = window.scrollY;
+          const logo2 = document.querySelector(`.${styles.navImage}`) as HTMLImageElement;
 
-      if (scrollTop > 50) { // 调整滚动值
-        if (logo) {
-          logo.classList.add(styles.shrunk);
-          logo2.style.transform = `rotate(${scrollTop * 0.5}deg)`;
+          if (scrollTop > 50) {
+            if (logo) {
+              logo.classList.add(styles.shrunk);
+              logo2.style.transform = `rotate(${scrollTop * 0.5}deg)`;
+            }
+            if (links) {
+              links.forEach((link, index) => {
+                setTimeout(() => {
+                  link.classList.add(styles.hidden);
+                  link.classList.remove(styles.showing);
+                }, index * 100);
+              });
+            }
+          } else {
+            if (logo) {
+              logo.classList.remove(styles.shrunk);
+            }
+            if (links) {
+              links.forEach((link, index) => {
+                setTimeout(() => {
+                  link.classList.remove(styles.hidden);
+                  link.classList.add(styles.showing);
+                }, index * 100);
+              });
+            }
+          }
         }
-        if (links) {
-          links.forEach((link, index) => {
-            setTimeout(() => {
-              link.classList.add(styles.hidden);
-              link.classList.remove(styles.showing);
-            }, index * 100);
-          });
-        }
-      } else {
-        if (logo) {
-          logo.classList.remove(styles.shrunk);
-        }
-        if (links) {
-          links.forEach((link, index) => {
-            setTimeout(() => {
-              link.classList.remove(styles.hidden);
-              link.classList.add(styles.showing);
-            }, index * 100);
-          });
-        }
-      }
-    };
+      };
 
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
   }, [pathname]);
 
   useEffect(() => {
-    if (pathname === '/object') { // 替换为您需要应用此效果的页面路径
+    if (pathname === '/object') {
       const handleMouseMove = (event: MouseEvent) => {
         setMouseY(event.clientY);
-        const logo = document.querySelector(`.${styles.logoItem}`);
-        const links = document.querySelectorAll(`.${styles.navLink}`);
+        if (typeof window !== 'undefined') { // 确保在客户端执行
+          const logo = document.querySelector(`.${styles.logoItem}`);
+          const links = document.querySelectorAll(`.${styles.navLink}`);
+          const scrollTop = window.scrollY;
 
-        if (event.clientY > 150) { // 调整为需要的鼠标高度
-          if (logo) {
-            logo.classList.add(styles.shrunk);
-            logo.classList.add(styles.move);
-          } // 隐藏 logo 和链接
-          if (links) {
-            links.forEach((link, index) => {
-              setTimeout(() => {
-                link.classList.add(styles.hidden);
-                link.classList.remove(styles.showing);
-              }, index * 100);
-            });
-          }
-        } else {
-          if (logo) {
-            logo.classList.remove(styles.shrunk);
-            logo.classList.remove(styles.move);
-          }
-          if (links) {
-            links.forEach((link, index) => {
-              setTimeout(() => {
-                link.classList.remove(styles.hidden);
-                link.classList.add(styles.showing);
-              }, index * 100);
-            });
+          if (event.clientY > 150) {
+            if (logo) {
+              logo.classList.add(styles.shrunk);
+              logo.classList.add(styles.move);
+            }
+            if (links) {
+              links.forEach((link, index) => {
+                setTimeout(() => {
+                  link.classList.add(styles.hidden);
+                  link.classList.remove(styles.showing);
+                }, index * 100);
+              });
+            }
+          } else {
+            if (logo) {
+              logo.classList.remove(styles.shrunk);
+              logo.classList.remove(styles.move);
+            }
+            if (links) {
+              links.forEach((link, index) => {
+                setTimeout(() => {
+                  link.classList.remove(styles.hidden);
+                  link.classList.add(styles.showing);
+                }, index * 100);
+              });
+            }
           }
         }
       };
 
       window.addEventListener('mousemove', handleMouseMove);
-
       return () => {
         window.removeEventListener('mousemove', handleMouseMove);
       };
@@ -118,10 +123,10 @@ export default function Layout({ children }: LayoutProps) {
             <Link href="/object" className={`${styles.navLink} ${pathname === '/object' ? styles.active : pathname === '/' ? styles.homePage : ''}`}>Object</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/info" className={`${styles.navLink} ${pathname === '/info' ? styles.active : pathname === '/' ? styles.homePage : ''}`}>Info</Link>
+            <Link href="/info" className={`${styles.navLink} ${pathname === '/info' ? styles.active : pathname === '/' ? styles.homePage  : ''}`}>Info</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/shop" className={`${styles.navLink} ${pathname === '/shop' ? styles.active : pathname === '/' ? styles.homePage : ''}`}>Shop</Link>
+            <Link href="/shop" className={`${styles.navLink} ${pathname === '/shop' ? styles.active : pathname === '/' ? styles.homePage  : ''}`}>Shop</Link>
           </li>
         </ul>
       </nav>
