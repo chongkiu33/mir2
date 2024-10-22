@@ -12,7 +12,7 @@ export default function Shopping() {
     // 延迟跳转
     setTimeout(() => {
       window.location.href = url; // 使用 window.location.href 进行跳转
-    }, 500); // 设置延迟，确保与动画持续时间匹配
+    }, 100); // 设置延迟，确保与动画持续时间匹配
   }
 
   return (
