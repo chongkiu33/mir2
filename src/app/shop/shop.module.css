@@ -1,9 +1,11 @@
 .bigcontainer{
     display:flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    padding-top: 17vh;
+  
 }
 .textContainer{
     display: flex;
@@ -11,7 +13,9 @@
     padding: 3vh;
     font-family: 'oppo Sans Heavy';
     font-size: 3rem;
-    margin-top: 6vw;
+    margin-top: 6vh;
+    z-index: 4;
+    
 }
 
 
@@ -22,9 +26,17 @@
 .container{
     width: 100%;
     display: flex;
-    gap: 100px;
+    height: 82vh;
+    bottom: 0;
+  
     justify-content: center;
     align-items: center;
+    
+    gap: 20px;
+
+    position: absolute;
+    
+
 }
 
 .box{
@@ -39,17 +51,76 @@
     align-items: center;
     font-family: 'oppo Sans Medium';
     position: relative; /* 让视频相对于 .box 绝对定位 */
-    overflow: hidden; /* 确保视频不会超出 .box 的边界 */
-    text-align: center; /* 确保文本居中 */
+    overflow: hidden; 
+    text-align: center; 
+    border: 20px solid #4f4e4e; /* 边框 */
+    margin: 100px;
 }
+
+.door{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content:end;
+    height: 100%;
+    background-color: #E2DEDE;
+   
+    border-radius: 0 40px 40px 0;
+    position: relative;
+}
+
+.door::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: -10px;
+    bottom: 0;
+    border: 25px solid #4f4e4e; 
+    border-radius: 0; /* 边框不带圆角 */
+    z-index: -1; /* 使伪元素在背后 */
+  }
+
+
+
+.door2{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: #E2DEDE;
+    border-radius: 40px 0 0 40px;
+    
+    height: 100%;
+    position: relative;
+
+}
+
+.door2::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    right: 0;
+    bottom: 0;
+    border: 25px solid #4f4e4e; 
+    border-radius: 0; /* 边框不带圆角 */
+    z-index: -1; /* 使伪元素在背后 */
+  }
+
+
 
 .video{
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover; /* 保持视频的宽高比，并覆盖整个 .box */
-    z-index: -1; /* 确保视频在文本下方 */
+    z-index: 0; /* 确保视频在文本下方 */
     pointer-events: none; 
+}
+
+.text{
+    z-index: 1;
 }
 
 @media screen and (max-width: 1280px){

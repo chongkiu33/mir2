@@ -15,17 +15,11 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  const [loading, setLoading] = useState(true);
+ 
   const pathname = usePathname();
   const [mouseY, setMouseY] = useState(0);
 
-  useEffect(() => {
-    const handleRouteChangeStart = () => setLoading(true);
-    const handleRouteChangeComplete = () => setLoading(false);
-
-    handleRouteChangeStart();
-    handleRouteChangeComplete();
-  }, [pathname]);
+ 
 
   useEffect(() => {
     if (pathname !== '/') { // 确保滚动隐藏效果在所有非主页的页面应用
@@ -124,9 +118,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      {loading ? (
-        <Loading onLoadingComplete={() => setLoading(false)} />
-      ) : (
+      
         <div >
           <nav className={styles.navbar}>
             <ul className={styles.navList}>
@@ -151,7 +143,7 @@ export default function Layout({ children }: LayoutProps) {
           </nav>
           <main>{children}</main>
         </div>
-      )}
+      
     </>
   );
 }

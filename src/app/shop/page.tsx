@@ -1,28 +1,48 @@
+'use client'
 import Link from 'next/link';
 import styles from './shop.module.css';
+import {useState} from'react';
+import { motion } from 'framer-motion';
 
 export default function Shopping() {
+    const [gap,setGap] = useState('20px');
+
+    const handleLinkClick = () => {
+      setGap('1500px');
+    }
+
     return (
       <div className={styles.bigcontainer}>
         <div className={styles.textContainer}>Please Select the region</div>
-      <div className={styles.container}>
-        <Link className={styles.box} href="/shop/china">
+      
+      <motion.div 
+        className={styles.container} 
+        style={{ gap }}
+        initial={{ gap: '20px' }} 
+        animate={{ gap }} // 动画设置
+        transition={{ duration: 1 }} // 动画持续时间
+      >
+        <div className={styles.door}>
+        <Link className={styles.box} href="/shop/china" onClick={handleLinkClick}>
         <video className={styles.video} autoPlay muted  loop>
           <source src="/video/china.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        China
+         <div className={styles.text}>China</div>
         </Link>
-        <Link className={styles.box} href="/shop/europe">
-        <video className={styles.video} autoPlay muted  loop>
-          <source src="/video/europe.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        Europe
-        </Link>
+        </div>
+
+        <div className={styles.door2}>
+            <Link className={styles.box} href="/shop/europe" onClick={handleLinkClick}>
+            <video className={styles.video} autoPlay muted  loop>
+              <source src="/video/europe.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className={styles.text}>Europe</div>
+            </Link>
+        </div>
+        </motion.div>
       
-        
-      </div>
 
 
       
