@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    padding-top: 17vh;
+    padding-top: 18vw;
   
 }
 .textContainer{
@@ -13,7 +13,7 @@
     padding: 3vh;
     font-family: 'oppo Sans Heavy';
     font-size: 3rem;
-    margin-top: 6vh;
+    margin-top: -5vh;
     z-index: 4;
     
 }
@@ -26,13 +26,13 @@
 .container{
     width: 100%;
     display: flex;
-    height: 82vh;
+    height: 80vh;
     bottom: 0;
   
     justify-content: center;
     align-items: center;
     
-    gap: 20px;
+    gap: 10px;
 
     position: absolute;
     
@@ -53,7 +53,7 @@
     position: relative; /* 让视频相对于 .box 绝对定位 */
     overflow: hidden; 
     text-align: center; 
-    border: 20px solid #4f4e4e; /* 边框 */
+    border: 3px solid #4f4e4e; /* 边框 */
     margin: 100px;
 }
 
@@ -63,13 +63,14 @@
     align-items: center;
     justify-content:end;
     height: 100%;
-    background-color: #E2DEDE;
-   
+    background-color: #fefefe;
+    border: 3px solid #4f4e4e; 
+    translate: 0px;
     border-radius: 0 40px 40px 0;
     position: relative;
 }
 
-.door::before {
+/* .door::before {
     content: '';
     position: absolute;
     top: -15px;
@@ -77,9 +78,9 @@
     right: -10px;
     bottom: 0;
     border: 25px solid #4f4e4e; 
-    border-radius: 0; /* 边框不带圆角 */
-    z-index: -1; /* 使伪元素在背后 */
-  }
+    border-radius: 0; 
+    z-index: -1; 
+  } */
 
 
 
@@ -88,15 +89,16 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    background-color: #E2DEDE;
+    background-color: #fffefe;
     border-radius: 40px 0 0 40px;
-    
+    border: 3px solid #4f4e4e; 
     height: 100%;
+    translate: 0px;
     position: relative;
 
 }
 
-.door2::before {
+/* .door2::before {
     content: '';
     position: absolute;
     top: -15px;
@@ -104,9 +106,9 @@
     right: 0;
     bottom: 0;
     border: 25px solid #4f4e4e; 
-    border-radius: 0; /* 边框不带圆角 */
-    z-index: -1; /* 使伪元素在背后 */
-  }
+    border-radius: 0; 
+    z-index: -1;
+  } */
 
 
 
@@ -140,7 +142,7 @@
 
     .container{
         flex-direction: column;      
-        gap: 30px;
+        gap: 10px;
     }
 
     .box{

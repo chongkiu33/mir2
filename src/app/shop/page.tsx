@@ -1,50 +1,54 @@
-"use client"
+'use client';
 import Link from 'next/link';
 import styles from './shop.module.css';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Shopping() {
-  const [gap, setGap] = useState('20px');
+    const [gap, setGap] = useState('20px');
 
-  const handleLinkClick = (url: string) => {
-    setGap('1500px');
-    // 延迟跳转
-    setTimeout(() => {
-      window.location.href = url; // 使用 window.location.href 进行跳转
-    }, 100); // 设置延迟，确保与动画持续时间匹配
-  }
+    const handleLinkClick = (e:any) => {
+        e.preventDefault(); // 阻止默认跳转
+        setGap('1500px'); // 设置动画
+        const targetUrl = e.currentTarget.getAttribute('href');
 
-  return (
-    <div className={styles.bigcontainer}>
-      <div className={styles.textContainer}>Please Select the region</div>
-      <motion.div 
-        className={styles.container} 
-        style={{ gap }}
-        initial={{ gap: '20px',opacity:1 }} 
-        animate={{ gap }} 
-        transition={{ duration: 0.5 ,ease:'easeInOut' }} 
-      >
-        <div className={styles.door}>
-          <a className={styles.box} onClick={() => handleLinkClick('/shop/china')}>
-            <video className={styles.video} autoPlay muted loop>
-              <source src="/video/china.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className={styles.text}>China</div>
-          </a>
+        // 等待动画完成后再进行页面跳转
+        setTimeout(() => {
+            window.location.href = targetUrl; // 手动跳转
+        }, 500); // 动画持续时间（与transition.duration一致）
+    };
+
+    return (
+        <div className={styles.bigcontainer}>
+            <div className={styles.textContainer}>Please Select the region</div>
+
+            <motion.div 
+                className={styles.container} 
+                style={{ gap }}
+                initial={{ gap: '20px' }} 
+                animate={{ gap }} // 动画设置
+                transition={{ duration: 0.5 }} // 动画持续时间
+            >
+                <div className={styles.door}>
+                    <Link className={styles.box} href="/shop/china" onClick={handleLinkClick}>
+                        <video className={styles.video} autoPlay muted loop>
+                            <source src="/video/china.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <div className={styles.text}>China</div>
+                    </Link>
+                </div>
+
+                <div className={styles.door2}>
+                    <Link className={styles.box} href="/shop/europe" onClick={handleLinkClick}>
+                        <video className={styles.video} autoPlay muted loop>
+                            <source src="/video/europe.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <div className={styles.text}>Europe</div>
+                    </Link>
+                </div>
+            </motion.div>
         </div>
-
-        <div className={styles.door2}>
-          <a className={styles.box} onClick={() => handleLinkClick('/shop/europe')}>
-            <video className={styles.video} autoPlay muted loop>
-              <source src="/video/europe.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className={styles.text}>Europe</div>
-          </a>
-        </div>
-      </motion.div>
-    </div>
-  );
+    );
 }
