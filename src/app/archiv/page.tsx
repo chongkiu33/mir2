@@ -62,7 +62,7 @@ const activities = [
     imageUrl: "/image/archiv/Where to go at the weekend/016c55608e850511013e3b7d36d17b.jpg@1280w_1l_2o_100sh.jpg",
     link: "/archiv/fogotten-fantasy"
   }
-  // 添加更多活动对象
+  
 ];
 
 const Archiv: React.FC = () => {
