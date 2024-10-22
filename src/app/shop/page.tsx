@@ -12,7 +12,7 @@ export default function Shopping() {
     // 延迟跳转
     setTimeout(() => {
       window.location.href = url; // 使用 window.location.href 进行跳转
-    }, 1000); // 设置延迟，确保与动画持续时间匹配
+    }, 500); // 设置延迟，确保与动画持续时间匹配
   }
 
   return (
@@ -21,9 +21,9 @@ export default function Shopping() {
       <motion.div 
         className={styles.container} 
         style={{ gap }}
-        initial={{ gap: '20px' }} 
+        initial={{ gap: '20px',opacity:1 }} 
         animate={{ gap }} 
-        transition={{ duration: 1 }} 
+        transition={{ duration: 0.5 ,ease:'easeInOut' }} 
       >
         <div className={styles.door}>
           <a className={styles.box} onClick={() => handleLinkClick('/shop/china')}>
