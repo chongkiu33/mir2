@@ -75,7 +75,7 @@ const BouceLine = () => {
 
 
         const handleResize = () => {
-            const newSvgWidth = window.innerWidth * 1;   
+            const newSvgWidth = window.innerWidth * 0.9;   
             setSvgWidth(newSvgWidth);   
             setSvgPath(`M0,75 Q${newSvgWidth / 2},${curveh} ${newSvgWidth},75`);
         };
