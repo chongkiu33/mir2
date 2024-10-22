@@ -15,13 +15,22 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps) {
   const pathname = usePathname();
   const [mouseY, setMouseY] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // 在组件挂载后设置 isMounted 为 true
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
+    // 确保代码只在客户端运行
+    if (!isMounted) return;
+
     if (pathname !== '/') {
       const handleScroll = () => {
         const logo = document.querySelector(`.${styles.logoItem}`);
         const links = document.querySelectorAll(`.${styles.navLink}`);
-        const scrollTop = window.scrollY;
+        const scrollTop = window?.scrollY || 0;
         const logo2 = document.querySelector(`.${styles.navImage}`) as HTMLImageElement;
 
         if (scrollTop > 50) {
@@ -52,15 +61,21 @@ export default function Layout({ children }: LayoutProps) {
         }
       };
 
-      window.addEventListener('scroll', handleScroll);
-      
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+      // 使用可选链操作符检查 window 是否存在
+      if (typeof window !== 'undefined') {
+        window.addEventListener('scroll', handleScroll);
+        
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }
     }
-  }, [pathname]);
+  }, [pathname, isMounted]);
 
   useEffect(() => {
+    // 确保代码只在客户端运行
+    if (!isMounted) return;
+
     if (pathname === '/object') {
       const handleMouseMove = (event: MouseEvent) => {
         setMouseY(event.clientY);
@@ -96,13 +111,16 @@ export default function Layout({ children }: LayoutProps) {
         }
       };
 
-      window.addEventListener('mousemove', handleMouseMove);
+      // 使用可选链操作符检查 window 是否存在
+      if (typeof window !== 'undefined') {
+        window.addEventListener('mousemove', handleMouseMove);
 
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-      };
+        return () => {
+          window.removeEventListener('mousemove', handleMouseMove);
+        };
+      }
     }
-  }, [pathname]);
+  }, [pathname, isMounted]);
 
   return (
     <div>
