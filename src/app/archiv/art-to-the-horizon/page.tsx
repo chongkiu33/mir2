@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '../forgotten-fantasy/ForgottenFantasy.module.css';
+import styles from './horizon.module.css';
+import Footer from '@/app/components/footer/footer';
 
 const ForgottenFantasy: React.FC = () => {
   return (
@@ -51,6 +52,8 @@ const ForgottenFantasy: React.FC = () => {
         </p>
         {/* 添加更多段落 */}
       </div>
+
+      <Footer />
     </div>
   );
 };

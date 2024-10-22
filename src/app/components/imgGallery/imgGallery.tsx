@@ -9,26 +9,26 @@ import {Image} from '@react-three/drei';
 
 
 const images = [
-    { position: [3.3, 1.3, 0.3], url: "/image/png/1.png",scale: [1, 0.75]},
-    { position: [-0.5, -1.8, 1],  url: "/image/png/2.png", scale: [1, 1*1.5]},
-    { position: [1.4, -0.4, 2], url: "/image/png/3.png" , scale: [1, 0.65]},
-    { position: [-2.5, 1.7, 1], url: "/image/png/4.png" , scale: [1, 1.5]},
-    { position: [-3.7, 0.4, 1], url: "/image/png/5.png",scale: [1, 1.5]},
-    { position: [2.2, 0.8, 0.1], url: "/image/png/6.png",scale: [0.8, 0.8*0.8]},
-    { position: [2, 0, -1.5], url: "/image/png/7.png",scale: [1, 0.67]},
-    { position: [3.8, -1.5, 0], url: "/image/png/8.png",scale: [1, 1]},
-    { position: [-1.6, 0.7, 0.5], url: "/image/png/9.png",scale: [1, 1.25]},
-    { position: [2.3, -2.3, 0], url: "/image/png/10.png",scale: [1, 1*1.25]},
-    { position: [-2.4, -1.6, 0], url: "/image/png/11.png",scale: [1, 1*1.24]},
-    { position: [1.4, -2.2, -1.5], url: "/image/png/12.png",scale: [1, 1*1.15]},
-    { position: [4.2, 0, 0], url: "/image/png/13.png",scale: [1.3, 1.3*0.69]},
-    { position: [-3.5, 0.5, 0], url: "/image/png/14.png",scale: [0.6, 0.6*1.33]},
-    { position: [1.1, 1.6, 1.7], url: "/image/png/15.png",scale: [1, 1*1.5]},
-    { position: [-2.9, -0.7, 0.9], url: "/image/png/16.png",scale: [0.9, 0.9*1.5]},
-    { position: [-2, -1.2, -2], url: "/image/png/17.png",scale: [1, 1*1.5]},
-    { position: [-0.1, 0.1, 1], url: "/image/png/18.png",scale: [1, 1]},
-    { position: [-0.8, 2.3, -1], url: "/image/png/19.png",scale: [1, 1*1.5]},
-    { position: [0.5, 1.3, -0.5], url: "/image/png/20.png",scale: [0.6, 0.6*1.29]},
+    { position: [3.3, 1.3, 0.3], url: "/image/png/1.png",scale: [1, 0.75],slug:"1"},
+    { position: [-0.5, -1.8, 1],  url: "/image/png/2.png", scale: [1, 1*1.5],slug:"2"},
+    { position: [1.4, -0.4, 2], url: "/image/png/3.png" , scale: [1, 0.65],slug:"3"},
+    { position: [-2.5, 1.7, 1], url: "/image/png/4.png" , scale: [1, 1.5],slug:"4"   },
+    { position: [-3.7, 0.4, 1], url: "/image/png/5.png",scale: [1, 1.5], slug:"5"},
+    { position: [2.2, 0.8, 0.1], url: "/image/png/6.png",scale: [0.8, 0.8*0.8],slug:"6"},
+    { position: [2, 0, -1.5], url: "/image/png/7.png",scale: [1, 0.67],slug:"7"},
+    { position: [3.8, -1.5, 0], url: "/image/png/8.png",scale: [1, 1], slug:"8"},
+    { position: [-1.6, 0.7, 0.5], url: "/image/png/9.png",scale: [1, 1.25],slug:"9"},
+    { position: [2.3, -2.3, 0], url: "/image/png/10.png",scale: [1, 1*1.25],slug:"10"},
+    { position: [-2.4, -1.6, 0], url: "/image/png/11.png",scale: [1, 1*1.24],slug:"11"},
+    { position: [1.4, -2.2, -1.5], url: "/image/png/12.png",scale: [1, 1*1.15],slug:"12"},
+    { position: [4.2, 0, 0], url: "/image/png/13.png",scale: [1.3, 1.3*0.69],slug:"13"},
+    { position: [-3.5, 0.5, 0], url: "/image/png/14.png",scale: [0.6, 0.6*1.33],slug:"14"},
+    { position: [1.1, 1.6, 1.7], url: "/image/png/15.png",scale: [1, 1*1.5],slug:"15"},
+    { position: [-2.9, -0.7, 0.9], url: "/image/png/16.png",scale: [0.9, 0.9*1.5],slug:"16"},
+    { position: [-2, -1.2, -2], url: "/image/png/17.png",scale: [1, 1*1.5],slug:"17"},
+    { position: [-0.1, 0.1, 1], url: "/image/png/18.png",scale: [1, 1],slug:"18"},
+    { position: [-0.8, 2.3, -1], url: "/image/png/19.png",scale: [1, 1*1.5],slug:"19"},
+    { position: [0.5, 1.3, -0.5], url: "/image/png/20.png",scale: [0.6, 0.6*1.29],slug:"20"},
   ]
 
 const ImgGallery = () => {
@@ -50,7 +50,7 @@ export default ImgGallery;
 
 
 
-function ImgItem({ url, position, scale }: { url: string; position: any; scale: any }){
+function ImgItem({ url, position, scale,slug }: { url: string; position: any; scale: any ;slug:string}){
     const mesh = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
     const rotationAngle = useRef(0); // 用于跟踪旋转角度
@@ -76,13 +76,17 @@ function ImgItem({ url, position, scale }: { url: string; position: any; scale: 
         }  
     });
 
+    const handleClick = () => {
+        window.location.href = `/object/${slug}`; // 使用 window.location.href 跳转
+    };
     return(
-       
-        <mesh>
+        
+        <mesh onClick={handleClick}>
             <Image  ref={mesh} onPointerOver={() => setHovered(true)} // 当鼠标悬停时触发
             onPointerOut={() => setHovered(false)} // 当鼠标移出时触发
             url={url} position={position} scale={scale}  toneMapped={false} transparent={true} /> 
         </mesh>
+        
  
     )
 }

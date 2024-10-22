@@ -10,10 +10,11 @@
 .textContainer{
     display: flex;
     justify-content: center;
-    padding: 3vh;
+    
     font-family: 'oppo Sans Heavy';
     font-size: 3rem;
-    margin-top: -5vh;
+    position: fixed;
+    
     z-index: 4;
     
 }
@@ -34,7 +35,7 @@
     
     
 
-    position: absolute;
+    
     
 
 }
@@ -134,6 +135,8 @@
     .box{
         width: 27vw;
     }
+
+    
 }
 @media screen and (max-width: 768px) {
     .textContainer{
@@ -149,6 +152,19 @@
         width: 60vw;
         height: 30vh;
         font-size:2rem;
+    }
+
+    .door,.door2{
+        
+        
+        border-radius:  40px;
+        position: relative;
+        border: 2px solid #4f4e4e; 
+        
+    }
+
+    .textContainer{
+        margin-top: 37vh;
     }
     
 }
