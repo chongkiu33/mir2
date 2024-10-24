@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import type { AppProps } from 'next/app';
+import Navbar from "./components/Navbar/Navbar";
 import Layout from "./components/layout";
 
-import type { AppProps } from 'next/app';
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MIR",
@@ -19,9 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        
-        <Layout>{children}</Layout>
+      <body >
+        <Navbar />
+        {/* <Layout> */}
+        <main>
+          {children}</main>
+          {/* </Layout> */}
       </body>
     </html>
   );

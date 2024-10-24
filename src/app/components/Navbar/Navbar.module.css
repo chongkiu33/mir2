@@ -1,0 +1,76 @@
+.navbar {
+    
+    padding: 1rem;
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    
+}
+
+.navList {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    height: 9vw; 
+    align-items: center;
+    gap: 1vw;
+}
+
+.navItem {
+    flex: 1;
+    height: 100%;
+    
+
+}
+
+.navImage {
+    height: 9vw; /* Set the image height */
+    width: auto; /* Maintain aspect ratio */
+    transition: all 0.5s ease;
+   
+  }
+
+.logoItem {
+    flex: 0 0 auto; /* Logo item should not flex */
+    transition: all 0.5s ease;
+}
+
+.logoItem:hover{
+    transform: rotate(360deg);
+    transition: transform 0.5s ease;
+  }
+
+
+
+.navLink{
+    display: flex;
+    
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vmin;
+    font-family: 'Oppo Sans Heavy';
+    font-size: 3.8vw;  
+    transition: all 0.3s ease; 
+}
+
+.activeLink {
+    background-color: black !important; /* 添加 !important 确保样式生效 */
+    color: white !important;
+}
+  
+.inactiveLink {
+    background-color: rgb(217  217 217 / 0.5) !important;
+    color: black !important;
+  }
+
+.navLink:hover{
+    background-color: rgb(254, 254, 254);
+    color: black;
+}
+
+
+

@@ -124,7 +124,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <Loading onLoadingComplete={() => setLoading(false)} />
       ) : (
         <div >
@@ -148,10 +148,10 @@ export default function Layout({ children }: LayoutProps) {
                 <Link href="/shop" className={`${styles.navLink} ${pathname === '/shop' ? styles.active : pathname === '/' ? styles.homePage  : ''}`}>Shop</Link>
               </li>
             </ul>
-          </nav>
+          </nav> */}
           <main>{children}</main>
-        </div>
-      )}
+        {/* </div>
+      )} */}
     </>
   );
 }
