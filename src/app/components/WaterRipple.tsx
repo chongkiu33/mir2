@@ -60,10 +60,23 @@ const WaterRipple = () => {
           if (displacementSprite.y > displacementSprite.height) displacementSprite.y = 0;
         });
 
+        const updateRipplePosition = (x: number, y: number) => {
+          displacementSprite.x = x - displacementSprite.width / 2;
+          displacementSprite.y = y - displacementSprite.height / 2;
+        };
+
         window.addEventListener('mousemove', (event) => {
-          displacementSprite.x = event.clientX - displacementSprite.width / 2;
-          displacementSprite.y = event.clientY - displacementSprite.height / 2;
+          updateRipplePosition(event.clientX, event.clientY);
         });
+
+        window.addEventListener('touchmove', (event) => {
+          event.preventDefault();
+          const touch = event.touches[0];
+          if (touch) {
+            updateRipplePosition(touch.clientX, touch.clientY);
+          }
+        });
+
       });
 
       // 清理函数
