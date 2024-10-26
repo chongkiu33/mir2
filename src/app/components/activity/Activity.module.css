@@ -40,11 +40,14 @@
     align-items: flex-start; /* 顶端对齐 */
     width: 90%;
     
+    
   }
   
   .activityHeader {
     flex: 0.8;
     padding-right: 30px;
+    display: flex;
+    flex-direction: column;
   }
   
   .activityHeader h2 {
@@ -95,4 +98,60 @@
   .activityImage img {
     width: 100%;
   }
+
+
+
+  @media (max-width: 763px) {
+    .activityContent {
+        flex-direction: column; /* 垂直排列 */
+        gap: 10px; /* 调整间距 */
+    }
+
+    .activityHeader h2 {
+      order: 2;
+      font-size: 26px;
+    }
+
+    .activityHeader p {
+      order: 1;
+      
+    }
+
+    .activityArtist h3{
+      font-size: 20px;
+    }
+
+    .activityArtist p{
+      font-size: 14px;
+    }
+    
+    /* 将 activityHeader 和 activityArtist 合并在一起 */
+    .activityHeader,
+    .activityArtist {
+        flex: 0.5;
+        width: 100%; /* 宽度占满 */
+        padding-right: 0;
+        order: 1;
+    }
+    
+    /* 单独调整其他部分 */
+    .activityDescription {
+        flex: 1;
+        width: 100%; /* 占满宽度 */
+        padding-right: 0;
+        order: 2;
+        
+    }
+
+    .activityDescription p{
+        font-size: 16px;
+    }
+    
+    .activityImage {
+        flex: 1;
+        width: 100%; /* 占满宽度 */
+        padding-right: 0;
+        order: 3;
+    }
+}
   
