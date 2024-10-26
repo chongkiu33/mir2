@@ -100,7 +100,7 @@ const WaterRipple = () => {
 
   return (
     <>
-      <div ref={rippleRef} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1 }} />
+      <div ref={rippleRef} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1 ,overflow: 'hidden'}} />
       <div className={styles.textContainer1}>
         <div className={styles.text1}>MIR</div>
       </div>
