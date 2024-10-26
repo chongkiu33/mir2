@@ -58,13 +58,13 @@
 }
 
 .activeLink {
-    background-color: black !important; /* 添加 !important 确保样式生效 */
+    background-color: black !important; 
     color: white !important;
 }
   
 .inactiveLink {
-    background-color: rgb(217  217 217 / 0.5) !important;
-    color: black !important;
+    background-color: rgb(217  217 217 / 0.5) ;
+    color: black ;
   }
 
 .navLink:hover{
@@ -95,3 +95,16 @@
   }
 
 
+  @media (max-width: 763px) {
+
+    .navLink{
+        font-size: 4.3vw;
+    }
+
+
+    .logoItem.shrunk {
+      transform: none;
+      transition: all 0.5s ease;
+      transform-origin: center;
+    }
+  }

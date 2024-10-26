@@ -42,6 +42,8 @@ const BouceLine = () => {
     }
   };
 
+ 
+
   const handleMouseMove = (event: React.MouseEvent<SVGSVGElement>) => {
     const svgElement = event.currentTarget;
     const rect = svgElement.getBoundingClientRect();
@@ -50,6 +52,16 @@ const BouceLine = () => {
     setCurveh(top);
     setSvgPath(`M0,75 Q${left},${top} ${svgWidth},75`);
   };
+
+  const handleTouchMove = (event: React.TouchEvent<SVGSVGElement>) => {
+    const touch = event.touches[0];
+    const svgElement = event.currentTarget;
+    const rect = svgElement.getBoundingClientRect();
+    const left = touch.clientX - rect.left;
+    const top = touch.clientY - rect.top;
+    setCurveh(top);
+    setSvgPath(`M0,75 Q${left},${top} ${svgWidth},75`);
+  }
 
   useEffect(() => {
     const animate = (time: number) => {
@@ -83,6 +95,9 @@ const BouceLine = () => {
         xmlns="http://www.w3.org/2000/svg"
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleMouseLeave}
+        
       >
         <path 
           ref={pathRef} 
