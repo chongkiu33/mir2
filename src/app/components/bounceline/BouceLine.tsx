@@ -106,6 +106,7 @@ const BouceLine = () => {
           fill="none" 
           stroke="#000" 
           strokeWidth="1.5" 
+          color='#000'
         />
       </svg>
     </div>
