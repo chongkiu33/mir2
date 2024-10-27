@@ -15,21 +15,39 @@ export default function Navbar() {
     useEffect(() => {
       setMounted(true);
 
-      if (pathname !== '/' && pathname !== '/object') {
-        const handleScroll = () => {
-          if (window.scrollY > 50) { // 滚动 50px 之后触发动画
+      const handleScroll = () => {
+        if (window.scrollY > 50) { // 滚动 50px 之后触发动画
+          setIsShrunk(true);
+        } else {
+          setIsShrunk(false);
+        }
+      };
+
+      const handleMouseMove = (event:any) =>{
+        if (pathname === '/object'){
+          if(event.clientY >150){
             setIsShrunk(true);
-          } else {
+          }else{
             setIsShrunk(false);
           }
-        };
-        
+        }
+      };
+
+      if (pathname == '/object'){
+        window.addEventListener('mousemove', handleMouseMove);
+      } else if (pathname !=='/'){
         window.addEventListener('scroll', handleScroll);
-  
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
+      }else{
+        setIsShrunk(false);
       }
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('mousemove', handleMouseMove);
+      };
+
+
+
     }, [pathname]);
   
     const getNavLinkClass = (href: string, index: number) => {
@@ -74,3 +92,6 @@ export default function Navbar() {
       </nav>
     );
   }
+
+
+  
