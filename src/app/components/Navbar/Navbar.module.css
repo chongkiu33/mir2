@@ -108,3 +108,12 @@
       transform-origin: center;
     }
   }
+
+
+  @media (prefers-color-scheme: dark) {
+    .activeLink{
+       box-shadow: 0px 0px 10px rgb(240, 238, 238);
+  }
+
+ 
+  }

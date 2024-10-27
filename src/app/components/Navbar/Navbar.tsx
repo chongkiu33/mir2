@@ -11,16 +11,21 @@ export default function Navbar() {
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const [isShrunk, setIsShrunk] = useState(false);
+    const [rotateAngel, setRotateAngel] = useState(0);
   
     useEffect(() => {
       setMounted(true);
 
       const handleScroll = () => {
+        const srollY = window.scrollY;
+
         if (window.scrollY > 50) { // 滚动 50px 之后触发动画
           setIsShrunk(true);
         } else {
           setIsShrunk(false);
         }
+
+        setRotateAngel(srollY * 0.5); 
       };
 
       const handleMouseMove = (event:any) =>{
@@ -30,6 +35,10 @@ export default function Navbar() {
           }else{
             setIsShrunk(false);
           }
+        }
+
+        if(pathname ==='/object' || pathname ==='/'){
+          setRotateAngel(event.clientX * 0.5);
         }
       };
 
@@ -49,6 +58,10 @@ export default function Navbar() {
 
 
     }, [pathname]);
+
+    useEffect(() => {
+      setRotateAngel(0);
+    }, [pathname]);
   
     const getNavLinkClass = (href: string, index: number) => {
         if (!mounted) return styles.navLink;
@@ -56,7 +69,7 @@ export default function Navbar() {
         const transitionDelay = `${index * 0.1}s`; // 每个链接延迟 0.1s
         
         return `${styles.navLink} ${
-          pathname === '/' || pathname === href ? styles.activeLink : styles.inactiveLink
+          pathname === '/' || pathname.startsWith(href) ? styles.activeLink : styles.inactiveLink
         } ${isShrunk ? styles.hidden :styles.showing}`;
     };
   
@@ -74,6 +87,7 @@ export default function Navbar() {
                 width={50} 
                 height={50} 
                 className={styles.navImage}
+                style={{ transform: `rotate(${rotateAngel}deg)` }}
               />
             </Link>
           </li>
