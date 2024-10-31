@@ -104,7 +104,7 @@ export default function Navbar() {
               className={getNavLinkClass(href, index)}
               style={{ transitionDelay: `${index * 0.1}s` }} // 设置逐个上移的延迟
             >
-              {href.replace('/', '')}
+              {href.replace('/', '').charAt(0).toUpperCase() + href.replace('/', '').slice(1)}
             </Link>
           </li>
         ))}
