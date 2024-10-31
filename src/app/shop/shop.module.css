@@ -1,6 +1,5 @@
 .bigcontainer{
     display:flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     height: 100vh;
@@ -9,13 +8,11 @@
 }
 .textContainer{
     display: flex;
-    justify-content: center;
-    
+    justify-content: center;   
     font-family: 'oppo Sans Heavy';
     font-size: 5vmin;
     position: fixed;
     margin-top: 3vh;
-    
     z-index: 4;
     
 }
@@ -30,22 +27,14 @@
     display: flex;
     height: 80vh;
     bottom: 0;
-  
     justify-content: center;
-    align-items: center;
-    
-    
-
-    
-    
-
+    align-items: center; 
 }
 
 .box{
     width: 23vw;
     height: 50vh;
     color: white;
-    /* background-color: rgb(216, 216, 216); */
     border-radius: 50px;
     font-size:3rem;
     display: flex;
@@ -70,49 +59,22 @@
     
     border-radius: 0 40px 40px 0;
     position: relative;
-    border-left: none;
+    
 }
-
-/* .door::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: 0;
-    right: -10px;
-    bottom: 0;
-    border: 25px solid #4f4e4e; 
-    border-radius: 0; 
-    z-index: -1; 
-  } */
-
 
 
 .door2{
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: start;
-   
+    justify-content: start;  
     border-radius: 40px 0 0 40px;
     border: 2px solid #4f4e4e; 
     height: 100%;
-    border-right: none;
+    
     position: relative;
 
 }
-
-/* .door2::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: -10px;
-    right: 0;
-    bottom: 0;
-    border: 25px solid #4f4e4e; 
-    border-radius: 0; 
-    z-index: -1;
-  } */
-
 
 
 .video{
@@ -136,17 +98,16 @@
     .box{
         width: 27vw;
     }
-
-    
+  
 }
+
 @media screen and (max-width: 768px) {
     .textContainer{
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     .container{
-        flex-direction: column;      
-       
+        flex-direction: column;        
     }
 
     .box{
@@ -165,7 +126,7 @@
     }
 
     .door{
-        margin-bottom: -60px;
+        margin-bottom: -100px;
     }
 
     .textContainer{

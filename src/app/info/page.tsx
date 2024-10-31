@@ -17,7 +17,7 @@ const InfoPage = () => {
         </div>
         <div className={styles.contactContainer}>
         <Link href="/">——&gt;Email</Link>
-        <Link href="/">——&gt;Instagram</Link>
+        <Link href="https://www.instagram.com/mir88520?igsh=MW9vcXJyY2Zhd3Mycw%3D%3D&utm_source=qr">——&gt;Instagram</Link>
         </div>
       </div>
 

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Shopping() {
-    const [gap, setGap] = useState('2px');
+    const [gap, setGap] = useState('20px');
 
     const handleLinkClick = (e:any) => {
         e.preventDefault(); // 阻止默认跳转
@@ -25,7 +25,7 @@ export default function Shopping() {
             <motion.div 
                 className={styles.container} 
                 style={{ gap }}
-                initial={{ gap: '2px' }} 
+                initial={{ gap: '20px' }} 
                 animate={{ gap }} // 动画设置
                 transition={{ duration: 0.5 }} // 动画持续时间
             >

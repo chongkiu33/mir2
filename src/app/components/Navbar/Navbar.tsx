@@ -44,15 +44,21 @@ export default function Navbar() {
 
       if (pathname == '/object'){
         window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll);
       } else if (pathname !=='/'){
         window.addEventListener('scroll', handleScroll);
-      }else{
+      }else if (pathname ==='/'){
+        window.addEventListener('mousemove', handleMouseMove);
         setIsShrunk(false);
+        
       }
 
       return () => {
-        window.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('mousemove', handleMouseMove);
+        if (pathname === '/object' || pathname === '/') {
+          window.removeEventListener('mousemove', handleMouseMove);
+        } else {
+          window.removeEventListener('scroll', handleScroll);
+        }
       };
 
 
