@@ -15,11 +15,6 @@ const Product = ({ name, price, description, image }: ProductProps) => {
     );
 };
 
-// const Product = () => {
-//   return (  
-//         <Image src="/image/bag3.png" alt="" fill className={styles.image} />
-    
-// );
-// };
+
 
 export default Product;
