@@ -88,7 +88,7 @@ export default function Navbar() {
              
             >
               <Image 
-                src="/logo.svg" 
+                src="/logo9.svg" 
                 alt="Home" 
                 width={50} 
                 height={50} 

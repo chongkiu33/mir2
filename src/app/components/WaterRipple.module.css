@@ -2,18 +2,21 @@
 
 .textContainer1{
     display: flex;   
-    height: 100vh;
+    height: calc(100vh - 9vw);
+    margin-top: 9vw;
     width: 100vw;
     justify-content: center; 
     align-items: center;
     position:fixed;
+   
     
 }
 
 .text1{
-    padding-top: 5vmax;
-    font-size: 50vw;
+    padding-top: 3vw;
+    font-size: calc(25vw + 25vh);
     color: #fff;
+    
     font-family: 'oppo Sans Heavy';
    
 }
