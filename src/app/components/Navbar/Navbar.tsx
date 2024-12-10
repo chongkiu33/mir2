@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 
+
 export default function Navbar() {
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
@@ -88,7 +89,7 @@ export default function Navbar() {
              
             >
               <Image 
-                src="/logo9.svg" 
+                src="/logo9.svg"
                 alt="Home" 
                 width={50} 
                 height={50} 
