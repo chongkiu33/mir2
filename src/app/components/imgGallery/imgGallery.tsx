@@ -79,12 +79,27 @@ function ImgItem({ url, position, scale,slug }: { url: string; position: any; sc
     const handleClick = () => {
         window.location.href = `/object/${slug}`; // 使用 window.location.href 跳转
     };
+
+
+    const handlePointerOver = () => {
+        setHovered(true);
+        document.body.style.cursor = "pointer"; // 设置鼠标样式
+    };
+
+    const handlePointerOut = () => {
+        setHovered(false);
+        document.body.style.cursor = "grab"; // 恢复鼠标样式
+    };
     return(
         
-        <mesh onClick={handleClick}>
+        <mesh 
+        onClick={handleClick} 
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        >
             <Image  ref={mesh} onPointerOver={() => setHovered(true)} // 当鼠标悬停时触发
             onPointerOut={() => setHovered(false)} // 当鼠标移出时触发
-            url={url} position={position} scale={scale}  toneMapped={false} transparent={true} /> 
+            url={url} position={position} scale={scale}  toneMapped={false} transparent={true}  /> 
         </mesh>
         
  

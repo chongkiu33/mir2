@@ -2,14 +2,19 @@
 import Link from 'next/link';
 import styles from './shop.module.css';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Shopping() {
-    const [gap, setGap] = useState('20px');
+    const [gap, setGap] = useState('0px');
+    const [zIndex, setZIndex] = useState(1);
+    const [scale, setScale] = useState(1);
 
     const handleLinkClick = (e:any) => {
         e.preventDefault(); // 阻止默认跳转
+        setZIndex(-2);
         setGap('1500px'); // 设置动画
+        setScale(2.5); // 设置 scale 动画
         const targetUrl = e.currentTarget.getAttribute('href');
 
         // 等待动画完成后再进行页面跳转
@@ -19,36 +24,84 @@ export default function Shopping() {
     };
 
     return (
-        <div className={styles.bigcontainer}>
-            <div className={styles.textContainer}>Please Select the region</div>
+      
+        <motion.div
+        className={styles.bigcontainer}
+        animate={{ scale }} // 动画设置
+        transition={{ duration: 0.5, delay: 0.5 }} // 动画持续时间
+    >
+            {/* <div className={styles.textContainer}>Please Select the region</div> */}
+            <div className={styles.frame}>
+            <Image src="/frame.png" alt="Activity Image" width={600} height={600} />
+            </div>
+
+
 
             <motion.div 
-                className={styles.container} 
-                style={{ gap }}
-                initial={{ gap: '20px' }} 
+                className={styles.doorbox}
+                style={{ gap,zIndex }}
+                initial={{ gap: '0' }} 
+                animate={{ gap }} // 动画设置
+                transition={{ duration: 0.8 }} // 动画持续时间
+            >
+            
+
+
+               <Link className={styles.door}  href="/shop/china" onClick={handleLinkClick}>
+                    <Image src="/left.png" alt="Activity Image" width={600} height={600} />
+                </Link>
+                
+
+                <Link className={styles.door} href="/shop/europe" onClick={handleLinkClick}>
+              <Image src="/right.png" alt="Activity Image" width={600} height={600} /> 
+              </Link>
+           
+          
+            </motion.div>
+
+
+            <motion.div 
+                className={styles.videobox}
+                style={{ gap}}
+                initial={{ gap: '0' }} 
                 animate={{ gap }} // 动画设置
                 transition={{ duration: 0.5 }} // 动画持续时间
             >
-                <div className={styles.door}>
-                    <Link className={styles.box} href="/shop/china" onClick={handleLinkClick}>
-                        <video className={styles.video} autoPlay muted loop>
+            
+
+
+                <div className={styles.videodoor}>
+                    
+                <div className={styles.text}>China</div>
+                <div style={{backgroundColor: 'black', width: '100%', height: '100%'}}>
+                
+                <video className={styles.video}  autoPlay muted loop unselectable='on'>
                             <source src="/video/china.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
-                        <div className={styles.text}>China</div>
-                    </Link>
-                </div>
 
-                <div className={styles.door2}>
-                    <Link className={styles.box} href="/shop/europe" onClick={handleLinkClick}>
-                        <video className={styles.video} autoPlay muted loop>
-                            <source src="/video/europe.mp4" type="video/mp4" />
+                        
+                </div>
+                
+                 </div>
+
+              <div className={styles.videodoor} >
+                <div className={styles.text}>Europe</div>
+              <div style={{backgroundColor: 'black', width: '100%', height: '100%'}}>
+              <video className={styles.video}  autoPlay muted loop unselectable='on'>
+                            <source src="/video/europe2.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
-                        <div className={styles.text}>Europe</div>
-                    </Link>
-                </div>
+
+              </div>
+                        
+              </div>
+           
+
             </motion.div>
-        </div>
+
+
+            </motion.div>
+        
     );
 }

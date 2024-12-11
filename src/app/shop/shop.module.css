@@ -1,10 +1,86 @@
 .bigcontainer{
-    display:flex;
-    align-items: center;
-    flex-direction: column;
+
+   
     height: 100vh;
     padding-top: 15vw;
   
+}
+
+.frame{
+    height: 85vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
+
+
+.doorbox{
+    height: 85vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+   z-index: 5;
+   display: flex;
+}
+
+.videobox{
+    height: 85vh;
+    width: 70%;
+    left: 15%;
+    position: absolute;
+    bottom: 0;
+   z-index: -3;
+   display: flex;
+   justify-content: center;
+
+
+}
+
+
+
+.videodoor{
+   flex: 1;
+   padding: 15vh 10% 30vh 10%;
+   display: flex;
+   justify-content: center;
+   
+   
+   
+  
+
+}
+
+.door{
+   flex: 1;
+   display: flex;
+  
+   
+ 
+
+}
+
+.door img{
+    width: 100%;
+    height: 100%;
+    display: absolute;
+    z-index: -3;
+    
+  
+
+}
+
+
+
+
+
+
+.frame img{
+    width: 100%;
+    height: 100%;
 }
 .textContainer{
     display: flex;
@@ -17,120 +93,71 @@
     
 }
 
-
-.box:hover{
-    background-color:black;
-}
-
 .container{
     width: 100%;
     display: flex;
-    height: 80vh;
+    height: 60vh;
     bottom: 0;
     justify-content: center;
     align-items: center; 
+    background-color: antiquewhite;
+    bottom: 0;
+    
 }
 
 .box{
-    width: 23vw;
-    height: 50vh;
-    color: white;
-    border-radius: 50px;
-    font-size:3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'oppo Sans Medium';
-    position: relative; /* 让视频相对于 .box 绝对定位 */
-    overflow: hidden; 
-    text-align: center; 
-    border: 2px solid #4f4e4e; /* 边框 */
-    margin: 100px;
-}
-
-.door{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content:end;
-    height: 100%;
-    
-    border: 2px solid #4f4e4e; 
-    
-    border-radius: 0 40px 40px 0;
-    position: relative;
-    
-}
-
-
-.door2{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: start;  
-    border-radius: 40px 0 0 40px;
-    border: 2px solid #4f4e4e; 
-    height: 100%;
-    
-    position: relative;
-
-}
-
-
-.video{
     position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 保持视频的宽高比，并覆盖整个 .box */
-    z-index: 0; /* 确保视频在文本下方 */
-    pointer-events: none; 
+    height: 85vh;
+    width:40vw;
+   
+    display: flex;
+   background-color: thistle;
+    align-items: center;
+    
+
 }
+
+
+
+
+
+
+
 
 .text{
     z-index: 1;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    font-size: 3vw;
+    top: 40%;
 }
 
 @media screen and (max-width: 1280px){
-    .textContainer{
-        font-size: 2.5rem;
-        
-    }
-    .box{
-        width: 27vw;
-    }
+    
+    
   
 }
 
-@media screen and (max-width: 768px) {
-    .textContainer{
-        font-size: 1.7rem;
-    }
-
-    .container{
-        flex-direction: column;        
-    }
-
-    .box{
-        width: 60vw;
-        height: 30vh;
-        font-size:2rem;
-    }
-
-    .door,.door2{
+@media screen and (max-width: 900px) {
+    .videodoor{
+        flex: 1;
+        padding: 20vh 5% 40vh 5%;
+        display: flex;
         
         
-        border-radius:  40px;
-        position: relative;
-        border: none; 
+       
+     
+     }
+}
+
+@media screen and (max-width: 500px) {
+    .videodoor{
+        flex: 1;
+        padding: 20vh 1% 40vh 1%;
+        display: flex;
         
-    }
-
-    .door{
-        margin-bottom: -100px;
-    }
-
-    .textContainer{
-        margin-top: 37vh;
-    }
-    
+        
+       
+     
+     }
 }
