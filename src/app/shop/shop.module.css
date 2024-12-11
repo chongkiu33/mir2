@@ -3,6 +3,7 @@
    
     height: 100vh;
     padding-top: 15vw;
+    overflow: 0;
   
 }
 
@@ -25,18 +26,20 @@
     bottom: 0;
    z-index: 5;
    display: flex;
+   
 }
 
 .videobox{
-    height: 85vh;
-    width: 70%;
-    left: 15%;
+    height: 80vh;
+    width: 80%;
+    left: 10%;
     position: absolute;
-    bottom: 0;
+    bottom: 0vh;
    z-index: -3;
    display: flex;
    justify-content: center;
-
+   
+ 
 
 }
 
@@ -47,6 +50,7 @@
    padding: 15vh 10% 30vh 10%;
    display: flex;
    justify-content: center;
+ 
    
    
    

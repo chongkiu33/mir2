@@ -4,16 +4,19 @@ import styles from './shop.module.css';
 import { useState } from 'react';
 import { delay, motion } from 'framer-motion';
 import Image from 'next/image';
+import { transform } from 'next/dist/build/swc';
 
 export default function Shopping() {
     const [gap, setGap] = useState('0px');
     const [zIndex, setZIndex] = useState(1);
     const [scale, setScale] = useState(1);
+    const [opacity, setOpacity] = useState(1);
 
     const handleLinkClick = (e:any) => {
         e.preventDefault(); // 阻止默认跳转
         setZIndex(-2);
-        setGap('1500px'); // 设置动画
+        setOpacity(0);
+        setGap('1000px'); // 设置动画
         setScale(2.5); // 设置 scale 动画
         const targetUrl = e.currentTarget.getAttribute('href');
 
@@ -28,7 +31,7 @@ export default function Shopping() {
         <motion.div
         className={styles.bigcontainer}
         animate={{ scale }} // 动画设置
-        transition={{ duration: 0.5, delay: 0.5 }} // 动画持续时间
+        transition={{ duration: 0.5, delay: 0.3 }} // 动画持续时间
     >
             {/* <div className={styles.textContainer}>Please Select the region</div> */}
             <div className={styles.frame}>
@@ -42,7 +45,7 @@ export default function Shopping() {
                 style={{ gap,zIndex }}
                 initial={{ gap: '0' }} 
                 animate={{ gap }} // 动画设置
-                transition={{ duration: 0.8 }} // 动画持续时间
+                transition={{ duration: 0.5 }} // 动画持续时间
             >
             
 
@@ -62,7 +65,7 @@ export default function Shopping() {
 
             <motion.div 
                 className={styles.videobox}
-                style={{ gap}}
+                style={{ gap }}
                 initial={{ gap: '0' }} 
                 animate={{ gap }} // 动画设置
                 transition={{ duration: 0.5 }} // 动画持续时间
@@ -70,10 +73,10 @@ export default function Shopping() {
             
 
 
-                <div className={styles.videodoor}>
+                <div className={styles.videodoor} >
                     
-                <div className={styles.text}>China</div>
-                <div style={{backgroundColor: 'black', width: '100%', height: '100%'}}>
+                <div className={styles.text} style={{transform:'translateX(20%)'}}>China</div>
+                <div style={{width: '100%', height: '100%'}}>
                 
                 <video className={styles.video}  autoPlay muted loop unselectable='on'>
                             <source src="/video/china.mp4" type="video/mp4" />
@@ -86,7 +89,7 @@ export default function Shopping() {
                  </div>
 
               <div className={styles.videodoor} >
-                <div className={styles.text}>Europe</div>
+                <div className={styles.text} style={{transform:'translateX(-20%)'}}>Europe</div>
               <div style={{backgroundColor: 'black', width: '100%', height: '100%'}}>
               <video className={styles.video}  autoPlay muted loop unselectable='on'>
                             <source src="/video/europe2.mp4" type="video/mp4" />
