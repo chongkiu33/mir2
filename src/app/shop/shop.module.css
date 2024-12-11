@@ -145,7 +145,7 @@
 @media screen and (max-width: 900px) {
     .videodoor{
         flex: 1;
-        padding: 20vh 5% 40vh 5%;
+        padding: 10vh 5% 40vh 5%;
         display: flex;
         
         
@@ -157,7 +157,7 @@
 @media screen and (max-width: 500px) {
     .videodoor{
         flex: 1;
-        padding: 20vh 1% 40vh 1%;
+        padding: 10vh 1% 40vh 1%;
         display: flex;
         
         
