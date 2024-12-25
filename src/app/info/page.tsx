@@ -2,11 +2,24 @@
 // src/app/info/page.tsx
 import React from 'react';
 import Image from 'next/image';
-import styles from './info.module.css'; // 使用CSS模块
+import styles from './info.module.css'; 
 import Link from 'next/link';
 import Footer from '../components/footer/footer';
 
-const InfoPage = () => {
+interface InfoData {
+  About: string;
+  MIRconcept: string;
+  contact: string;
+}
+
+
+const InfoPage =  async() => {
+  const res = await fetch('http://localhost:1337/api/info', { cache: 'no-store' });
+  const data = await res.json();
+
+  const { About, MIRconcept, contact } = data.data;
+
+
   return (
     <div className={styles.bigContainer}>
     <div  className={styles.container}>
@@ -28,19 +41,19 @@ const InfoPage = () => {
           <div>
             <div className={styles.subTitle}>About  MIR Art</div>
             <p>
-            Mir is an innovative art platform dedicated to celebrating object-based art and integrating the essence of creativity into everyday life. Working with artists around the world, Mir seeks to transform ordinary spaces into canvases of artistic expression, making life not only more artistic, but also more engaging and enjoyable.
+            {About}
             </p>
             </div>
             <div>
             <div className={styles.subTitle}>MIR Art concept</div>
             <p>
-            Sustainability is at the core of our philosophy. We advocate the use of environmentally friendly materials and innovative technologies in our projects to ensure that our pursuit of artistic expression does not come at the expense of the planet&rsquo;s environment. At the same time, we encourage artists to make breakthroughs in new media and new technologies, keeping Mir at the forefront of artistic innovation.
+            {MIRconcept}
             </p>
             </div>
             <div>
             <div className={styles.subTitle}>Contact MIR Art</div>
             <p>
-            +86 19117237689
+            {contact}
             </p>
             
             </div>
