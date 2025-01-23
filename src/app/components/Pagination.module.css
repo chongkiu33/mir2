@@ -7,13 +7,13 @@
 
 
 .buttonLeft:hover{
-    animation: name 1s infinite;
+    animation: name 0.9s infinite;
     opacity: 0.7;
     transition: all 0.3s ease-in-out;
 }
 
 .buttonRight:hover{
-    animation: name2 1s infinite;
+    animation: name2 0.9s infinite;
     opacity: 0.7;
     transition: all 0.3s ease-in-out;
 
