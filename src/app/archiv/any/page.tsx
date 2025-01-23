@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const archivPage = () => {
+const Page = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
@@ -39,4 +39,4 @@ const archivPage = () => {
   );
 };
 
-export default archivPage;
+export default Page;
