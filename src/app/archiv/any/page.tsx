@@ -11,15 +11,15 @@ const archivPage = () => {
     // 假设从 Strapi 获取数据
     const fetchData = async () => {
         try{
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/archivs/3`,           
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/archivs/fgpiu4ztbb7zfy8i09mbbvr7`,           
         {
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
          }}
         );
       const data = await response.data.data;
-      setContent(data.content); // 假设 `content` 包含了 markdown 格式的内容
-
+      setContent(data.Content); // 假设 `content` 包含了 markdown 格式的内容
+      console.log('API Response:', data.Content);
     }catch (err) {
           console.log(err);
          }

@@ -62,8 +62,8 @@ const InfoPage = () => {
                       />
                   </div>
                   <div className={styles.contactContainer}>
-                          <Link href={`mailto:${data.email}`}>——&gt;Email</Link>
-                          <Link href={data.ins} target="_blank" rel="noopener noreferrer">——&gt;Instagram</Link>
+                          <Link href={`mailto:${data.email || 'hello@mir.dog'}`}>——&gt;Email</Link>
+                          <Link href={data.ins || 'https://www.instagram.com/mir/'} target="_blank" rel="noopener noreferrer">——&gt;Instagram</Link>
                   </div>
               </div>
 
