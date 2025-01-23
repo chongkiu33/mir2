@@ -103,8 +103,7 @@ import Pagination from "../components/Pagination"
 // export default Archiv;
 
 
-
-export default function Archiv() {
+function Archivs(){
   const [archivs, setArchivs] = useState<ArchivPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -144,7 +143,7 @@ export default function Archiv() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    
     <div>
       {/* {loading && (
         <div className="w-full flex items-center justify-center">
@@ -201,6 +200,16 @@ export default function Archiv() {
       )}
 
     </div>
-    </Suspense>
+    
   );
+}
+
+
+export default function Archiv() {
+  return (
+    <Suspense >
+      <Archivs />
+    </Suspense>
+    )
+  
 }
