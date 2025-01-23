@@ -1,6 +1,6 @@
 "use client";
 import api from '../lib/api'; 
-import React, { useEffect , useState , useRef } from 'react';
+import React, { useEffect , useState , Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Activity from '../components/activity/Activity';
 import styles from './Archiv.module.css';
@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { ArchivPost } from "../lib/types";
 import { getAllArchivs } from "../lib/ApiService";
 import Pagination from "../components/Pagination"
+
 
 
 // const activities = [
@@ -178,12 +179,14 @@ export default function Archiv() {
             ) : (
               <p>No archiv available at the moment.</p>
             )}
-
+ <Suspense>
       <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange} // Update page when pagination changes
           />
+
+</Suspense>
 
 
 <div className={styles.footer}>
