@@ -144,6 +144,7 @@ export default function Archiv() {
   };
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div>
       {/* {loading && (
         <div className="w-full flex items-center justify-center">
@@ -179,14 +180,14 @@ export default function Archiv() {
             ) : (
               <p>No archiv available at the moment.</p>
             )}
- <Suspense>
+
       <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange} // Update page when pagination changes
           />
 
-</Suspense>
+
 
 
 <div className={styles.footer}>
@@ -200,5 +201,6 @@ export default function Archiv() {
       )}
 
     </div>
+    </Suspense>
   );
 }
