@@ -1,7 +1,7 @@
 'use client';
 
 // src/app/info/page.tsx
-import axios from "axios";
+
 import React from 'react';
 import { useEffect, useState } from "react";
 import Image from 'next/image';
@@ -11,42 +11,7 @@ import Footer from '../components/footer/footer';
 
 
 const InfoPage = () => {
-  const [data, setData] = useState({
-    about: '',
-    concept: '',
-    contact: '',
-    email: '',
-    ins: '',
-  });
-
-  useEffect(() => {
-      const fetchData = async () => {
-          try {
-              // 请求 API 获取数据
-              const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/info`, 
-                {
-                headers: {
-                  Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-                }}
-              );
-              // console.log('API Response:', response.data.data);
-              const info=response.data.data;
-              // console.log('Fetched Infos:', info);
-              // 更新组件状态
-              setData({
-                  about: info.AboutMIRArt,
-                  concept: info.MIRArtConcept,
-                  contact: info.Contact,
-                  email: info.Email,
-                  ins: info.Instagram,
-              });
-          } catch (err) {
-              console.log(err);
-          }
-      };
-
-      fetchData();
-  }, []);
+ 
 
   return (
       <div className={styles.bigContainer}>
@@ -62,8 +27,8 @@ const InfoPage = () => {
                       />
                   </div>
                   <div className={styles.contactContainer}>
-                          <Link href={`mailto:${data.email || 'hello@mir.dog'}`}>——&gt;Email</Link>
-                          <Link href={data.ins || 'https://www.instagram.com/mir/'} target="_blank" rel="noopener noreferrer">——&gt;Instagram</Link>
+                          <Link href={` 'hello@mir.dog'`}>——&gt;Email</Link>
+                          <Link href={'https://www.instagram.com/mir/'} target="_blank" rel="noopener noreferrer">——&gt;Instagram</Link>
                   </div>
               </div>
 
@@ -74,15 +39,15 @@ const InfoPage = () => {
                   <div className={styles.contentContainer}>
                       <div>
                           <div className={styles.subTitle}>About MIR Art</div>
-                          <p>{data.about}</p>
+                          <p>about infomation</p>
                       </div>
                       <div>
                           <div className={styles.subTitle}>MIR Art concept</div>
-                          <p>{data.concept}</p>
+                          <p>concept infomation</p>
                       </div>
                       <div>
                           <div className={styles.subTitle}>Contact MIR Art</div>
-                          <p>{data.contact}</p>
+                          <p>contact infomation</p>
                       </div>
                   </div>
               </div>
