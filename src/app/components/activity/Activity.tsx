@@ -11,7 +11,7 @@ type ActivityProps = {
     date: string;
     description: string;
     artistName: string;
-    tag: string;
+    tag: string[];
     imageUrl: string;
     link: string;
 };
@@ -39,7 +39,9 @@ const Activity: React.FC<ActivityProps> = ({ content, date, description, artistN
                     </div>
                     <div className={styles.activityArtist}>
                         <h3>{artistName}</h3>
-                        <p>{tag}</p>
+                        {tag.map((tagItem, index) => (
+                                <p key={index}>{tagItem}</p>
+                            ))}
                     </div>
                     <div className={styles.activityImage}>
                         <Image src={imageUrl} alt="Activity Image" width={100} height={100} />

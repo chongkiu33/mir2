@@ -24,7 +24,7 @@ const ACTIVITIES_QUERY = defineQuery(`*[
   title,
   slug,
   publishDate,
-  tag,
+  "tags": tag[]->TagName,
   description,
   author,
   coverImage,
@@ -45,10 +45,16 @@ export default async function Archiv() {
         <Activity
           key={archiv._id}
           content={archiv.title}
-          date={archiv.publishDate}
+          date={new Date(archiv.publishDate).toLocaleString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+          }).replace(/\//g, '-')}
           description={archiv.description}
           artistName={archiv.author}
-          tag={'tag'}
+          tag={archiv.tags || []}  
           imageUrl={urlFor(archiv.coverImage).width(300).url()}
           link={`/archiv/${archiv.slug.current}`}
         />
