@@ -3,7 +3,7 @@ import "./globals.css";
 import type { AppProps } from 'next/app';
 import Navbar from "./components/Navbar/Navbar";
 import Layout from "./components/layout";
-import { SanityLive } from "./sanity/live";
+import { SanityLive } from "../sanity/lib/live";
 
 
 

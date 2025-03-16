@@ -1,11 +1,12 @@
-import { client } from "../../sanity/client";
-import { sanityFetch } from "../../sanity/live";
+import { client } from "../../../sanity/lib/client";
+import { sanityFetch } from "../../../sanity/lib/live";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { defineQuery, PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { components } from "@/sanity/portableTextComponents";
 
 
 // 定义 GROQ 查询，获取特定 slug 的文章
@@ -100,12 +101,12 @@ export default async function ArchivPage({
           
           {content && (
             <div className="article-content">
-              <PortableText value={content} />
+              <PortableText value={content} components={components} />
             </div>
           )}
 
         <div className="mb-6">
-          <Link href="/archiv" className="text-blue-500 hover:underline">
+          <Link href="/archiv" >
             ← Back to Archiv
           </Link>
         </div>

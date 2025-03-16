@@ -4,9 +4,9 @@ import Activity from '../components/activity/Activity';
 import styles from './Archiv.module.css';
 import Footer from '../components/footer/footer';
 import { defineQuery } from "next-sanity";
-import { sanityFetch } from "../sanity/live";
+import { sanityFetch } from  "../../sanity/lib/live";
 
-import { client }from '../sanity/client'
+import { client }from '../../sanity/lib/client'
 import imageUrlBuilder from '@sanity/image-url'
 
 const builder = imageUrlBuilder(client);
