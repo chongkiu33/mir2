@@ -1,17 +1,37 @@
-'use client';
-
-// src/app/info/page.tsx
 
 import React from 'react';
-import { useEffect, useState } from "react";
 import Image from 'next/image';
-import styles from './info.module.css'; // 使用CSS模块
+import styles from './info.module.css';
 import Link from 'next/link';
 import Footer from '../components/footer/footer';
+import { defineQuery, PortableText } from "next-sanity";
+import { sanityFetch } from "../../sanity/lib/live";
+import { client } from '../../sanity/lib/client';
+import imageUrlBuilder from '@sanity/image-url';
+import { components } from "@/sanity/portableTextComponents";
 
 
-const InfoPage = () => {
- 
+const builder = imageUrlBuilder(client);
+
+function urlFor(source:any) {
+  return builder.image(source)
+}
+
+// 定义查询，获取basic类型的第一条数据
+const BASIC_INFO_QUERY = defineQuery(`*[_type == "basic"][0]{
+  info1,
+  info2,
+  info3,
+  email,
+  instagram
+}`);
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0;
+
+
+const InfoPage = async() => {
+    const { data: basicInfo } = await sanityFetch({ query: BASIC_INFO_QUERY });
 
   return (
       <div className={styles.bigContainer}>
@@ -27,8 +47,8 @@ const InfoPage = () => {
                       />
                   </div>
                   <div className={styles.contactContainer}>
-                          <Link href={` 'hello@mir.dog'`}>——&gt;Email</Link>
-                          <Link href={'https://www.instagram.com/mir/'} target="_blank" rel="noopener noreferrer">——&gt;Instagram</Link>
+                          <Link href={` ${basicInfo.email}`}>——&gt;Email</Link>
+                          <Link href={`${basicInfo.instagram}`} target="_blank" rel="noopener noreferrer">——&gt;Instagram</Link>
                   </div>
               </div>
 
@@ -38,16 +58,20 @@ const InfoPage = () => {
                   </div>
                   <div className={styles.contentContainer}>
                       <div>
-                          <div className={styles.subTitle}>About MIR Art</div>
-                          <p>about infomation</p>
+                      {basicInfo.info1 && (
+                          <div className="prose prose-lg">
+                              <PortableText value={basicInfo.info1} components={components} />
+                          </div>)}
                       </div>
                       <div>
-                          <div className={styles.subTitle}>MIR Art concept</div>
-                          <p>concept infomation</p>
+                      <div className="prose prose-lg">
+                              <PortableText value={basicInfo.info2} components={components} />
+                          </div>
                       </div>
                       <div>
-                          <div className={styles.subTitle}>Contact MIR Art</div>
-                          <p>contact infomation</p>
+                      <div className="prose prose-lg">
+                              <PortableText value={basicInfo.info3} components={components} />
+                          </div>
                       </div>
                   </div>
               </div>

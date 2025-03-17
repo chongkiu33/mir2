@@ -1,10 +1,28 @@
 "use client";
 import Image from 'next/image'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './WaterRipple.module.css';
+import { client } from '../../sanity/lib/client';
+import imageUrlBuilder from '@sanity/image-url';
 
-const WaterRipple = () => {
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+  return builder.image(source)
+}
+
+// 修改组件接收背景图片URL作为props
+const WaterRipple = ({ backgroundImageUrl }: { backgroundImageUrl?: string }) => {
   const rippleRef = useRef<HTMLDivElement>(null);
+  // 使用传入的背景图片URL或默认图片
+  const [backgroundImage, setBackgroundImage] = useState<string>(backgroundImageUrl || '/bg2.jpg'); 
+
+  useEffect(() => {
+    // 如果有传入新的背景图片URL，则更新状态
+    if (backgroundImageUrl) {
+      setBackgroundImage(backgroundImageUrl);
+    }
+  }, [backgroundImageUrl]);
 
   useEffect(() => {
     // 动态加载Pixi.js脚本
@@ -36,7 +54,7 @@ const WaterRipple = () => {
 
       let background: any = null; // 使用 any 类型
 
-      app.loader.add('background', '/bg2.jpg').load((loader: any, resources: any) => {
+      app.loader.add('background', backgroundImage).load((loader: any, resources: any) => {
         background = new PIXI.Sprite(resources.background.texture);
         background.width = app.screen.width;
         background.height = app.screen.height;
@@ -96,7 +114,7 @@ const WaterRipple = () => {
         document.body.removeChild(script);
       }
     };
-  }, []);
+  }, [backgroundImage]); // 添加backgroundImage作为依赖项
 
   return (
     <>
