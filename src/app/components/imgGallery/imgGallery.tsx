@@ -1,46 +1,34 @@
 "use client"
-import React, { useRef , useState } from'react';
+import React, { useRef , useState ,Suspense} from'react';
 import styles from './imgGallery.module.css';
 import { Canvas , useFrame , useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { TextureLoader } from "three";
 import { OrbitControls } from '@react-three/drei';
 import {Image} from '@react-three/drei';
+import { client }from '../../../sanity/lib/client'
+import imageUrlBuilder from '@sanity/image-url'
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source:any) {
+  return builder.image(source)
+}
 
 
-const images = [
-    { position: [3.3, 1.3, 0.3], url: "/image/png/1.png",scale: [1, 0.75],slug:"1"},
-    { position: [-0.5, -1.8, 1],  url: "/image/png/2.png", scale: [1, 1*1.5],slug:"2"},
-    { position: [1.4, -0.4, 2], url: "/image/png/3.png" , scale: [1, 0.65],slug:"3"},
-    { position: [-2.5, 1.7, 1], url: "/image/png/4.png" , scale: [1, 1.5],slug:"4"   },
-    { position: [-3.7, 0.4, 1], url: "/image/png/5.png",scale: [1, 1.5], slug:"5"},
-    { position: [2.2, 0.8, 0.1], url: "/image/png/6.png",scale: [0.8, 0.8*0.8],slug:"6"},
-    { position: [2, 0, -1.5], url: "/image/png/7.png",scale: [1, 0.67],slug:"7"},
-    { position: [3.8, -1.5, 0], url: "/image/png/8.png",scale: [1, 1], slug:"8"},
-    { position: [-1.6, 0.7, 0.5], url: "/image/png/9.png",scale: [1, 1.25],slug:"9"},
-    { position: [2.3, -2.3, 0], url: "/image/png/10.png",scale: [1, 1*1.25],slug:"10"},
-    { position: [-2.4, -1.6, 0], url: "/image/png/11.png",scale: [1, 1*1.24],slug:"11"},
-    { position: [1.4, -2.2, -1.5], url: "/image/png/12.png",scale: [1, 1*1.15],slug:"12"},
-    { position: [4.2, 0, 0], url: "/image/png/13.png",scale: [1.3, 1.3*0.69],slug:"13"},
-    { position: [-3.5, 0.5, 0], url: "/image/png/14.png",scale: [0.6, 0.6*1.33],slug:"14"},
-    { position: [1.1, 1.6, 1.7], url: "/image/png/15.png",scale: [1, 1*1.5],slug:"15"},
-    { position: [-2.9, -0.7, 0.9], url: "/image/png/16.png",scale: [0.9, 0.9*1.5],slug:"16"},
-    { position: [-2, -1.2, -2], url: "/image/png/17.png",scale: [1, 1*1.5],slug:"17"},
-    { position: [-0.1, 0.1, 1], url: "/image/png/18.png",scale: [1, 1],slug:"18"},
-    { position: [-0.8, 2.3, -1], url: "/image/png/19.png",scale: [1, 1*1.5],slug:"19"},
-    { position: [0.5, 1.3, -0.5], url: "/image/png/20.png",scale: [0.6, 0.6*1.29],slug:"20"},
-  ]
 
-const ImgGallery = () => {
+const ImgGallery = ({objects}:{objects:any}) => {
 
     return(
         <div className={styles.container}>
             <Canvas>
+            <Suspense fallback={null}>
                 <OrbitControls minDistance={1} maxDistance={10} />
                 
-                {images.map((image, index) => (
-          <ImgItem key={image.url} {...image} />
+                {objects.map((object:any, index:number) => (
+          <ImgItem key={object._id} url={urlFor(object.objectimage).width(500).url()} position={object.position} slug={object.slug} />
         ))}
+         </Suspense>
             </Canvas>
         </div>
     );
@@ -50,10 +38,13 @@ export default ImgGallery;
 
 
 
-function ImgItem({ url, position, scale,slug }: { url: string; position: any; scale: any ;slug:string}){
+function ImgItem({ url, position,slug }: { url: string; position: any; slug:string}){
     const mesh = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
     const rotationAngle = useRef(0); // 用于跟踪旋转角度
+    const texture = useLoader(THREE.TextureLoader, url)
+    const aspectRatio =  texture.image.height/texture.image.width;
+    const scale = [1,  aspectRatio];
 
     useFrame((state, delta) => {
        
@@ -99,9 +90,33 @@ function ImgItem({ url, position, scale,slug }: { url: string; position: any; sc
         >
             <Image  ref={mesh} onPointerOver={() => setHovered(true)} // 当鼠标悬停时触发
             onPointerOut={() => setHovered(false)} // 当鼠标移出时触发
-            url={url} position={position} scale={scale}  toneMapped={false} transparent={true}  /> 
+            url={url} position={position}  scale={scale as [number, number]}   toneMapped={false} transparent={true}  /> 
         </mesh>
         
  
     )
 }
+
+
+const images = [
+    { position: [3.3, 1.3, 0.3], url: "/image/png/1.png",slug:"1"},
+    { position: [-0.5, -1.8, 1],  url: "/image/png/2.png", slug:"2"},
+    { position: [1.4, -0.4, 2], url: "/image/png/3.png" , slug:"3"},
+    { position: [-2.5, 1.7, 1], url: "/image/png/4.png" , slug:"4"   },
+    { position: [-3.7, 0.4, 1], url: "/image/png/5.png", slug:"5"},
+    { position: [2.2, 0.8, 0.1], url: "/image/png/6.png",slug:"6"},
+    { position: [2, 0, -1.5], url: "/image/png/7.png",slug:"7"},
+    { position: [3.8, -1.5, 0], url: "/image/png/8.png", slug:"8"},
+    { position: [-1.6, 0.7, 0.5], url: "/image/png/9.png",slug:"9"},
+    { position: [2.3, -2.3, 0], url: "/image/png/10.png",slug:"10"},
+    { position: [-2.4, -1.6, 0], url: "/image/png/11.png",slug:"11"},
+    { position: [1.4, -2.2, -1.5], url: "/image/png/12.png",slug:"12"},
+    { position: [4.2, 0, 0], url: "/image/png/13.png",slug:"13"},
+    { position: [-3.5, 0.5, 0], url: "/image/png/14.png",slug:"14"},
+    { position: [1.1, 1.6, 1.7], url: "/image/png/15.png",slug:"15"},
+    { position: [-2.9, -0.7, 0.9], url: "/image/png/16.png",slug:"16"},
+    { position: [-2, -1.2, -2], url: "/image/png/17.png",slug:"17"},
+    { position: [-0.1, 0.1, 1], url: "/image/png/18.png",slug:"18"},
+    { position: [-0.8, 2.3, -1], url: "/image/png/19.png",slug:"19"},
+    { position: [0.5, 1.3, -0.5], url: "/image/png/20.png",slug:"20"},
+  ]
