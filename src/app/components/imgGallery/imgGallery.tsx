@@ -26,7 +26,7 @@ const ImgGallery = ({objects}:{objects:any}) => {
                 <OrbitControls minDistance={1} maxDistance={10} />
                 
                 {objects.map((object:any, index:number) => (
-          <ImgItem key={object._id} url={urlFor(object.objectimage).width(500).url()} position={object.position} slug={object.slug} />
+          <ImgItem key={object._id} url={urlFor(object.objectimage).width(500).url()} position={object.position} slug={object.slug.current} />
         ))}
          </Suspense>
             </Canvas>
