@@ -1,32 +1,30 @@
-"use client"; // 客户端渲染
-import Image from "next/image";
 import WaterRipple from './components/WaterRipple';
-import { useEffect } from 'react';
-import styles from './components/layout.module.css'
+import { defineQuery, PortableText } from "next-sanity";
+import { sanityFetch } from "../sanity/lib/live";
+import { client } from '../sanity/lib/client';
+import imageUrlBuilder from '@sanity/image-url';
 
-export default function Home() {
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const logo = document.querySelector(`.${styles.navImage}`) as HTMLElement;
-      if (logo) {
-        const { clientX } = event;
-        const { innerWidth } = window;
-        const rotation = (clientX / innerWidth) * 1080; // 计算旋转角度
-        logo.style.transform = `rotate(${rotation}deg)`;
-      }
-    };
+const builder = imageUrlBuilder(client);
 
-    window.addEventListener('mousemove', handleMouseMove);
+function urlFor(source:any) {
+  return builder.image(source)
+}
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+// 定义查询，获取basic类型的第一条数据
+const BASIC_INFO_QUERY = defineQuery(`*[_type == "basic"][0]{
+  homeimage
+}`);
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0;
+
+export default async function Home() {
+  const { data: basicInfo } = await sanityFetch({ query: BASIC_INFO_QUERY });
+
+  const homeImageUrl = urlFor(basicInfo.homeimage).width(800).url();
   return (
-    <main style={{  overflow: 'hidden'}}>
-      <WaterRipple />
-      
+    <main style={{overflow: 'hidden'}}>
+      <WaterRipple backgroundImageUrl={urlFor(basicInfo.homeimage).width(100).url()} />
     </main>
   );
 }

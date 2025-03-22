@@ -1,6 +1,4 @@
 import React from 'react'
-
-
 import styles from './Object.module.css';
 import ImgGallery from '../components/imgGallery/imgGallery';
 import { defineQuery } from "next-sanity";
@@ -20,6 +18,9 @@ const OBJECTS_QUERY = defineQuery(`*[
     "position": [objectposition.x, objectposition.y, objectposition.z],
     objectimage,
   } | order(publishDate desc)`);
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0;
 
 // 创建urlFor函数
 const builder = imageUrlBuilder(client)

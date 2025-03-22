@@ -2,14 +2,9 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
 import styles from './WaterRipple.module.css';
-import { client } from '../../sanity/lib/client';
-import imageUrlBuilder from '@sanity/image-url';
 
-const builder = imageUrlBuilder(client);
 
-function urlFor(source: any) {
-  return builder.image(source)
-}
+
 
 // 修改组件接收背景图片URL作为props
 const WaterRipple = ({ backgroundImageUrl }: { backgroundImageUrl?: string }) => {
