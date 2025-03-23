@@ -1,84 +1,32 @@
 import Product from '@/app/components/product/product';
 import styles from './chinashop.module.css';
 import Footer from '@/app/components/footer/footer';
+import { defineQuery } from "next-sanity";
+import { sanityFetch } from "../../../sanity/lib/live";
+import { client } from '../../../sanity/lib/client';
+import imageUrlBuilder from '@sanity/image-url';
 
-const products = [
-    {
-        name:"Product1",
-        price: 100,
-        image: "/image/product/bag3.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product2",
-        price: 200,
-        image: "/image/product/包包2.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product3",
-        price: 200,
-        image: "/image/product/海报8.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product4",
-        price: 200,
-        image: "/image/product/画册1.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product5",
-        price: 200,
-        image: "/image/product/明信片1.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product6",
-        price: 200,
-        image: "/image/product/BOXY HOODIE2.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product1",
-        price: 100,
-        image: "/image/product/bag3.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product2",
-        price: 200,
-        image: "/image/product/包包2.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product3",
-        price: 200,
-        image: "/image/product/海报8.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product4",
-        price: 200,
-        image: "/image/product/画册1.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product5",
-        price: 200,
-        image: "/image/product/明信片1.png",
-        description: "This is a product description"
-    },
-    {
-        name:"Product6",
-        price: 200,
-        image: "/image/product/BOXY HOODIE2.png",
-        description: "This is a product description"
-    }
-];
+const builder = imageUrlBuilder(client);
 
+function urlFor(source:any) {
+  return builder.image(source)
+}
 
-export default function Shopping() {
+const PRODUCTS_QUERY = defineQuery(`*[
+  _type == "product" 
+  && defined(slug.current)
+  ] {
+  _id,
+  "imageUrl": productimage[0].asset->url,
+  slug,
+}`);
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export default async function Shopping() {
+   
+    const { data: products } = await sanityFetch({ query: PRODUCTS_QUERY });
 
     return (
       <div className={styles.container}>
@@ -106,21 +54,19 @@ export default function Shopping() {
 
         <div className={styles.productContainer}>
             
-            {products.map((product, index) => (
-                <div className={styles.product} key={product.image}>
+            {products.map((product:any) => (
+                <div className={styles.product} key={product._id}>
                 <Product 
-                key={index}
-                price={product.price} 
-                image = {product.image} 
-                name={product.name} description={product.description}/>
+                key={product._id}        
+                image={product.imageUrl}
+                slug={product.slug.current}/>
                 </div>
             ))}
-            
             
         </div>
         <div className={styles.footer}>
             
-        <Footer />
+        
         </div>
       </div>
     );

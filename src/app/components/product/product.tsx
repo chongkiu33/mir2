@@ -1,17 +1,19 @@
 import Image from "next/image";
 import styles from "./product.module.css";
+import Link from "next/link";
 
 
 type ProductProps = {
-    name: string;
-    price: number;
-    description: string;
+   
     image: string;
+    slug: string;
 }
 
-const Product = ({ name, price, description, image }: ProductProps) => {
+const Product = ({ image, slug }: ProductProps) => {
     return (
-      <Image src={image} alt="" fill className={styles.image}/>
+      <Link href={`/shop/${slug}`}>
+        <Image src={image} alt="" fill className={styles.image}/>
+      </Link>
     );
 };
 
