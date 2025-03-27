@@ -69,7 +69,7 @@ export default async function ArchivPage({
     const pdate = new Date(publishDate).toLocaleDateString('de-DE');
   
     return (
-      <main className="container mx-auto p-6 md:p-12">
+      <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
         
         
         <article className="prose prose-lg max-w-none">

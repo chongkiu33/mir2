@@ -62,7 +62,7 @@ export default async function ObjectPage({
     const pdate = publishDate ? new Date(publishDate).toLocaleDateString('de-DE') : null;
   
     return (
-      <main className="container mx-auto p-6 md:p-12">
+      <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
         <article className="prose prose-lg max-w-none">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
           
