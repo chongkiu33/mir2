@@ -4,7 +4,9 @@ import type { AppProps } from 'next/app';
 import Navbar from "./components/Navbar/Navbar";
 import Layout from "./components/layout";
 import { SanityLive } from "../sanity/lib/live";
-
+import { DisableDraftMode } from "./components/DisableDraftMode";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
 
 
 export const metadata: Metadata = {
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
   description: "A Design Company",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -25,6 +27,12 @@ export default function RootLayout({
         <main>
           {children}
           <SanityLive />
+          {(await draftMode()).isEnabled && (
+        <>
+          <DisableDraftMode />
+          <VisualEditing />
+        </>
+      )}
         </main>
           {/* </Layout> */}
       </body>
