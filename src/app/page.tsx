@@ -21,10 +21,10 @@ export const revalidate = 0;
 export default async function Home() {
   const { data: basicInfo } = await sanityFetch({ query: BASIC_INFO_QUERY });
 
-  const homeImageUrl = urlFor(basicInfo.homeimage).width(800).url();
+
   return (
     <main style={{overflow: 'hidden'}}>
-      <WaterRipple backgroundImageUrl={urlFor(basicInfo.homeimage).width(100).url()} />
+      <WaterRipple backgroundImageUrl={urlFor(basicInfo?.homeimage)?.width(100).url()} />
     </main>
   );
 }
