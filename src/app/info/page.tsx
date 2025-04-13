@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Image from 'next/image';
 import styles from './info.module.css';
@@ -33,6 +32,10 @@ export const revalidate = 0;
 const InfoPage = async() => {
     const { data: basicInfo } = await sanityFetch({ query: BASIC_INFO_QUERY });
 
+    if (!basicInfo) {
+        return <div>Loading...</div>; // 或者显示一个错误信息
+    }
+
   return (
       <div className={styles.bigContainer}>
           <div className={styles.container}>
@@ -64,14 +67,16 @@ const InfoPage = async() => {
                           </div>)}
                       </div>
                       <div>
+                      {basicInfo.info2 && (
                       <div className="prose prose-lg">
                               <PortableText value={basicInfo.info2} components={components} />
-                          </div>
+                          </div>)}
                       </div>
                       <div>
+                      {basicInfo.info3 && (
                       <div className="prose prose-lg">
                               <PortableText value={basicInfo.info3} components={components} />
-                          </div>
+                          </div>)}
                       </div>
                   </div>
               </div>
