@@ -49,7 +49,7 @@ export default async function ObjectPage({
       slug,
       artist,
       objectimage,
-      publishDate,
+   
       content,
     } = object;
     
@@ -58,8 +58,7 @@ export default async function ObjectPage({
       ? urlFor(objectimage)?.width(800).url()
       : null;
       
-    // 格式化日期
-    const pdate = publishDate ? new Date(publishDate).toLocaleDateString('de-DE') : null;
+   
   
     return (
       <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
