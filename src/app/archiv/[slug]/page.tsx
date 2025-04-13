@@ -7,17 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { components } from "@/sanity/portableTextComponents";
-
+import { ARTICLE_QUERY } from "../../../sanity/lib/queries";
+import { PageBuilder } from "../../components/PageBuilder";
 
 // 定义 GROQ 查询，获取特定 slug 的文章
-const ARTICLE_QUERY = defineQuery(`*[
-    _type == "archiv" &&
-    slug.current == $slug
-  ][0]{
-    ...,
-    "date": coalesce(publishedAt, _createdAt),
-    categories[]->
-}`);
+// const ARTICLE_QUERY = defineQuery(`*[
+//     _type == "archiv" &&
+//     slug.current == $slug
+//   ][0]{
+//     ...,
+//     "date": coalesce(publishedAt, _createdAt),
+//     categories[]->
+// }`);
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0;
@@ -56,6 +57,7 @@ export default async function ArchivPage({
       coverImage,
       publishDate,
       content,
+      content2,
    
       
     } = article;
@@ -64,42 +66,41 @@ export default async function ArchivPage({
     const articleImageUrl = coverImage
       ? urlFor(coverImage)?.width(800).url()
       : null;
-      
-    // 格式化日期
-    const pdate = new Date(publishDate).toLocaleDateString('de-DE');
+    
   
-    return (
-      <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
+    return article?.content ? <PageBuilder content={article.content2} /> : null;
+     
+      // <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
         
         
-        <article className="prose prose-lg max-w-none">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
+      //   <article className="prose prose-lg max-w-none">
+      //     <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
           
           
-          {articleImageUrl && (
-            <div className="mb-8">
-              <Image
-                src={articleImageUrl}
-                alt={title || "文章图片"}
-                className="rounded-lg w-full"
-                width={800}
-                height={500}
-              />
-            </div>
-          )}
+      //     {articleImageUrl && (
+      //       <div className="mb-8">
+      //         <Image
+      //           src={articleImageUrl}
+      //           alt={title || "文章图片"}
+      //           className="rounded-lg w-full"
+      //           width={800}
+      //           height={500}
+      //         />
+      //       </div>
+      //     )}
           
-          {content && (
-            <div className="article-content">
-              <PortableText value={content} components={components} />
-            </div>
-          )}
+      //     {content && (
+      //       <div className="article-content">
+      //         <PortableText value={content} components={components} />
+      //       </div>
+      //     )}
 
-        <div className="mb-6">
-          <Link href="/archiv" >
-            ← Back to Archiv
-          </Link>
-        </div>
-        </article>
-      </main>
-    );
+      //   <div className="mb-6">
+      //     <Link href="/archiv" >
+      //       ← Back to Archiv
+      //     </Link>
+      //   </div>
+      //   </article>
+      // </main>
+    
 }
