@@ -8,28 +8,41 @@ type SplitImageProps = Extract<
   { _type: "splitImage" }
 >;
 
-export function SplitImage({ title, image, orientation }: SplitImageProps) {
+export function SplitImage({  imageLeft, imageRight, orientation }: SplitImageProps) {
   return (
     <section
-      className="container mx-auto flex gap-8 py-16 data-[orientation='imageRight']:flex-row-reverse"
+      className="container mx-auto flex gap-10 py-16 data-[orientation='imageRight']:flex-row-reverse"
       data-orientation={stegaClean(orientation) || "imageLeft"}
     >
-      {image ? (
+      {imageLeft ? (
         <Image
-          className="rounded-xl w-2/3 h-auto"
-          src={urlFor(image).width(800).height(600).url()}
+          className="rounded-xl w-1/2 h-auto"
+          src={urlFor(imageLeft).width(800).height(600).url()}
           width={800}
           height={600}
           alt=""
         />
       ) : null}
-      <div className="w-1/3 flex items-center">
-        {title ? (
-          <h2 className="text-3xl mx-auto md:text-5xl lg:text-8xl font-light text-pink-500 text-pretty max-w-3xl">
-            {title}
-          </h2>
-        ) : null}
-      </div>
+       {imageRight ? (
+        <Image
+          className="rounded-xl w-1/2 h-auto"
+          src={urlFor(imageRight).width(800).height(600).url()}
+          width={800}
+          height={600}
+          alt=""
+        />
+      ) : null}
+      {imageRight ? (
+        <Image
+          className="rounded-xl w-1/2 h-auto"
+          src={urlFor(imageRight).width(800).height(600).url()}
+          width={800}
+          height={600}
+          alt=""
+        />
+      ) : null}
+      
+    
     </section>
   );
 }

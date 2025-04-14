@@ -7,18 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { components } from "@/sanity/portableTextComponents";
-import { ARTICLE_QUERY } from "../../../sanity/lib/queries";
+// import { ARTICLE_QUERY } from "../../../sanity/lib/queries";
 import { PageBuilder } from "../../components/PageBuilder";
 
 // 定义 GROQ 查询，获取特定 slug 的文章
-// const ARTICLE_QUERY = defineQuery(`*[
-//     _type == "archiv" &&
-//     slug.current == $slug
-//   ][0]{
-//     ...,
-//     "date": coalesce(publishedAt, _createdAt),
-//     categories[]->
-// }`);
+const ARTICLE_QUERY = defineQuery(`*[
+    _type == "archiv" &&
+    slug.current == $slug
+  ][0]{
+    ...,
+    "date": coalesce(publishedAt, _createdAt),
+    categories[]->
+}`);
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0;
@@ -63,12 +63,10 @@ export default async function ArchivPage({
     } = article;
     
     // 处理图片 URL
-    const articleImageUrl = coverImage
-      ? urlFor(coverImage)?.width(800).url()
-      : null;
+   
     
   
-    return article?.content ? <PageBuilder content={article.content2} /> : null;
+    return article?.content2? <PageBuilder content={article.content2} /> : null;
      
       // <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
         

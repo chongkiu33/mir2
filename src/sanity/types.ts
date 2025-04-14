@@ -121,8 +121,18 @@ export type Features = {
 export type SplitImage = {
   _type: "splitImage";
   orientation?: "imageLeft" | "imageRight";
-  title?: string;
-  image?: {
+  imageLeft?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  imageRight?: {
     asset?: {
       _ref: string;
       _type: "reference";
