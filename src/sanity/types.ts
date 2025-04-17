@@ -68,14 +68,22 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Faq = {
-  _id: string;
-  _type: "faq";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  body?: Array<{
+export type Videoblock = {
+  _type: "videoblock";
+  videolink?: string;
+  videotitle?: string;
+  colstart?: number;
+  colend?: number;
+};
+
+export type Plain = {
+  _type: "plain";
+  PlainHeight?: number;
+};
+
+export type Plaintext = {
+  _type: "plaintext";
+  text?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -92,35 +100,24 @@ export type Faq = {
     level?: number;
     _type: "block";
     _key: string;
-  }>;
-};
-
-export type Faqs = {
-  _type: "faqs";
-  title?: string;
-  faqs?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "faq";
-  }>;
-};
-
-export type Features = {
-  _type: "features";
-  title?: string;
-  features?: Array<{
-    title?: string;
-    text?: string;
-    _type: "feature";
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
     _key: string;
   }>;
 };
 
 export type SplitImage = {
   _type: "splitImage";
-  orientation?: "imageLeft" | "imageRight";
+  leftSpan?: number;
+  rightSpan?: number;
   imageLeft?: {
     asset?: {
       _ref: string;
@@ -145,49 +142,15 @@ export type SplitImage = {
   };
 };
 
-export type Hero = {
-  _type: "hero";
-  title?: string;
-  text?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-};
-
 export type PageBuilder = Array<{
   _key: string;
-} & Hero | {
+} & Plain | {
   _key: string;
 } & SplitImage | {
   _key: string;
-} & Features | {
+} & Plaintext | {
   _key: string;
-} & Faqs>;
+} & Videoblock>;
 
 export type Product = {
   _id: string;
@@ -564,7 +527,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Faq | Faqs | Features | SplitImage | Hero | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY

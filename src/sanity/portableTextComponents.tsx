@@ -18,6 +18,8 @@ export const components: PortableTextComponents = {
           alt={props?.value?.alt || ""}
           width="600"
           height="400"
+          // 使用 fill 布局
+          objectFit="contain"
         />
       ) : null,
 

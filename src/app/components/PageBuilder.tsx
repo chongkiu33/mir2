@@ -1,7 +1,8 @@
-import { Hero } from "./blocks/Hero";
-import { Features } from "./blocks/Features";
+
 import { SplitImage } from "./blocks/SplitImage";
-import { FAQs } from "./blocks/FAQs";
+import { Plaintext } from "./blocks/Plaintext";
+import { Plain } from "./blocks/Plain";
+import { Videoblock } from "./blocks/Videoblock";
 import { ARTICLE_QUERYResult } from "../../sanity/types";
 
 type PageBuilderProps = {
@@ -17,19 +18,28 @@ export function PageBuilder({ content }: PageBuilderProps) {
     <main>
       {content.map((block) => {
         switch (block._type) {
-          case "hero":
-            return <Hero key={block._key} {...block} />;
-          case "features":
-            return <Features key={block._key} {...block} />;
+          
           case "splitImage":
             return <SplitImage key={block._key} {...block} />;
-          case "faqs":
-            return <FAQs key={block._key} {...block} />;
+         
+        case "plaintext":
+            return <Plaintext key={block._key} {...block} />;
+        case "plain":
+            return <Plain key={block._key} {...block} />;
+        case "videoblock":
+            return <Videoblock key={block._key} {...block} />;
+            
           default:
-            // 添加类型断言解决 never 类型问题
+            
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
         }
       })}
+    <div className="mx-auto grid grid-cols-10">
+      <div className="flex col-start-2 col-end-10  w-full h-[20vh] pt-[2vh] pb-[10vh] font-oppo-sans-medium text-gray-500 justify-between">
+        <div>MIR.DOG</div>
+        <div>MIRART@</div>
+      </div>
+      </div>
     </main>
   );
 }
