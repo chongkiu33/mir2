@@ -21,4 +21,4 @@ export function Plain({  PlainHeight  }: PlainProps) {
        
       </section>
     );
-  }
+}

@@ -4,7 +4,7 @@ import { Plaintext } from "./blocks/Plaintext";
 import { Plain } from "./blocks/Plain";
 import { Videoblock } from "./blocks/Videoblock";
 import { ARTICLE_QUERYResult } from "../../sanity/types";
-
+import { Columimages } from "./blocks/Columimages";
 type PageBuilderProps = {
   content: NonNullable<ARTICLE_QUERYResult>["content2"];
 };
@@ -28,6 +28,8 @@ export function PageBuilder({ content }: PageBuilderProps) {
             return <Plain key={block._key} {...block} />;
         case "videoblock":
             return <Videoblock key={block._key} {...block} />;
+        case "columimages":
+            return <Columimages key={block._key} {...block} />;
             
           default:
             

@@ -68,6 +68,32 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Columimages = {
+  _type: "columimages";
+  colums?: Array<{
+    _key: string;
+  } & ImageBlock>;
+};
+
+export type ImageBlock = {
+  _type: "imageBlock";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  caption?: string;
+  colstart?: number;
+  colend?: number;
+};
+
 export type Videoblock = {
   _type: "videoblock";
   videolink?: string;
@@ -150,7 +176,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & Plaintext | {
   _key: string;
-} & Videoblock>;
+} & Videoblock | {
+  _key: string;
+} & Columimages>;
 
 export type Product = {
   _id: string;
@@ -527,7 +555,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY

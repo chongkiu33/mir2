@@ -18,10 +18,42 @@ export function Videoblock({  videolink , videotitle ,colstart ,colend }: Videob
       const videoId = getYouTubeVideoId(videolink);
       if (!videoId) return <p>无效的YouTube链接</p>;
 
+      const colStartClasses: Record<number, string> = {
+        1: "col-start-1",
+        2: "col-start-2",
+        3: "col-start-3",
+        4: "col-start-4",
+        5: "col-start-5",
+        6: "col-start-6",
+        7: "col-start-7",
+        8: "col-start-8",
+        9: "col-start-9",
+        10: "col-start-10",
+        11: "col-start-11",
+      };
+
+      const colEndClasses: Record<number, string> = {
+        1: "col-end-1",
+        2: "col-end-2",
+        3: "col-end-3",
+        4: "col-end-4",
+        5: "col-end-5",
+        6: "col-end-6",
+        7: "col-end-7",
+        8: "col-end-8",
+        9: "col-end-9",
+        10: "col-end-10",
+        11: "col-end-11",
+      };
+
+    const startCol = colstart || 2;
+    const endCol = colend || 10;
+      
+
     
     return (
-      <section className=" mx-auto grid grid-cols-10  py-5">
-        <div className="col-start-2 col-end-10" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', background: '#000' }}>
+      <section className=" mx-auto grid grid-cols-10  pb-5">
+        <div className={`${colStartClasses[startCol]} ${colEndClasses[endCol]}`} style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', background: '#000' }}>
       <iframe
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video"
