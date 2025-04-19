@@ -15,7 +15,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
   }
 
   return (
-    <main>
+    <main >
       {content.map((block) => {
         switch (block._type) {
           

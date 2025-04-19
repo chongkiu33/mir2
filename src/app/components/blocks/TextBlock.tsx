@@ -1,15 +1,18 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { ARTICLE_QUERYResult } from "../../../sanity/types";
+import { PortableText } from "next-sanity";
 
-type ImageBlockProps = NonNullable<
+import { components } from "@/sanity/portableTextComponents";
+
+type TextBlockProps = NonNullable<
   Extract<
     NonNullable<NonNullable<ARTICLE_QUERYResult>["content2"]>[number],
     { _type: "columimages" }
     >["colums"]>[number]
-     & {_type: "imageBlock"};
+     & {_type: "textBlock"};
 
-export function ImageBlock({ image, alt, colstart, colend }: ImageBlockProps) {
+export function TextBlock({ text, colstart, colend }: TextBlockProps) {
     const colEndClasses: Record<number, string> = {
         1: "col-end-1",
         2: "col-end-2",
@@ -45,20 +48,9 @@ export function ImageBlock({ image, alt, colstart, colend }: ImageBlockProps) {
         <div 
           className={`${colStartClasses[startCol]} ${colEndClasses[endCol]} ` }
         >
-          {image && (
-            <div className="relative w-full">
-              <Image
-                src={urlFor(image).url()}
-                alt={alt || ""}
-                width={800}
-                height={800}
-                className="w-full h-auto object-cover"
-              />
-              {alt && (
-                <p className="mt-2 text-sm text-gray-600">{alt}</p>
-              )}
-            </div>
-          )}
+          <div className="prose-lg lg:prose-xl  ">
+            {text ? <PortableText  value={text} components={components}  /> : null}
+          </div>
         </div>
     
     );

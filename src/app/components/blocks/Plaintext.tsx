@@ -20,10 +20,7 @@ export function Plaintext({  text  }: PlaintextProps) {
             {text ? <PortableText  value={text} components={components}  /> : null}
           </div>
           </div>
-       
-        
-       
-       
+ 
       </section>
     );
   }

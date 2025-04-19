@@ -68,11 +68,48 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type TextBlock = {
+  _type: "textBlock";
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  colstart?: number;
+  colend?: number;
+};
+
 export type Columimages = {
   _type: "columimages";
   colums?: Array<{
     _key: string;
-  } & ImageBlock>;
+  } & ImageBlock | {
+    _key: string;
+  } & TextBlock>;
 };
 
 export type ImageBlock = {
@@ -89,7 +126,6 @@ export type ImageBlock = {
     _type: "image";
   };
   alt?: string;
-  caption?: string;
   colstart?: number;
   colend?: number;
 };
@@ -483,13 +519,6 @@ export type Archiv = {
     _type: "columns";
     _key: string;
   }>;
-  relatedArchiv?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "archiv";
-  }>;
 };
 
 export type SanityImageCrop = {
@@ -555,7 +584,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY
@@ -660,13 +689,6 @@ export type ARTICLE_QUERYResult = {
     caption?: string;
     _type: "video";
     _key: string;
-  }>;
-  relatedArchiv?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "archiv";
   }>;
   date: string;
   categories: null;

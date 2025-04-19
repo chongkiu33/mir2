@@ -1,6 +1,7 @@
 
 import { ARTICLE_QUERYResult } from "../../../sanity/types";
 import { ImageBlock } from "./ImageBlock";
+import { TextBlock } from "./TextBlock";
 
 type ColumimagesProps = Extract<
   NonNullable<NonNullable<ARTICLE_QUERYResult>["content2"]>[number],
@@ -18,10 +19,9 @@ export function Columimages({ colums }: ColumimagesProps) {
         switch (block._type) {
           
           case "imageBlock":
-            return(
-            <ImageBlock key={block._key} {...block} />
-            
-        ) ;
+            return <ImageBlock key={block._key} {...block} />;
+        case "textBlock":
+            return <TextBlock key={block._key} {...block} />;
        
             
           default:
