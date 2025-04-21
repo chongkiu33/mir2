@@ -16,7 +16,7 @@ export function Plaintext({  text  }: PlaintextProps) {
       <section className=" mx-auto grid grid-cols-10  py-5">
         
           <div className={`col-start-2 col-end-10  h-full object-cover`}>
-          <div className="prose-lg lg:prose-xl  ">
+          <div className=" text-base lg:text-lg ">
             {text ? <PortableText  value={text} components={components}  /> : null}
           </div>
           </div>

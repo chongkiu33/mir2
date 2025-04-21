@@ -23,11 +23,6 @@ const ARTICLE_QUERY = defineQuery(`*[
 export const dynamic = 'force-dynamic'
 export const revalidate = 0;
 
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
 
 
 
@@ -56,7 +51,6 @@ export default async function ArchivPage({
       author,
       coverImage,
       publishDate,
-      content,
       content2,
    
       
@@ -66,39 +60,18 @@ export default async function ArchivPage({
    
     
   
-    return article?.content2? <PageBuilder content={article.content2} /> : null;
+    return( 
+      <main>
+      {article?.content2? <PageBuilder content={article.content2} /> : null}; 
+      
+      <div className="mx-auto grid grid-cols-10">
+      <div className="flex col-start-2 col-end-10  w-full h-[20vh] pt-[2vh] pb-[10vh] font-oppo-sans-medium text-gray-500 justify-between">
+        <div>MIR.DOG</div>
+        <div>MIRART@</div>
+      </div>
+      </div>
+      </main>
      
-      // <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
-        
-        
-      //   <article className="prose prose-lg max-w-none">
-      //     <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-          
-          
-      //     {articleImageUrl && (
-      //       <div className="mb-8">
-      //         <Image
-      //           src={articleImageUrl}
-      //           alt={title || "文章图片"}
-      //           className="rounded-lg w-full"
-      //           width={800}
-      //           height={500}
-      //         />
-      //       </div>
-      //     )}
-          
-      //     {content && (
-      //       <div className="article-content">
-      //         <PortableText value={content} components={components} />
-      //       </div>
-      //     )}
-
-      //   <div className="mb-6">
-      //     <Link href="/archiv" >
-      //       ← Back to Archiv
-      //     </Link>
-      //   </div>
-      //   </article>
-      // </main>
-    
+     
+    )
 }

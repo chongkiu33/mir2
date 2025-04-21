@@ -1,3 +1,4 @@
+
 import { client } from "../../../sanity/lib/client";
 import { sanityFetch } from "../../../sanity/lib/live";
 import imageUrlBuilder from "@sanity/image-url";
@@ -7,6 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { components } from "@/sanity/portableTextComponents";
+import { PageBuilder } from "../../components/PageBuilder";
+import Objectcarousel from "../../components/objectcarousel/Objectcarousel";
 
 const OBJECT_QUERY = defineQuery(`*[
   _type == "objectpage" &&
@@ -16,6 +19,19 @@ const OBJECT_QUERY = defineQuery(`*[
   "date": coalesce(publishedAt, _createdAt),
   categories[]->
 }`);
+
+const OBJECTS_QUERY = defineQuery(`*[
+  _type == "objectpage" 
+  && defined(slug.current)
+  && isOneOfTwenty == true
+  ] {
+  _id,
+  title,
+  slug,
+  artist,
+  "position": [objectposition.x, objectposition.y, objectposition.z],
+  objectimage,
+} | order(publishDate desc)`);
 
 
 export const dynamic = 'force-dynamic'
@@ -37,6 +53,7 @@ export default async function ObjectPage({
       query: OBJECT_QUERY,
       params: await params,
     });
+    const { data: objects } = await sanityFetch({ query: OBJECTS_QUERY });
     
     // 如果对象不存在，返回 404
     if (!object) {
@@ -60,36 +77,17 @@ export default async function ObjectPage({
       
    
   
-    return (
-      <main className="container mx-auto p-6 md:p-12 mt-[15vw]">
-        <article className="prose prose-lg max-w-none">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-          
-          {objectImageUrl && (
-            <div className="relative w-full aspect-[16/9] mb-8">
-              <Image
-                src={objectImageUrl}
-                alt={title || "对象图片"}
-                fill
-                className="object-contain rounded-lg"
-                sizes="100vw"
-                priority
-              />
-            </div>
-          )}
-          
-          {content && (
-            <div className="article-content">
-              <PortableText value={content} components={components} />
-            </div>
-          )}
-
-          <div className="mb-6">
-            <Link href="/object" >
-              ← 返回对象列表
-            </Link>
-          </div>
-        </article>
-      </main>
-    );
+    return( 
+      <main>
+      {object?.content ? <PageBuilder content={object.content} /> : null}; 
+      <Objectcarousel objects={objects}/>
+      
+      <div className="mx-auto grid grid-cols-10">
+      <div className="flex col-start-2 col-end-10  w-full h-[20vh] pt-[2vh] pb-[10vh] font-oppo-sans-medium text-gray-500 justify-between">
+        <div>MIR.DOG</div>
+        <div>MIRART@</div>
+      </div>
+      </div>
+    </main>
+    )
 }

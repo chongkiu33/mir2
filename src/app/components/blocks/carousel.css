@@ -1,0 +1,31 @@
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff !important;  /* 箭头颜色 */
+   
+    width: 40px !important;  /* 宽度 */
+    height: 40px !important;  /* 高度 */
+    border-radius: 50%;  /* 圆形 */
+    padding: 5px;  /* 内边距 */
+    transition: opacity 0.3s ease;
+  }
+
+
+  .swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 0.3 !important;
+  transform: scale(0.8) !important;
+  transition: all 0.3s ease !important;
+}
+
+
+.swiper-pagination-bullet-active {
+    /* background: #000 !important; */
+    transform: scale(1) !important;
+    opacity: 1 !important;
+  }
+

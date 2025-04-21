@@ -14,18 +14,15 @@ export function Columimages({ colums }: ColumimagesProps) {
   }
 
   return (
-    <section className="mx-auto grid grid-cols-10 gap-3 pb-5">
+    <section className="mx-auto grid grid-cols-10 gap-3 pb-10 ">
       {colums.map((block) => {
         switch (block._type) {
           
-          case "imageBlock":
+        case "imageBlock":
             return <ImageBlock key={block._key} {...block} />;
         case "textBlock":
-            return <TextBlock key={block._key} {...block} />;
-       
-            
-          default:
-            
+            return <TextBlock key={block._key} {...block} />;         
+        default:     
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
         }
       })}

@@ -14,6 +14,16 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      gridColumnEnd: {
+        '1-5': '1.5',
+        '2-5': '2.5',
+        // 添加其他需要的小数值
+      },
+      gridColumnStart: {
+        '1-5': '1.5',
+        '2-5': '2.5',
+        // 添加其他需要的小数值
+      }
     },
   },
   plugins: [typography],

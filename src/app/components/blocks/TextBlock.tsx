@@ -48,7 +48,7 @@ export function TextBlock({ text, colstart, colend }: TextBlockProps) {
         <div 
           className={`${colStartClasses[startCol]} ${colEndClasses[endCol]} ` }
         >
-          <div className="prose-lg lg:prose-xl  ">
+          <div className=" text-sm lg:text-base  leading-[1.2]">
             {text ? <PortableText  value={text} components={components}  /> : null}
           </div>
         </div>
