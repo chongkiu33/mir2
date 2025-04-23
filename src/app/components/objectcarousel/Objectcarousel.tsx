@@ -22,7 +22,7 @@ export default  function Objectcarousel({objects}:{objects:any}){
 
     return(
         <section  >
-            <Swiper className="mx-auto  gap-3 pb-5 w-[80%] aspect-[16/4]"
+            <Swiper className="mx-auto  gap-3 pb-5 w-[100%] aspect-[16/4]"
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={20}
                 slidesPerView={8}

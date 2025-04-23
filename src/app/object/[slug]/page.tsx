@@ -9,7 +9,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { components } from "@/sanity/portableTextComponents";
 import { PageBuilder } from "../../components/PageBuilder";
-import Objectcarousel from "../../components/objectcarousel/Objectcarousel";
+import Objectcarousel from "../../components/objectCarousel/Objectcarousel";
 
 const OBJECT_QUERY = defineQuery(`*[
   _type == "objectpage" &&
