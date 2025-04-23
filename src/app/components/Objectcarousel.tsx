@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { client }from '../../../sanity/lib/client'
+import { client }from '../../sanity/lib/client'
 import imageUrlBuilder from '@sanity/image-url'
 import React, { useRef , useState ,Suspense} from'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
