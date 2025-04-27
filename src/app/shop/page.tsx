@@ -21,6 +21,8 @@ const PRODUCTS_QUERY = defineQuery(`*[
   _id,
   "imageUrl": productimage[0].asset->url,
   slug,
+  price_id,
+  price
 }`);
 
 export const dynamic = 'force-dynamic';

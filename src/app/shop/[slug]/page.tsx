@@ -16,10 +16,27 @@ const PRODUCT_QUERY = defineQuery(`*[
     _type == "product" &&
     slug.current == $slug
   ][0]{
-    ...,
-    "date": coalesce(publishedAt, _createdAt),
-    categories[]->
+    _id,
+    name,
+    slug,
+    productimage,
+    description,
+    categories[]->,
+    price_id,
+    price
 }`);
+
+// 定义产品类型接口
+interface Product {
+    _id: string;
+    name: string;
+    slug: string;
+    productimage: any[];
+    description: string;
+    categories: any[];
+    price_id: string;
+    price: number;
+}
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0;
@@ -47,7 +64,7 @@ export default async function ShopPage({
       productimage,
       description,
       categories,
-      material,
+      price_id,
       price,
     } = product;
 
@@ -80,7 +97,7 @@ export default async function ShopPage({
                 
                 <div className={styles.infobox}>
                     <h2 className={styles.secondtitle}>Material</h2>
-                    <p className={styles.infotext}>{material || 'No material information'}</p>
+                    <p className={styles.infotext}>{ 'No material information'}</p>
                 </div>
                 <div className={styles.infobox}>
                     <h2 className={styles.secondtitle}>Price</h2>
@@ -90,7 +107,7 @@ export default async function ShopPage({
                 </div>
             </div>
 
-            <AddToBag name={name} description={description} price={price} currency="EUR" productimage={urlFor(product.productimage[0]).width(1000).url()} key={product._id} />
+            <AddToBag name={name} description={description} price={price} price_id={price_id} currency="EUR" productimage={urlFor(product.productimage[0]).width(1000).url()} key={product._id} />
             
         </div>
     )

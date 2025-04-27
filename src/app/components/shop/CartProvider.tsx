@@ -11,7 +11,7 @@ export default function CartProvider({children}:{children:ReactNode}){
             stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string}
             successUrl={`http://localhost:3000/shop/success`}
             cancelUrl={`http://localhost:3000/shop/error`}
-            currency="USD"
+            currency="EUR"
             billingAddressCollection={true}
             language="en-US"
             shouldPersist={true}

@@ -257,6 +257,7 @@ export type Product = {
   }>;
   description?: string;
   price?: number;
+  price_id?: string;
   slug?: Slug;
   category?: {
     _ref: string;
@@ -724,10 +725,8 @@ export type OBJECT_QUERYResult = {
   date: string;
   categories: null;
 } | null;
-
-// Source: ../mirdog-main/src/app/object/page.tsx
 // Variable: OBJECTS_QUERY
-// Query: *[    _type == "objectpage"     && defined(slug.current)    && isOneOfTwenty == true    ] {    _id,    title,    slug,    artist,    "position": [objectposition.x, objectposition.y, objectposition.z],    objectimage,  } | order(publishDate desc)
+// Query: *[  _type == "objectpage"   && defined(slug.current)  && isOneOfTwenty == true  ] {  _id,  title,  slug,  artist,  "position": [objectposition.x, objectposition.y, objectposition.z],  objectimage,} | order(publishDate desc)
 export type OBJECTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -747,7 +746,43 @@ export type OBJECTS_QUERYResult = Array<{
   } | null;
 }>;
 
-// Source: ../mirdog-main/src/app/shop/china/page.tsx
+// Source: ../mirdog-main/src/app/shop/[slug]/page.tsx
+// Variable: PRODUCT_QUERY
+// Query: *[    _type == "product" &&    slug.current == $slug  ][0]{    ...,    "date": coalesce(publishedAt, _createdAt),    categories[]->}
+export type PRODUCT_QUERYResult = {
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  productimage?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  description?: string;
+  price?: number;
+  price_id?: string;
+  slug?: Slug;
+  category?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "category";
+  };
+  date: string;
+  categories: null;
+} | null;
+
+// Source: ../mirdog-main/src/app/shop/page.tsx
 // Variable: PRODUCTS_QUERY
 // Query: *[  _type == "product"   && defined(slug.current)  ] {  _id,  "imageUrl": productimage[0].asset->url,  slug,}
 export type PRODUCTS_QUERYResult = Array<{
@@ -765,7 +800,8 @@ declare module "@sanity/client" {
     "*[_type == \"basic\"][0]{\n  homeimage\n}": BASIC_IMAGE_QUERYResult;
     "*[_type == \"basic\"][0]{\n  info1,\n  info2,\n  info3,\n  email,\n  instagram\n}": BASIC_INFO_QUERYResult;
     "*[\n  _type == \"objectpage\" &&\n  slug.current == $slug\n][0]{\n  ...,\n  \"date\": coalesce(publishedAt, _createdAt),\n  categories[]->\n}": OBJECT_QUERYResult;
-    "*[\n    _type == \"objectpage\" \n    && defined(slug.current)\n    && isOneOfTwenty == true\n    ] {\n    _id,\n    title,\n    slug,\n    artist,\n    \"position\": [objectposition.x, objectposition.y, objectposition.z],\n    objectimage,\n  } | order(publishDate desc)": OBJECTS_QUERYResult;
+    "*[\n  _type == \"objectpage\" \n  && defined(slug.current)\n  && isOneOfTwenty == true\n  ] {\n  _id,\n  title,\n  slug,\n  artist,\n  \"position\": [objectposition.x, objectposition.y, objectposition.z],\n  objectimage,\n} | order(publishDate desc)": OBJECTS_QUERYResult;
+    "*[\n    _type == \"product\" &&\n    slug.current == $slug\n  ][0]{\n    ...,\n    \"date\": coalesce(publishedAt, _createdAt),\n    categories[]->\n}": PRODUCT_QUERYResult;
     "*[\n  _type == \"product\" \n  && defined(slug.current)\n  ] {\n  _id,\n  \"imageUrl\": productimage[0].asset->url,\n  slug,\n}": PRODUCTS_QUERYResult;
   }
 }

@@ -55,7 +55,7 @@ export default async function Archiv() {
           description={archiv.description}
           artistName={archiv.author}
           tag={archiv.tags || []}  
-          imageUrl={urlFor(archiv.coverImage).width(300).url()}
+          imageUrl={urlFor(archiv.coverImage).width(700).url()}
           link={`/archiv/${archiv.slug.current}`}
         />
       ))}

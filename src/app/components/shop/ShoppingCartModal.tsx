@@ -8,9 +8,23 @@ import {
   } from "@/components/ui/sheet"
   import { useShoppingCart } from "use-shopping-cart";
   import Image from "next/image";
+
+
 export default function ShoppingCartModal(){
 
-   const {cartCount, shouldDisplayCart ,handleCartClick, cartDetails,removeItem,totalPrice} = useShoppingCart();
+   const {cartCount, shouldDisplayCart ,handleCartClick, cartDetails,removeItem,totalPrice,redirectToCheckout} = useShoppingCart();
+
+   async function handleCheckout(event:any){
+    event.preventDefault();
+    try {
+      const result = await redirectToCheckout();
+      if (result?.error) {
+        console.error(result.error);
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+    }
+  };
 
     return(
        
@@ -68,9 +82,11 @@ export default function ShoppingCartModal(){
                                                 Shipping and taxes are calculated at checkout.
                                             </p>
 
-                                            <div className="mt-6 w-full flex  justify-end">
-                                                <button className="px-[100px] py-3 right-0 bg-gray-300 rounded-xl">Checkout</button>
-                                                <p>
+                                            <div className="mt-6 w-full flex flex-col  justify-end">
+                                                <button onClick={handleCheckout} className="px-[100px] py-3 right-0 bg-gray-300 rounded-2xl">
+                                                    Checkout
+                                                    </button>
+                                                <p className="mt-4 text-center text-sm text-gray-500 font-oppomedium">
                                                     OR{" "}
                                                     <button onClick={()=>handleCartClick()}>
                                                         Continue Shopping
