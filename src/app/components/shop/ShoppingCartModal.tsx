@@ -10,7 +10,7 @@ import {
   import Image from "next/image";
 export default function ShoppingCartModal(){
 
-   const {cartCount, shouldDisplayCart ,handleCartClick, cartDetails,removeItem} = useShoppingCart();
+   const {cartCount, shouldDisplayCart ,handleCartClick, cartDetails,removeItem,totalPrice} = useShoppingCart();
 
     return(
        
@@ -58,6 +58,30 @@ export default function ShoppingCartModal(){
                                                 </li>
                                             ))
                                         }
+
+                                        <div className="border-t border-gray-200  py-6  ">
+                                            <div className="flex justify-between text-sm font-medium text-gray-900">
+                                                <p>Subtotal</p>
+                                                <p>€{totalPrice}</p>
+                                            </div>
+                                            <p className="mt-0.5 text-sm text-gray-500 font-oppomedium">
+                                                Shipping and taxes are calculated at checkout.
+                                            </p>
+
+                                            <div className="mt-6 w-full flex  justify-end">
+                                                <button className="px-[100px] py-3 right-0 bg-gray-300 rounded-xl">Checkout</button>
+                                                <p>
+                                                    OR{" "}
+                                                    <button onClick={()=>handleCartClick()}>
+                                                        Continue Shopping
+                                                    </button>
+                                                </p>
+                                            </div>
+
+                                            <div>
+
+                                            </div>
+                                        </div>
                                         </>
                                     )}
                                 </ul>

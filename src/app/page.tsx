@@ -24,7 +24,7 @@ export default async function Home() {
 
   return (
     <main style={{overflow: 'hidden'}}>
-      <WaterRipple backgroundImageUrl={urlFor(basicInfo?.homeimage)?.width(100).url()} />
+      <WaterRipple backgroundImageUrl={urlFor(basicInfo?.homeimage)?.width(1000).url()} />
     </main>
   );
 }
