@@ -8,7 +8,7 @@ import { defineQuery, PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
 import ProductCarousel from '../../components/ProductCarousel';
-
+import AddToBag from '../../components/shop/AddToBag';
 
 
 
@@ -42,7 +42,7 @@ export default async function ShopPage({
     
     // 解构产品数据
     const {
-      title,
+        name,
       slug,
       productimage,
       description,
@@ -60,7 +60,7 @@ export default async function ShopPage({
                 <div className={styles.imgcontainer}>
                     <Image 
                         src={urlFor(product.productimage[0]).width(1000).url()}
-                        alt={title || 'Product image'} 
+                        alt={name || 'Product image'} 
                         fill 
                         className={styles.image}
                     />           
@@ -71,7 +71,7 @@ export default async function ShopPage({
             
             <div className={styles.content}>
                 <div className={styles.title}>
-                    {title || 'Product Name'}
+                    {name || 'Product Name'}
                 </div>
                 <div>
                     <h2 className={styles.secondtitle}>Product Introduction</h2>
@@ -85,15 +85,13 @@ export default async function ShopPage({
                 <div className={styles.infobox}>
                     <h2 className={styles.secondtitle}>Price</h2>
                     <p className={styles.infotext}>
-                        {price ? `$${price.toFixed(2)}` : 'Price not available'}
+                    {price ? `€${price.toFixed(2)}` : 'Price not available'}
                     </p>
                 </div>
             </div>
 
-
-            <div className='w-full flex justify-end mb-[20vh]'>
-                <button className='bg-[#D9D9D9]  px-4 py-2 rounded-md' >Add To Cart</button>
-            </div>
+            <AddToBag name={name} description={description} price={price} currency="EUR" productimage={urlFor(product.productimage[0]).width(1000).url()} key={product._id} />
+            
         </div>
     )
 }
