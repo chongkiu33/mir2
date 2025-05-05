@@ -17,7 +17,7 @@ function urlFor(source:any) {
 }
 
 // 定义查询，获取basic类型的第一条数据
-const BASIC_INFO_QUERY = defineQuery(`*[_type == "basic"][0]{
+const BASIC_INFO_PAGE_QUERY = defineQuery(`*[_type == "basic"][0]{
   info1,
   info2,
   info3,
@@ -30,7 +30,7 @@ export const revalidate = 0;
 
 
 const InfoPage = async() => {
-    const { data: basicInfo } = await sanityFetch({ query: BASIC_INFO_QUERY });
+    const { data: basicInfo } = await sanityFetch({ query: BASIC_INFO_PAGE_QUERY });
 
     if (!basicInfo) {
         return <div>Loading...</div>; // 或者显示一个错误信息

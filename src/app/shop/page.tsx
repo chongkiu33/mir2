@@ -6,9 +6,13 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../../sanity/lib/live";
 import { client } from '../../sanity/lib/client';
 import imageUrlBuilder from '@sanity/image-url';
-import ShopNavbar from '../components/ShopNavbar/ShopNavbar';
+import {searchProductsByCategories} from '../../sanity/lib/products/searchProductsByCategories'
+
+
 const builder = imageUrlBuilder(client);
-import { useShoppingCart } from 'use-shopping-cart';
+import { getAllCategories } from "../../sanity/lib/products/getAllCategories";
+import ProductView from '../components/ShopNavbar/ProductView';
+import { getAllProducts } from "../../sanity/lib/products/getAllProducts";
 
 function urlFor(source:any) {
   return builder.image(source)
@@ -22,39 +26,36 @@ const PRODUCTS_QUERY = defineQuery(`*[
   "imageUrl": productimage[0].asset->url,
   slug,
   price_id,
-  price
+  price,
+  stock
 }`);
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
-export default async function Shopping() {
-   
-    const { data: products } = await sanityFetch({ query: PRODUCTS_QUERY });
-   
+export default async function Shopping({
+    searchParams
+}: {
+    searchParams: {
+        categories?: string;
+    };
+}) {
+    const categories = await getAllCategories();
+    let products;
+
+    // 如果有categories参数，则按类别筛选；否则显示所有产品
+    if (searchParams.categories) {
+        products = await searchProductsByCategories(searchParams.categories);
+    } else {
+        products = await getAllProducts();
+    }
+
+    // if (!products.length) {
+    //     return <div>No products found</div>
+    // }
 
     return (
-     
-        
-        
-      <div className="mt-[17vh] font-oppomedium">  
-        <ShopNavbar/>
-        <div className={styles.productContainer}>
-            
-            {products.map((product:any) => (
-                <div className={styles.product} key={product._id}>
-                <Product 
-                key={product._id}        
-                image={product.imageUrl}
-                slug={product.slug.current}/>
-                </div>
-            ))}
-            
+        <div className="mt-[17vh] font-oppomedium">  
+            <ProductView products={products} categories={categories}/>
         </div>
-        </div>
-        
-        
-     
     );
-  }
+}
   

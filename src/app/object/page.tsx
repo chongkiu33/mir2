@@ -6,7 +6,7 @@ import { sanityFetch } from  "../../sanity/lib/live";
 import { client }from '../../sanity/lib/client'
 import imageUrlBuilder from '@sanity/image-url'
 
-const OBJECTS_QUERY = defineQuery(`*[
+const OBJECTS_PAGE_QUERY = defineQuery(`*[
     _type == "objectpage" 
     && defined(slug.current)
     && isOneOfTwenty == true
@@ -27,7 +27,7 @@ const builder = imageUrlBuilder(client)
 
 
 export default async function Object() {
-  const { data: objects } = await sanityFetch({ query: OBJECTS_QUERY });
+  const { data: objects } = await sanityFetch({ query: OBJECTS_PAGE_QUERY  });
   
   
   return (

@@ -1,12 +1,3 @@
-// import { createClient } from "next-sanity";
-
-// export const client = createClient({
-//   projectId: "ipz7kkbl",
-//   dataset: "production",
-//   apiVersion: "2024-11-01",
-//   useCdn: false,
-// });
-
 import { createClient } from 'next-sanity'
 import { apiVersion, dataset, projectId } from '../env'
 
@@ -16,6 +7,10 @@ export const client = createClient({
   apiVersion,
   useCdn: true,
   stega:{
-    studioUrl:'/studio',
+    // studioUrl:'/studio',
+
+    studioUrl: process.env.VERCEL_URL
+     ?`https://${process.env.VERCEL_URL}/studio`
+     :`${process.env.NEXT_PUBLIC_BASE_URL}/studio`,
   }
 })

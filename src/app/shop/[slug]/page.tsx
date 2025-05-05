@@ -44,7 +44,9 @@ export const revalidate = 0;
 export default async function ShopPage({
     params,
   }: {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ 
+        slug: string 
+    }>;
   }) {
     // 获取产品数据
     const { data: product } = await sanityFetch({
@@ -59,7 +61,7 @@ export default async function ShopPage({
     
     // 解构产品数据
     const {
-        name,
+      name,
       slug,
       productimage,
       description,
@@ -107,7 +109,15 @@ export default async function ShopPage({
                 </div>
             </div>
 
-            <AddToBag name={name} description={description} price={price} price_id={price_id} currency="EUR" productimage={urlFor(product.productimage[0]).width(1000).url()} key={product._id} />
+            {/* <AddToBag 
+                name={name || 'Unnamed Product'} 
+                description={description || 'No description available'} 
+                price={price || 0} 
+                price_id={price_id || ''} 
+                currency="EUR" 
+                productimage={product.productimage?.[0] ? urlFor(product.productimage[0]).width(1000).url() : ''} 
+                key={product._id} 
+            /> */}
             
         </div>
     )

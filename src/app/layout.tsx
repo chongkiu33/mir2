@@ -9,6 +9,7 @@ import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 
 
+
 export const metadata: Metadata = {
   title: "MIR",
   description: "A Design Company",

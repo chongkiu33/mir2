@@ -1,6 +1,6 @@
 import {defineQuery} from "next-sanity"
 
-export const ACTIVITIES_QUERY = defineQuery(`*[
+export const ACTIVITIES_LIST_QUERY = defineQuery(`*[
     _type == "archiv" 
     && defined(slug.current)
     ] {
@@ -14,7 +14,7 @@ export const ACTIVITIES_QUERY = defineQuery(`*[
     coverImage,
   } | order(publishDate desc)`);
 
-  export const ARTICLE_QUERY = defineQuery(`*[
+  export const ARTICLE_PAGE_QUERY = defineQuery(`*[
     _type == "archiv" &&
     slug.current == $slug
   ][0]{

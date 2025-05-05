@@ -6,18 +6,8 @@
 
 
 
-.productContainer{
-    display: flex;
-    flex-wrap: wrap;
-    gap:2vw;
-    justify-content: center;
-}
 
-.product{
-    width: 21vw;
-    height: 21vw;
-    position: relative;
-}
+
 
 .footer{
     width: 90vw;

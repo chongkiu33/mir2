@@ -5,14 +5,7 @@
     position: relative;
 }
 
-.image{
-    object-fit: cover;
-    transition: all 0.5s ease;
-    border-radius: 20px;
-    
-    filter: brightness(70%); 
-    
-}
+
 
 .image:hover{
     scale: 1.1;

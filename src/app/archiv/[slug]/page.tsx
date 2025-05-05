@@ -53,7 +53,6 @@ export default async function ArchivPage({
       publishDate,
       content2,
    
-      
     } = article;
     
     // 处理图片 URL

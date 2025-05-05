@@ -68,6 +68,33 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Order = {
+  _id: string;
+  _type: "order";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  orderNumber?: string;
+  stripeCheckoutSessionId?: string;
+  stripeCustomerId?: string;
+  customerName?: string;
+  email?: string;
+  stripePaymentIntentId?: string;
+  products?: Array<{
+    product?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "product";
+    };
+    quantity?: number;
+    _key: string;
+  }>;
+  totalPrice?: number;
+  status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+  orderDate?: string;
+};
+
 export type Carousel = {
   _type: "carousel";
   images?: Array<{
@@ -236,6 +263,17 @@ export type PageBuilder = Array<{
   _key: string;
 } & Carousel>;
 
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  category?: "material" | "type" | "artist";
+  slug?: Slug;
+};
+
 export type Product = {
   _id: string;
   _type: "product";
@@ -259,21 +297,14 @@ export type Product = {
   price?: number;
   price_id?: string;
   slug?: Slug;
-  category?: {
+  category?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
+    _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  };
-};
-
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
+  }>;
+  stock?: number;
 };
 
 export type Objectpage = {
@@ -517,7 +548,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Product | Category | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY
@@ -598,9 +629,9 @@ export type BASIC_IMAGE_QUERYResult = {
 } | null;
 
 // Source: ../mirdog-main/src/app/info/page.tsx
-// Variable: BASIC_INFO_QUERY
+// Variable: BASIC_INFO_PAGE_QUERY
 // Query: *[_type == "basic"][0]{  info1,  info2,  info3,  email,  instagram}
-export type BASIC_INFO_QUERYResult = {
+export type BASIC_INFO_PAGE_QUERYResult = {
   info1: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -746,10 +777,115 @@ export type OBJECTS_QUERYResult = Array<{
   } | null;
 }>;
 
+// Source: ../mirdog-main/src/app/object/page.tsx
+// Variable: OBJECTS_PAGE_QUERY
+// Query: *[    _type == "objectpage"     && defined(slug.current)    && isOneOfTwenty == true    ] {    _id,    title,    slug,    artist,    "position": [objectposition.x, objectposition.y, objectposition.z],    objectimage,  } | order(publishDate desc)
+export type OBJECTS_PAGE_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  artist: string | null;
+  position: Array<number | null>;
+  objectimage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
+
+// Source: ../mirdog-main/src/app/page.tsx
+// Variable: BASIC_INFO_QUERY
+// Query: *[_type == "basic"][0]{  homeimage}
+export type BASIC_INFO_QUERYResult = {
+  homeimage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+} | null;
+
 // Source: ../mirdog-main/src/app/shop/[slug]/page.tsx
 // Variable: PRODUCT_QUERY
-// Query: *[    _type == "product" &&    slug.current == $slug  ][0]{    ...,    "date": coalesce(publishedAt, _createdAt),    categories[]->}
+// Query: *[    _type == "product" &&    slug.current == $slug  ][0]{    _id,    name,    slug,    productimage,    description,    categories[]->,    price_id,    price}
 export type PRODUCT_QUERYResult = {
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  productimage: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }> | null;
+  description: string | null;
+  categories: null;
+  price_id: string | null;
+  price: number | null;
+} | null;
+
+// Source: ../mirdog-main/src/app/shop/page.tsx
+// Variable: PRODUCTS_QUERY
+// Query: *[  _type == "product"   && defined(slug.current)  ] {  _id,  "imageUrl": productimage[0].asset->url,  slug,  price_id,  price,  stock}
+export type PRODUCTS_QUERYResult = Array<{
+  _id: string;
+  imageUrl: string | null;
+  slug: Slug | null;
+  price_id: string | null;
+  price: number | null;
+  stock: number | null;
+}>;
+
+// Source: ../mirdog-main/src/sanity/lib/products/getAllCategories.ts
+// Variable: ALL_CATEGORIES_QUERY
+// Query: *[_type == "category"] | order(name asc)
+export type ALL_CATEGORIES_QUERYResult = Array<{
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  category?: "artist" | "material" | "type";
+  slug?: Slug;
+}>;
+
+// Source: ../mirdog-main/src/sanity/lib/products/getAllProducts.ts
+// Variable: ALL_PRODUCTS_QUERY
+// Query: *[_type == "product"] | order(name asc) {      _id,      name,      slug,      stock,      productimage[] {        asset-> {          url        }      }    }
+export type ALL_PRODUCTS_QUERYResult = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  stock: number | null;
+  productimage: Array<{
+    asset: {
+      url: string | null;
+    } | null;
+  }> | null;
+}>;
+
+// Source: ../mirdog-main/src/sanity/lib/products/searchProductsByCategories.ts
+// Variable: PRODUCTS_CATEGORIES_QUERY
+// Query: *[_type == "product" && count((category[]->slug.current)[@ in $categories]) > 0]
+export type PRODUCTS_CATEGORIES_QUERYResult = Array<{
   _id: string;
   _type: "product";
   _createdAt: string;
@@ -772,36 +908,91 @@ export type PRODUCT_QUERYResult = {
   price?: number;
   price_id?: string;
   slug?: Slug;
-  category?: {
+  category?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
+    _key: string;
     [internalGroqTypeReferenceTo]?: "category";
+  }>;
+  stock?: number;
+}>;
+
+// Source: ../mirdog-main/src/sanity/lib/queries.ts
+// Variable: ACTIVITIES_LIST_QUERY
+// Query: *[    _type == "archiv"     && defined(slug.current)    ] {    _id,    title,    slug,    publishDate,    "tags": tag[]->TagName,    description,    author,    coverImage,  } | order(publishDate desc)
+export type ACTIVITIES_LIST_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  publishDate: string | null;
+  tags: Array<string | null> | null;
+  description: string | null;
+  author: string | null;
+  coverImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
+// Variable: ARTICLE_PAGE_QUERY
+// Query: *[    _type == "archiv" &&    slug.current == $slug  ][0]{    ...,    "date": coalesce(publishedAt, _createdAt),    categories[]->}
+export type ARTICLE_PAGE_QUERYResult = {
+  _id: string;
+  _type: "archiv";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  author?: string;
+  tag?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "tag";
+  }>;
+  description?: string;
+  publishDate?: string;
+  coverImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   };
+  content2?: PageBuilder;
   date: string;
   categories: null;
 } | null;
-
-// Source: ../mirdog-main/src/app/shop/page.tsx
-// Variable: PRODUCTS_QUERY
-// Query: *[  _type == "product"   && defined(slug.current)  ] {  _id,  "imageUrl": productimage[0].asset->url,  slug,}
-export type PRODUCTS_QUERYResult = Array<{
-  _id: string;
-  imageUrl: string | null;
-  slug: Slug | null;
-}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[\n    _type == \"archiv\" &&\n    slug.current == $slug\n  ][0]{\n    ...,\n    \"date\": coalesce(publishedAt, _createdAt),\n    categories[]->\n}": ARTICLE_QUERYResult;
+    "*[\n    _type == \"archiv\" &&\n    slug.current == $slug\n  ][0]{\n    ...,\n    \"date\": coalesce(publishedAt, _createdAt),\n    categories[]->\n}": ARTICLE_QUERYResult | ARTICLE_PAGE_QUERYResult;
     "*[\n  _type == \"archiv\" \n  && defined(slug.current)\n  ] {\n  _id,\n  title,\n  slug,\n  publishDate,\n  \"tags\": tag[]->TagName,\n  description,\n  author,\n  coverImage,\n} | order(publishDate desc)": ACTIVITIES_QUERYResult;
-    "*[_type == \"basic\"][0]{\n  homeimage\n}": BASIC_IMAGE_QUERYResult;
-    "*[_type == \"basic\"][0]{\n  info1,\n  info2,\n  info3,\n  email,\n  instagram\n}": BASIC_INFO_QUERYResult;
+    "*[_type == \"basic\"][0]{\n  homeimage\n}": BASIC_IMAGE_QUERYResult | BASIC_INFO_QUERYResult;
+    "*[_type == \"basic\"][0]{\n  info1,\n  info2,\n  info3,\n  email,\n  instagram\n}": BASIC_INFO_PAGE_QUERYResult;
     "*[\n  _type == \"objectpage\" &&\n  slug.current == $slug\n][0]{\n  ...,\n  \"date\": coalesce(publishedAt, _createdAt),\n  categories[]->\n}": OBJECT_QUERYResult;
     "*[\n  _type == \"objectpage\" \n  && defined(slug.current)\n  && isOneOfTwenty == true\n  ] {\n  _id,\n  title,\n  slug,\n  artist,\n  \"position\": [objectposition.x, objectposition.y, objectposition.z],\n  objectimage,\n} | order(publishDate desc)": OBJECTS_QUERYResult;
-    "*[\n    _type == \"product\" &&\n    slug.current == $slug\n  ][0]{\n    ...,\n    \"date\": coalesce(publishedAt, _createdAt),\n    categories[]->\n}": PRODUCT_QUERYResult;
-    "*[\n  _type == \"product\" \n  && defined(slug.current)\n  ] {\n  _id,\n  \"imageUrl\": productimage[0].asset->url,\n  slug,\n}": PRODUCTS_QUERYResult;
+    "*[\n    _type == \"objectpage\" \n    && defined(slug.current)\n    && isOneOfTwenty == true\n    ] {\n    _id,\n    title,\n    slug,\n    artist,\n    \"position\": [objectposition.x, objectposition.y, objectposition.z],\n    objectimage,\n  } | order(publishDate desc)": OBJECTS_PAGE_QUERYResult;
+    "*[\n    _type == \"product\" &&\n    slug.current == $slug\n  ][0]{\n    _id,\n    name,\n    slug,\n    productimage,\n    description,\n    categories[]->,\n    price_id,\n    price\n}": PRODUCT_QUERYResult;
+    "*[\n  _type == \"product\" \n  && defined(slug.current)\n  ] {\n  _id,\n  \"imageUrl\": productimage[0].asset->url,\n  slug,\n  price_id,\n  price,\n  stock\n}": PRODUCTS_QUERYResult;
+    "  \n        *[_type == \"category\"] | order(name asc)\n        \n        ": ALL_CATEGORIES_QUERYResult;
+    "*[_type == \"product\"] | order(name asc) {\n      _id,\n      name,\n      slug,\n      stock,\n      productimage[] {\n        asset-> {\n          url\n        }\n      }\n    }": ALL_PRODUCTS_QUERYResult;
+    "\n    *[_type == \"product\" && count((category[]->slug.current)[@ in $categories]) > 0]\n    ": PRODUCTS_CATEGORIES_QUERYResult;
+    "*[\n    _type == \"archiv\" \n    && defined(slug.current)\n    ] {\n    _id,\n    title,\n    slug,\n    publishDate,\n    \"tags\": tag[]->TagName,\n    description,\n    author,\n    coverImage,\n  } | order(publishDate desc)": ACTIVITIES_LIST_QUERYResult;
   }
 }
