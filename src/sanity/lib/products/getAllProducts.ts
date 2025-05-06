@@ -10,6 +10,7 @@ export const getAllProducts = async () => {
       name,
       slug,
       stock,
+      price,
       productimage[] {
         asset-> {
           url

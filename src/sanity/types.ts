@@ -816,31 +816,6 @@ export type BASIC_INFO_QUERYResult = {
   } | null;
 } | null;
 
-// Source: ../mirdog-main/src/app/shop/[slug]/page.tsx
-// Variable: PRODUCT_QUERY
-// Query: *[    _type == "product" &&    slug.current == $slug  ][0]{    _id,    name,    slug,    productimage,    description,    categories[]->,    price_id,    price}
-export type PRODUCT_QUERYResult = {
-  _id: string;
-  name: string | null;
-  slug: Slug | null;
-  productimage: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }> | null;
-  description: string | null;
-  categories: null;
-  price_id: string | null;
-  price: number | null;
-} | null;
-
 // Source: ../mirdog-main/src/app/shop/page.tsx
 // Variable: PRODUCTS_QUERY
 // Query: *[  _type == "product"   && defined(slug.current)  ] {  _id,  "imageUrl": productimage[0].asset->url,  slug,  price_id,  price,  stock}
@@ -869,12 +844,13 @@ export type ALL_CATEGORIES_QUERYResult = Array<{
 
 // Source: ../mirdog-main/src/sanity/lib/products/getAllProducts.ts
 // Variable: ALL_PRODUCTS_QUERY
-// Query: *[_type == "product"] | order(name asc) {      _id,      name,      slug,      stock,      productimage[] {        asset-> {          url        }      }    }
+// Query: *[_type == "product"] | order(name asc) {      _id,      name,      slug,      stock,      price,      productimage[] {        asset-> {          url        }      }    }
 export type ALL_PRODUCTS_QUERYResult = Array<{
   _id: string;
   name: string | null;
   slug: Slug | null;
   stock: number | null;
+  price: number | null;
   productimage: Array<{
     asset: {
       url: string | null;
@@ -882,40 +858,38 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
   }> | null;
 }>;
 
+// Source: ../mirdog-main/src/sanity/lib/products/getProductBySlug.tsx
+// Variable: PRODUCT_BY_SLUG_QUERY
+// Query: *[    _type == "product" && slug.current == $slug    ] |order(name asc) [0]{    _id,    name,    slug,    stock,    description,    categories[]->,    price,    productimage[] {    asset-> {          url        }      }    }
+export type PRODUCT_BY_SLUG_QUERYResult = {
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  stock: number | null;
+  description: string | null;
+  categories: null;
+  price: number | null;
+  productimage: Array<{
+    asset: {
+      url: string | null;
+    } | null;
+  }> | null;
+} | null;
+
 // Source: ../mirdog-main/src/sanity/lib/products/searchProductsByCategories.ts
 // Variable: PRODUCTS_CATEGORIES_QUERY
-// Query: *[_type == "product" && count((category[]->slug.current)[@ in $categories]) > 0]
+// Query: *[_type == "product" && count((category[]->slug.current)[@ in $categories]) == count($categories)] | order(name asc) {      _id,      name,      slug,      stock,      price,      productimage[] {        asset-> {          url        }      }    }
 export type PRODUCTS_CATEGORIES_QUERYResult = Array<{
   _id: string;
-  _type: "product";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  productimage?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
-  description?: string;
-  price?: number;
-  price_id?: string;
-  slug?: Slug;
-  category?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  stock?: number;
+  name: string | null;
+  slug: Slug | null;
+  stock: number | null;
+  price: number | null;
+  productimage: Array<{
+    asset: {
+      url: string | null;
+    } | null;
+  }> | null;
 }>;
 
 // Source: ../mirdog-main/src/sanity/lib/queries.ts
@@ -988,11 +962,11 @@ declare module "@sanity/client" {
     "*[\n  _type == \"objectpage\" &&\n  slug.current == $slug\n][0]{\n  ...,\n  \"date\": coalesce(publishedAt, _createdAt),\n  categories[]->\n}": OBJECT_QUERYResult;
     "*[\n  _type == \"objectpage\" \n  && defined(slug.current)\n  && isOneOfTwenty == true\n  ] {\n  _id,\n  title,\n  slug,\n  artist,\n  \"position\": [objectposition.x, objectposition.y, objectposition.z],\n  objectimage,\n} | order(publishDate desc)": OBJECTS_QUERYResult;
     "*[\n    _type == \"objectpage\" \n    && defined(slug.current)\n    && isOneOfTwenty == true\n    ] {\n    _id,\n    title,\n    slug,\n    artist,\n    \"position\": [objectposition.x, objectposition.y, objectposition.z],\n    objectimage,\n  } | order(publishDate desc)": OBJECTS_PAGE_QUERYResult;
-    "*[\n    _type == \"product\" &&\n    slug.current == $slug\n  ][0]{\n    _id,\n    name,\n    slug,\n    productimage,\n    description,\n    categories[]->,\n    price_id,\n    price\n}": PRODUCT_QUERYResult;
     "*[\n  _type == \"product\" \n  && defined(slug.current)\n  ] {\n  _id,\n  \"imageUrl\": productimage[0].asset->url,\n  slug,\n  price_id,\n  price,\n  stock\n}": PRODUCTS_QUERYResult;
     "  \n        *[_type == \"category\"] | order(name asc)\n        \n        ": ALL_CATEGORIES_QUERYResult;
-    "*[_type == \"product\"] | order(name asc) {\n      _id,\n      name,\n      slug,\n      stock,\n      productimage[] {\n        asset-> {\n          url\n        }\n      }\n    }": ALL_PRODUCTS_QUERYResult;
-    "\n    *[_type == \"product\" && count((category[]->slug.current)[@ in $categories]) > 0]\n    ": PRODUCTS_CATEGORIES_QUERYResult;
+    "*[_type == \"product\"] | order(name asc) {\n      _id,\n      name,\n      slug,\n      stock,\n      price,\n      productimage[] {\n        asset-> {\n          url\n        }\n      }\n    }": ALL_PRODUCTS_QUERYResult;
+    "\n    *[\n    _type == \"product\" && slug.current == $slug\n    ] |order(name asc) [0]{\n\n    _id,\n    name,\n    slug,\n    stock,\n    description,\n    categories[]->,\n    price,\n    productimage[] {\n    asset-> {\n          url\n        }\n      }\n    }": PRODUCT_BY_SLUG_QUERYResult;
+    "\n    *[_type == \"product\" && count((category[]->slug.current)[@ in $categories]) == count($categories)] | order(name asc) {\n      _id,\n      name,\n      slug,\n      stock,\n      price,\n      productimage[] {\n        asset-> {\n          url\n        }\n      }\n    }\n    ": PRODUCTS_CATEGORIES_QUERYResult;
     "*[\n    _type == \"archiv\" \n    && defined(slug.current)\n    ] {\n    _id,\n    title,\n    slug,\n    publishDate,\n    \"tags\": tag[]->TagName,\n    description,\n    author,\n    coverImage,\n  } | order(publishDate desc)": ACTIVITIES_LIST_QUERYResult;
   }
 }

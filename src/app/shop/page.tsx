@@ -7,7 +7,7 @@ import { sanityFetch } from "../../sanity/lib/live";
 import { client } from '../../sanity/lib/client';
 import imageUrlBuilder from '@sanity/image-url';
 import {searchProductsByCategories} from '../../sanity/lib/products/searchProductsByCategories'
-
+import CartButton from '../components/ShopNavbar/CartButton';
 
 const builder = imageUrlBuilder(client);
 import { getAllCategories } from "../../sanity/lib/products/getAllCategories";
@@ -53,9 +53,13 @@ export default async function Shopping({
     // }
 
     return (
+      <>
+      <CartButton />
         <div className="mt-[17vh] font-oppomedium">  
             <ProductView products={products} categories={categories}/>
         </div>
+
+        </>
     );
 }
   

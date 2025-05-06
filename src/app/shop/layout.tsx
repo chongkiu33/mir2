@@ -18,7 +18,7 @@ export default function RootLayout({
             {/* <CartProvider> */}
             
           
-                {/* <CartButton /> */}
+               
                
                 {/* <ShoppingCartModal/> */}
 

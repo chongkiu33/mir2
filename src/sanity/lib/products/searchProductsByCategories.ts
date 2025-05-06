@@ -1,5 +1,7 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
+
+
 export const searchProductsByCategories = async (categories: string) => {
 
     const PRODUCTS_CATEGORIES_QUERY = defineQuery(`
@@ -8,6 +10,7 @@ export const searchProductsByCategories = async (categories: string) => {
       name,
       slug,
       stock,
+      price,
       productimage[] {
         asset-> {
           url
