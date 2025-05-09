@@ -863,18 +863,18 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
 // Query: *[    _type == "product" && slug.current == $slug    ] |order(name asc) [0]{    _id,    name,    slug,    stock,    description,    categories[]->,    price,    productimage[] {    asset-> {          url        }      }    }
 export type PRODUCT_BY_SLUG_QUERYResult = {
   _id: string;
-  name: string | null;
-  slug: Slug | null;
-  stock: number | null;
-  description: string | null;
+  name: string ;
+  slug: Slug ;
+  stock: number ;
+  description: string ;
   categories: null;
-  price: number | null;
+  price: number;
   productimage: Array<{
     asset: {
-      url: string | null;
-    } | null;
-  }> | null;
-} | null;
+      url: string;
+    } ;
+  }>;
+} ;
 
 // Source: ../mirdog-main/src/sanity/lib/products/searchProductsByCategories.ts
 // Variable: PRODUCTS_CATEGORIES_QUERY

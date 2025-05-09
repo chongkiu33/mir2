@@ -7,7 +7,7 @@ import AddToBasketButton from '../../components/shopui/AddToBasketButton';
 import Image from 'next/image';
 import { urlFor } from "@/sanity/lib/image";
 import { SignInButton } from '@clerk/nextjs';
-import { createCheckoutSession, Metadata } from '@/actions/createCheckoutSession';
+import { createCheckoutSession, Metadata } from '../../../actions/createCheckoutSession';
 
 
 
@@ -26,11 +26,13 @@ export default function BasketPage(){
     },[]);
 
     // 待写
-    // if(!isClient){
-    //     return(
-    //         <Loader />; 
-    //     )
-    // }
+    if(!isClient){
+        return(
+            <div className='flex justify-center items-center h-screen'>
+                Loading...
+            </div>
+        )
+    }
 
     if(groupedItems.length === 0){
         return(
@@ -45,7 +47,6 @@ export default function BasketPage(){
 
     const handleCheckout = async () => {
         if(!isSignedIn) return;
-
         setIsLoading(true);
 
         try{
@@ -57,11 +58,11 @@ export default function BasketPage(){
             };
 
             const checkoutUrl = await createCheckoutSession(groupedItems,metaldata);
-
-            if(checkoutUrl && typeof checkoutUrl === 'string'){
+           
+            if(checkoutUrl) {
                 window.location.href = checkoutUrl;
             } else {
-                console.error("Invalid checkout URL received");
+                console.error("创建结账会话失败");
             }
 
         } catch(error){
@@ -116,7 +117,12 @@ export default function BasketPage(){
                            
 
                             <div className="flex items-center ml-4 flex-shrink-0">
-                                <AddToBasketButton product={item.product} disabled={item.product?.stock === 0}/>
+                                {item.product && (
+                                    <AddToBasketButton 
+                                        product={item.product} 
+                                        disabled={item.product.stock === 0}
+                                    />
+                                )}
                             </div>
                         </div>
                     ))}
@@ -153,12 +159,9 @@ export default function BasketPage(){
                             Sign in to checkout
                          </button>
                          </SignInButton>
-                   
                     )}
                 </div>
-
-
             </div>
         </div>
-    )
+    );
 }

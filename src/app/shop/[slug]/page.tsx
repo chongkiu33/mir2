@@ -66,7 +66,12 @@ export default async function ShopPage({
             </div>
 
             <div className="mt-6 flex w-full justify-end pb-[20vh]">
-                <AddToBasketButton product={product} disabled={isOutOfStock } />
+                {product && (
+                    <AddToBasketButton 
+                        product={product} 
+                        disabled={isOutOfStock}
+                    />
+                )}
                 {/* <Button>Add to Bag</Button> */}
             </div>
 

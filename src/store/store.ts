@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware'
 import { PRODUCT_BY_SLUG_QUERYResult } from '@/sanity/types';
 
 
-import { devNull } from 'os';
+
 
 export interface BasketItem{
     product:PRODUCT_BY_SLUG_QUERYResult;
@@ -12,7 +12,7 @@ export interface BasketItem{
 
 export interface BasketState{
     items:BasketItem[];
-    addItem: (product: Product) => void;
+    addItem: (product:PRODUCT_BY_SLUG_QUERYResult) => void;
     removeItem: (productId:string) => void;
     clearBasket: () => void;
     getTotalPrice: () => number;
@@ -29,12 +29,12 @@ const useBasketStore = create<BasketState>()(
             addItem: (product)=>
                 set((state)=>{
                     const existingItem = state.items.find(
-                        (item) => item.product?._id === product._id
+                        (item) => item.product?._id === product?._id
                     );
                     if(existingItem){
                         return{
                             items:state.items.map((item) =>
-                                item.product?._id === product._id
+                                item.product?._id === product?._id
                                 ? {...item, quantity: item.quantity + 1 }
                                 :item
                             ),
@@ -76,26 +76,7 @@ const useBasketStore = create<BasketState>()(
     )
 );
 
-// 定义简化版的 Product 类型
-type Product = {
-  _id: string;
-  name: string | null;
-  slug: Slug | null;
-  stock: number | null;
-  description: string | null;
-  categories: null;
-  price: number | null;
-  productimage: Array<{
-    asset: {
-      url: string | null;
-    } | null;
-  }> | null;
-}
 
-export type Slug = {
-    current: string;
-    _type: 'slug';
-  }
 
 export default useBasketStore;
 
