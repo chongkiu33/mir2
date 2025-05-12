@@ -35,7 +35,7 @@ const Activity: React.FC<ActivityProps> = ({ content, date, description, artistN
                         <p>{date}</p>
                     </div>
                     <div className={styles.activityDescription}>
-                        <p>{description}</p>
+                        <p className={styles.clampedText}>{description}</p>
                     </div>
                     <div className={styles.activityArtist}>
                         <h3>{artistName}</h3>

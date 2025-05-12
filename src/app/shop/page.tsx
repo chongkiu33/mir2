@@ -55,7 +55,7 @@ export default async function Shopping({
     return (
       <>
       <CartButton />
-        <div className="mt-[17vh] font-oppomedium">  
+        <div className="mt-[17vw] font-oppomedium">  
             <ProductView products={products} categories={categories}/>
         </div>
 

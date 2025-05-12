@@ -23,13 +23,15 @@ export default function ProductView({
           </div>
         </div>
       ) : (
-        <div className="flex flex-wrap justify-center gap-[2vw]">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          
           {products.map((product) => (
             <Product
               key={product._id}
               product={product}
             />
           ))}
+         
         </div>
       )}
       </div>

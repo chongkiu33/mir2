@@ -1,4 +1,3 @@
-import styles from './page.module.css'
 import Image from 'next/image'
 import { client } from "../../../sanity/lib/client";
 import { sanityFetch } from "../../../sanity/lib/live";
@@ -11,10 +10,8 @@ import ProductCarousel from '../../components/ProductCarousel';
 import AddToBag from '../../components/shop/AddToBag';
 import { Button } from '@/components/ui/button';
 import AddToBasketButton from '@/app/components/shopui/AddToBasketButton';
-
-
+import  CartButton  from '../../components/ShopNavbar/CartButton';
 import {getProductBySlug} from '../../../sanity/lib/products/getProductBySlug';
-
 
 export default async function ShopPage({
     params,
@@ -27,45 +24,59 @@ export default async function ShopPage({
     const product = await getProductBySlug(slug);
     const isOutOfStock = product?.stock === 0;
 
-
     return (
-        <div className={styles.container}>
+        <div className="w-screen px-[10vw] pt-[17vw] flex  flex-col gap-[2vh]">
+            <CartButton />
+
+            <div className='w-full flex flex-col lg:flex-row gap-[2vh]'>
             {product?.productimage ? (
-              
-                <div className={styles.imgcontainer}>
+                <div className="w-full lg:w-2/3 relative">
                     <Image 
                         src={urlFor(product.productimage[0]).width(1000).url()}
                         alt={product.name || 'Product image'} 
-                        fill 
-                        className={styles.image}
+                        width={1000}
+                        height={0}
+                        sizes="100vw"
+                        style={{ width: '100%', height: 'auto' }}
+                        className="rounded-[20px] brightness-[95%] hover:brightness-[98%] transition-all duration-300 ease-in-out"
                     />           
                 </div>
             ) : null}
-
-        <ProductCarousel images={product?.productimage || []}/>
             
-            <div className={styles.content}>
-                <div className={styles.title}>
+            {/* 小屏幕显示水平轮播 */}
+            <div className="lg:hidden w-full">
+                <ProductCarousel images={product?.productimage || []} direction="horizontal"/>
+            </div>
+            
+            {/* 大屏幕显示垂直轮播 */}
+            <div className="hidden lg:block lg:w-1/3">
+                <ProductCarousel images={product?.productimage || []} direction="vertical"/>
+            </div>
+
+        </div>
+            
+            <div className="py-[3vh] flex flex-col gap-[2vh]">
+                <div className="font-['oppo_Sans_Heavy'] text-2xl font-bold">
                     {product?.name || 'Product Name'}
                 </div>
                 <div>
-                    <h2 className={styles.secondtitle}>Product Introduction</h2>
-                    <p className={styles.infotext}>{product?.description || 'No description available'}</p>
+                    <h2 className="font-['oppo_Sans_Heavy'] text-xl font-bold">Product Introduction</h2>
+                    <p className="font-['oppo_Sans_Medium']">{product?.description || 'No description available'}</p>
                 </div>
                 
-                <div className={styles.infobox}>
-                    <h2 className={styles.secondtitle}>Material</h2>
-                    <p className={styles.infotext}>{ 'No material information'}</p>
+                <div className="flex justify-between">
+                    <h2 className="font-['oppo_Sans_Heavy'] text-xl font-bold">Material</h2>
+                    <p className="font-['oppo_Sans_Medium']">{ 'No material information'}</p>
                 </div>
-                <div className={styles.infobox}>
-                    <h2 className={styles.secondtitle}>Price</h2>
-                    <p className={styles.infotext}>
+                <div className="flex justify-between">
+                    <h2 className="font-['oppo_Sans_Heavy'] text-xl font-bold">Price</h2>
+                    <p className="font-['oppo_Sans_Medium']">
                     {product?.price ? `€${product?.price.toFixed(2)}` : 'Price not available'}
                     </p>
                 </div>
             </div>
 
-            <div className="mt-6 flex w-full justify-end pb-[20vh]">
+            <div className="mt-6 flex w-full justify-center pb-[20vh]">
                 {product && (
                     <AddToBasketButton 
                         product={product} 

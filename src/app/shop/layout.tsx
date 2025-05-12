@@ -16,19 +16,11 @@ export default function RootLayout({
     return(
         <ClerkProvider dynamic>
             {/* <CartProvider> */}
-            
-          
-               
-               
+       
                 {/* <ShoppingCartModal/> */}
-
-                
-               
+   
                 {children}
-               
-                
-            
-           
+        
          {/* </CartProvider> */}
         </ClerkProvider>
     )

@@ -29,13 +29,13 @@ export default function CategorySelector({categories}: {categories: Category[]})
 
     return(
         <>
-        <div className="flex gap-[100px] w-full h-[150px] items-start justify-center p-[5vmin] mb-[3vmin]">
-            <div className="flex flex-col items-center group w-[7vw]">
+        <div className="flex gap-[100px] w-full h-[130px] items-start justify-center py-[2vmin] px-[20vmin]">
+            <div className="flex flex-col items-center group w-full">
                 <div>Material</div>
                 {materialCategories.map((category) => (
                     <div 
                     key={category.slug?.current || category._id} 
-                    className={`hidden group-hover:block w-[7vw] text-center 
+                    className={`hidden group-hover:block  w-full text-center 
                         ${
                         selectedCategories.includes(category.slug?.current || '') 
                         ? 'text-black' 
@@ -47,12 +47,12 @@ export default function CategorySelector({categories}: {categories: Category[]})
                     </div>
                 ))}
             </div>
-            <div className="flex flex-col items-center group w-[7vw]">
+            <div className="flex flex-col items-center group  w-full">
                 <div>Type</div>
                 {typeCategories.map((category) => (
                     <div 
                     key={category.slug?.current || category._id} 
-                    className={`hidden group-hover:block w-[7vw] text-center 
+                    className={`hidden group-hover:block  w-full text-center 
                         ${
                         selectedCategories.includes(category.slug?.current || '') 
                         ? 'text-black' 
@@ -64,12 +64,12 @@ export default function CategorySelector({categories}: {categories: Category[]})
                     </div>
                 ))}
             </div>
-            <div className="flex flex-col items-center group w-[7vw]">
+            <div className="flex flex-col items-center group  w-full">
                 <div>Artist</div>
                 {artistCategories.map((category) => (
                     <div 
                     key={category.slug?.current || category._id} 
-                    className={`hidden group-hover:block w-[7vw] text-center 
+                    className={`hidden group-hover:block  w-full text-center 
                         ${
                         selectedCategories.includes(category.slug?.current || '') 
                         ? 'text-black' 

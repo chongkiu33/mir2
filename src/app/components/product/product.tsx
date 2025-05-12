@@ -21,9 +21,10 @@ const Product = ({ product }: ProductProps) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-[21vw] h-[21vw] relative"
+        className="lg:w-[21vw] md:w-[30vw] w-[40vw] aspect-square relative"
+        
       >
-        <Link href={`/shop/${product.slug?.current}`} className="flex items-center justify-center rounded-lg">
+        <Link href={`/shop/${product.slug?.current}`} className="  flex items-center justify-center rounded-lg">
           {imageUrl && (
             <Image 
               src={imageUrl} 

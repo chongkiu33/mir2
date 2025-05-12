@@ -18,6 +18,14 @@
     
 }
 
+.clampedText {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .svg {
     width: 90%;  /*设置SVG宽度为lineWrapper的宽度 */
     height: 150px;  /*设定高度，可以根据需要调整 */

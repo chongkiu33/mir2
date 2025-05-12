@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes customSpin {
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(190deg); }
+  70% { transform: rotate(300deg); }
+  90% { transform: rotate(340deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.custom-spin {
+  animation: customSpin 2.5s ease-in-out infinite;
+}
+
 @font-face {
   font-family: 'oppo Sans Heavy';
   src: url('/font/OPPOSansHeavy.ttf');

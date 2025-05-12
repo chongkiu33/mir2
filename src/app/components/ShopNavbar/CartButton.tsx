@@ -20,25 +20,27 @@ export default function CartButton(){
         <div className=' fixed flex gap-2  left-1/2 -translate-x-1/2 items-center justify-center bottom-10'>
         <Link
         href='/shop/basket'
-         className='  z-50 flex gap-1  px-[100px] w-[object-fit] py-[10px] rounded-2xl bg-[rgba(217,217,217,0.5)]   font-["Oppo Sans Medium"]'
+         className='  z-50 flex gap-1  px-[20px] w-[object-fit] py-[10px] rounded-3xl bg-[rgba(217,217,217,0.5)]   font-["Oppo Sans Medium"]'
         //  onClick={handleCartClick}
          >
             <TrolleyIcon className='w-6 h-6' />
-          <p>Shopping Cart ({itemsCount})</p>
+          <p className="whitespace-nowrap">Shopping Cart ({itemsCount})</p>
         </Link>
         {/* <Button>Click me</Button> */}
         <ClerkLoaded>
-            <div className='flex items-center  px-[50px] py-[10px] rounded-2xl bg-[rgba(217,217,217,0.5)] '>
+            <div className='flex items-center  px-[10px] py-[10px] rounded-3xl bg-[rgba(217,217,217,0.5)] '>
         {user ? (
             <div className="flex items-center space-x-2">
                 <UserButton />
-                <div className="hidden sm:block text-xs">
-                    <p className='text-gray-400'>Welcome Back</p>
-                    <p className='text-gray-400'>{user.fullName}!</p>
-                </div>
+                {/* <div className="hidden sm:block text-s">
+                
+                    <p className='text-gray-400 whitespace-nowrap'>{user.fullName}</p>
+                </div> */}
             </div>
         ):(
+            <div className='px-[10px]'>
             <SignInButton mode='modal'/>
+            </div>
         )}
         </div>
         </ClerkLoaded>

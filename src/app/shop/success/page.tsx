@@ -14,7 +14,7 @@ export default function SuccessPage(){
     const clearBasket = useBasketStore((state) => state.clearBasket);
     const sessionId = searchParams.get('sessionId');
 
-    
+
     useEffect(()=>{
         if (orderNumber){
             clearBasket();
@@ -22,8 +22,8 @@ export default function SuccessPage(){
     },[orderNumber,clearBasket]);
 
     return(
-        <div className='flex flex-col items-center justify-center min-h-screen bg-gray-50'>
-            <div className="bg-white p-12 rounded-xl shadow-lg max-w-2xl w-full -mx-4">
+        <div className='flex flex-col items-center justify-center min-h-screen bg-[url("/shopbg/AIChatbotConcept05.png")] bg-contain bg-center bg-no-repeat'>
+            <div className="bg-white p-12  max-w-2xl w-[90%]  -mx-4 backdrop-blur-lg shadow-[0_1px_6px_rgba(0,0,0,0.2),inset_0px_0px_3px_2px_rgba(0,0,0,0.10)]  rounded-3xl bg-[rgba(122,122,122,0.1)] ">
                 <div className="flex justify-center mb-8">
                     <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center">
                         <svg
@@ -55,7 +55,7 @@ export default function SuccessPage(){
                     {orderNumber &&(
                         <p className="text-gray-600 flex items-center space-x-5">
                             <span>Order Number:</span>
-                            <span className="font-mono text-sm text-green-600">
+                            <span className="font-mono text-sm text-gray-600">
                                 {orderNumber}
                             </span>
 
@@ -79,7 +79,7 @@ export default function SuccessPage(){
                     </p>
 
                     <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                        <Button asChild className="bg-green-600 hover:bg-green-700">
+                        <Button asChild className="bg-black hover:bg-gray-600">
                             <Link href="/shop/orders">
                                 View Order Details
                             </Link>

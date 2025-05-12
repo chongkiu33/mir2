@@ -7,6 +7,8 @@ import { SanityLive } from "../sanity/lib/live";
 import { DisableDraftMode } from "./components/DisableDraftMode";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 
@@ -24,7 +26,7 @@ export default async function RootLayout({
     <html lang="en">
       <body >
         <Navbar />
-        {/* <Layout> */}
+        <Suspense fallback={<Loading />}>
         <main>
           {children}
           <SanityLive />
@@ -35,7 +37,7 @@ export default async function RootLayout({
         </>
       )}
         </main>
-          {/* </Layout> */}
+        </Suspense>
       </body>
     </html>
   );

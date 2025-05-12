@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { urlFor } from "@/sanity/lib/image";
 import { SignInButton } from '@clerk/nextjs';
 import { createCheckoutSession, Metadata } from '../../../actions/createCheckoutSession';
-
+import Link from 'next/link';
 
 
 export default function BasketPage(){
@@ -28,8 +28,15 @@ export default function BasketPage(){
     // 待写
     if(!isClient){
         return(
-            <div className='flex justify-center items-center h-screen'>
-                Loading...
+            <div className='flex justify-center  items-center h-screen'>
+                <div className="custom-spin">
+                <Image 
+                    src="/logo9.svg"
+                    alt="Home" 
+                    width={50} 
+                    height={50} 
+                />
+            </div>
             </div>
         )
     }
@@ -38,8 +45,9 @@ export default function BasketPage(){
         return(
             <div className="container mx-auto p-4 flex flex-col items-center justify-center
             min-h-[50vh]">
-                <h1 className="text-2xl font-bold text-gray-800">Your basket</h1>
+                <h1 className="text-2xl font-bold pt-[17vw] text-gray-800">Your basket</h1>
                 <p className="text-gray-600 text-lg">is empty</p>
+                <Link href="/shop" className="mt-4 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-600"> Go to shop</Link>
 
             </div>
         )
@@ -78,26 +86,30 @@ export default function BasketPage(){
 
     
     return(
-        <div className="container mx-auto mt-[17vw] px-10">
-            <h1 className="text-2xl font-bold mb-4">Your basket</h1>
-            <div className="flex flex-col lg:flex-row gap-8">
-                <div className="flex-grow">
-                    {groupedItems.map((item)=>(
+
+        <div className="bg-[url('/shopbg/AIChatbotConcept02.png')] h-screen bg-contain bg-center bg-no-repeat pt-[17vw] ">
+        <div  className="container mx-auto px-4   ">
+            
+            <div className="flex flex-col lg:flex-row gap-8 ">
+                <div className="flex-grow  px-10  py-5 backdrop-blur-lg shadow-[0_1px_6px_rgba(0,0,0,0.2),inset_0px_0px_3px_2px_rgba(0,0,0,0.10)]  rounded-3xl bg-[rgba(122,122,122,0.1)]  ">
+                <h2 className="text-2xl font-bold mb-4">Your basket</h2>
+                    {groupedItems.map((item, index)=>(
                         <div 
                         key={item.product?._id} 
-                        className="mb-4 p-4 border rounded flex items-center justify-between">
+                        className={`mb-4 py-4 flex items-center ${index > 0 ? 'border-t' : ''} justify-between`}>
 
                         <div
-                        className="flex items-center cursor-pointer flex-1 min-w-0"
+                        className="flex  items-center cursor-pointer flex-1 min-w-0"
                         onClick={() => router.push(`/shop/${item.product?.slug?.current}`)}  //这个有问题有错误
                         >
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 mr-4">
+                            <div className="w-20 h-20 sm:w-24  sm:h-24 flex-shrink-0 mr-4">
                                 {item.product?.productimage &&(
                                     <Image
                                         src={urlFor(item.product?.productimage[0]).width(1000).url()}
                                         alt={item.product.name || 'Product Image'}
                                         width={96}
                                         height={96}
+                                        className="rounded-lg shadow-[0_1px_6px_rgba(0,0,0,0.2)]"
                                     
                                     />
                                     
@@ -128,8 +140,8 @@ export default function BasketPage(){
                     ))}
                 </div>
 
-                <div className="w-full lg:w-88 lg:sticky lg:top-4 h-fit
-                 bg-white p-6 border rounded order-first lg:order-last fixed bottom-0 left-0 lg:left-auto lg:right-0 lg:max-w-md lg:mx-auto lg:w-full">
+                <div className="w-[90vw] fixed bottom-0 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:w-88 lg:sticky lg:top-4 h-fit
+                 p-6 order-first lg:order-last lg:left-auto lg:right-0 lg:max-w-md lg:mx-auto lg:w-full backdrop-blur-lg shadow-[inset_0px_0px_6px_3px_rgba(0,0,0,0.10)] rounded-3xl  bg-[rgba(122,122,122,0.1)]">
                     <h3 className="text-xl font-semibold">Order Summary</h3>
                     <div className="mt-4 space-y-2">
                         <p className="flex justify-between">
@@ -148,13 +160,13 @@ export default function BasketPage(){
                         <button
                         onClick={handleCheckout}
                         disabled={isLoading}
-                        className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
+                        className="mt-4 w-full bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:bg-gray-400"
                         >
                             {isLoading ? "Processing..." : "Checkout"}
                         </button>
                     ):(
                         <SignInButton mode="modal" >
-                        <button className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded
+                        <button className="mt-4 w-full bg-black text-white px-4 py-2 rounded-lg
                          hover:bg-blue-600">
                             Sign in to checkout
                          </button>
@@ -162,6 +174,8 @@ export default function BasketPage(){
                     )}
                 </div>
             </div>
+        </div>
+
         </div>
     );
 }
