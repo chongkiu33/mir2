@@ -31,7 +31,7 @@ export default async function Orders(){
                 <div className="space-y-6 sm:space-y-8">
                     {orders.map((order)=>(
                     <div key={order.orderNumber}
-                    className="bg-white border p-6 sm:p-10 overflow-hidden backdrop-blur-xl shadow-[0_1px_6px_rgba(0,0,0,0.1),inset_0px_0px_5px_2px_rgba(0,0,0,0.10)]  rounded-3xl bg-[rgba(122,122,122,0.1)] "
+                    className=" border p-6 sm:p-10 overflow-hidden backdrop-blur-xl shadow-[0_1px_6px_rgba(0,0,0,0.1),inset_0px_0px_5px_2px_rgba(0,0,0,0.10)]  rounded-3xl bg-[rgba(122,122,122,0.1)] "
                     >
                 <div className="border-b border-gray-800">
                     <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-2">
