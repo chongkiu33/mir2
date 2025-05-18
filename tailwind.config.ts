@@ -14,7 +14,10 @@ const config: Config = {
   			oppomedium: [
   				'oppo Sans Medium',
   				'sans-serif'
-  			]
+  			],
+			oppoheavy:[
+				'oppo Sans Heavy'
+			]
   		},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

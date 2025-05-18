@@ -14,7 +14,7 @@ export function Plain({  PlainHeight  }: PlainProps) {
     return (
       <section className=" mx-auto grid grid-cols-10  py-5">
         
-        <div style={{ height: `${PlainHeight}vh` }}></div>
+        <div style={{ height: `${PlainHeight}vw` }}></div>
        
         
        
