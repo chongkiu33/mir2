@@ -43,10 +43,10 @@ export function Carousel({ images, autoplay = true}: CarouselProps) {
                         
                       
                         <Image
-                            src={urlFor(image).width(800).url()}
+                            src={urlFor(image).width(1000).url()}
                             alt={image.alt || '轮播图片'}
                        
-                            className="w-full relative  object-cover"
+                            className="w-full relative  object-cover rounded-sm"
                             fill
                         />
                         

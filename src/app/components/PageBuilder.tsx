@@ -6,6 +6,8 @@ import { Videoblock } from "./blocks/Videoblock";
 import { ARTICLE_QUERYResult } from "../../sanity/types";
 import { Columimages } from "./blocks/Columimages";
 import { Carousel } from "./blocks/Carousel";
+import { FourtoSiximages } from "./blocks/FourtoSixImages"
+
 type PageBuilderProps = {
   content: NonNullable<ARTICLE_QUERYResult>["content2"];
 };
@@ -34,6 +36,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
             return <Columimages key={block._key} {...block} />;
         case "carousel":
             return <Carousel key={block._key} {...block} />;
+
+        case "gridimages":
+            return  <FourtoSiximages key={block._key} {...block} />;
             
           default:
             

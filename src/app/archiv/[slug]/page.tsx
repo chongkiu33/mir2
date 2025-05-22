@@ -61,7 +61,7 @@ export default async function ArchivPage({
   
     return( 
       <main>
-      {article?.content2? <PageBuilder content={article.content2} /> : null}; 
+      {article?.content2? <PageBuilder content={article.content2} /> : null}
       
       <div className="mx-auto grid grid-cols-10">
       <div className="flex col-start-2 col-end-10  w-full h-[20vh] pt-[2vh] pb-[10vh] font-oppo-sans-medium text-gray-500 justify-between">
