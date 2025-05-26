@@ -24,14 +24,14 @@ export function UnAlignImages({ images, align }: UnAlignImagesProps) {
       className={`mx-auto flex ${alignClass} gap-[10px] pb-10 px-[10vw]`}
     >
        
-       {images?.map((image,index) => (
-                  
-
-                        <div
-                        key={image._key || `image-${index}`} // 使用 _key 或索引作为 key
-                        className="relative flex-1" // 'aspect-square' 保持每个格子的宽高比为1:1
-                      >
-                        {/* <Image
+       {images?.map((image, index) => {
+            if (image && image.imageFile) {
+              return (
+                <div
+                  key={image._key || `image-${index}`}
+                  className="relative flex-1"
+                >
+                  {/* <Image
                           src={urlFor(image).width(600).url()} // 根据需要调整图片宽度以优化质量和加载速度
                           alt={`图片`}
                           fill // 'fill' 使图片填充其父容器
@@ -39,20 +39,18 @@ export function UnAlignImages({ images, align }: UnAlignImagesProps) {
                           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 200px" // 根据您的布局调整 sizes 属性以优化图片加载
                         /> */}
 
-            <Image
-                src={urlFor(image.imageFile).width(600).url()}
-                alt={ ""}
-                width={600}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-                      </div>
-                        
-                        
-            
-                    
-               
-                ))}
+                  <Image
+                    src={urlFor(image.imageFile).width(600).url()}
+                    alt={""}
+                    width={600}
+                    height={600}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              );
+            }
+            return null;
+          })}
     
     </section>
   );
