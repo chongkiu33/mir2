@@ -14,7 +14,7 @@ export function Columimages({ colums }: ColumimagesProps) {
   }
 
   return (
-    <section className="mx-auto grid grid-cols-10 gap-3 pb-10 ">
+    <section className="mx-auto grid grid-cols-10 gap-3 pb-[10px] ">
       {colums.map((block) => {
         switch (block._type) {
           

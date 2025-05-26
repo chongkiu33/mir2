@@ -24,7 +24,7 @@ export function Carousel({ images, autoplay = true}: CarouselProps) {
   return (
     <section  >
        
-     <Swiper className="mx-auto  gap-3 mb-10 w-[80%] aspect-[16/8]"
+     <Swiper className="mx-auto  gap-3  w-[80%] mb-[10px] aspect-[16/8]"
                 
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
       spaceBetween={9}
@@ -32,8 +32,8 @@ export function Carousel({ images, autoplay = true}: CarouselProps) {
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
       autoplay={autoplay ? {delay: interval, disableOnInteraction: false} : false}
       loop={true}
     >

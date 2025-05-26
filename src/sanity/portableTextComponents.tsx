@@ -139,7 +139,7 @@ export const components: PortableTextComponents = {
         return <p><br /></p>;
       }
       
-      return <p className="font-oppomedium text-sm md:text-base lg:text-lg leading-loose" style={{ textAlign: "justify" }}>{children}</p>;
+      return <p className="font-oppomedium text-sm md:text-sm lg:text-base leading-loose" style={{ textAlign: "justify" }}>{children}</p>;
     },
     h1: ({ children }) => <h1 className="text-3xl  font-bold my-20">{children}</h1>,
     h2: ({ children }) => <h2 className="text-2xl  font-bold my-20">{children}</h2>,

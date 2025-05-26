@@ -40,7 +40,7 @@ export function Tripleimage(props: TripleImageBlockProps) {
 
   return (
     <section 
-      className="mx-auto grid grid-cols-2 grid-rows-2 gap-[2vw] pb-10 px-[10vw]"
+      className="mx-auto grid w-full grid-cols-2 grid-rows-2 gap-[2vw] pb-[10px] px-[10vw]"
     >
       {layout === 'left' ? (
         <>

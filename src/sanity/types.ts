@@ -68,6 +68,40 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Twotothreeimages = {
+  _type: "twotothreeimages";
+  spacing?: "narrow" | "wide";
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  imageWidthRatio?: {
+    left?: number;
+    right?: number;
+  };
+};
+
+export type Combineimages = {
+  _type: "combineimages";
+  colums?: Array<{
+    _key: string;
+  } & Carousel | {
+    _key: string;
+  } & Tripeimage | {
+    _key: string;
+  } & Gridimages | {
+    _key: string;
+  } & Unalignimage>;
+};
+
 export type Unalignimage = {
   _type: "unalignimage";
   align?: "top" | "bottom";
@@ -342,7 +376,11 @@ export type PageBuilder = Array<{
   _key: string;
 } & Gridimages | {
   _key: string;
-} & Unalignimage>;
+} & Unalignimage | {
+  _key: string;
+} & Combineimages | {
+  _key: string;
+} & Twotothreeimages>;
 
 export type Category = {
   _id: string;
@@ -628,7 +666,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY

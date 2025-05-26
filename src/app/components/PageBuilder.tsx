@@ -9,6 +9,8 @@ import { Carousel } from "./blocks/Carousel";
 import { FourtoSiximages } from "./blocks/FourtoSixImages"
 import { Tripleimage } from "./blocks/Tripleimage";
 import { UnAlignImages } from "./blocks/UnAlignImages"
+import { Combineimages } from "./blocks/CombineImages"
+import { TwomoreImage } from "./blocks/Twomoreimages"
 
 type PageBuilderProps = {
   content: NonNullable<ARTICLE_QUERYResult>["content2"];
@@ -21,7 +23,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
   return (
     // <main >
-    <>
+    <div className="flex flex-col gap-40 ">
       {content.map((block) => {
         switch (block._type) {
           
@@ -43,17 +45,22 @@ export function PageBuilder({ content }: PageBuilderProps) {
             return  <FourtoSiximages key={block._key} {...block} />;
 
         case "tripeimage":
-            return <Tripleimage key={block._key} {...block}  />
+            return <Tripleimage key={block._key} {...block}  />;
 
         case "unalignimage":
-          return <UnAlignImages key={block._key} {...block} />
+          return <UnAlignImages key={block._key} {...block} />;
+
+        case "combineimages":
+          return <Combineimages key={block._key} {...block}  />;
+        case "twotothreeimages":
+          return <TwomoreImage key={block._key} {...block}  />
             
           default:
             
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
         }
       })}
-      </>
+      </div>
     
   );
 }
