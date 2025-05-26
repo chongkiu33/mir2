@@ -7,6 +7,7 @@ import { ARTICLE_QUERYResult } from "../../sanity/types";
 import { Columimages } from "./blocks/Columimages";
 import { Carousel } from "./blocks/Carousel";
 import { FourtoSiximages } from "./blocks/FourtoSixImages"
+import { Tripleimage } from "./blocks/Tripleimage";
 
 type PageBuilderProps = {
   content: NonNullable<ARTICLE_QUERYResult>["content2"];
@@ -39,6 +40,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
         case "gridimages":
             return  <FourtoSiximages key={block._key} {...block} />;
+
+        case "tripeimage":
+            return <Tripleimage key={block._key} {...block}  />
             
           default:
             
@@ -46,12 +50,6 @@ export function PageBuilder({ content }: PageBuilderProps) {
         }
       })}
       </>
-    /* <div className="mx-auto grid grid-cols-10">
-      <div className="flex col-start-2 col-end-10  w-full h-[20vh] pt-[2vh] pb-[10vh] font-oppo-sans-medium text-gray-500 justify-between">
-        <div>MIR.DOG</div>
-        <div>MIRART@</div>
-      </div>
-      </div> 
-    </main>*/
+    
   );
 }

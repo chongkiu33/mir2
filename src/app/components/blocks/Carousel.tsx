@@ -24,7 +24,7 @@ export function Carousel({ images, autoplay = true}: CarouselProps) {
   return (
     <section  >
        
-     <Swiper className="mx-auto  gap-3 pb-5 w-[80%] aspect-[16/8]"
+     <Swiper className="mx-auto  gap-3 mb-10 w-[80%] aspect-[16/8]"
                 
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
       spaceBetween={10}

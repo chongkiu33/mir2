@@ -35,16 +35,7 @@ export function FourtoSiximages({ images }: FourtoSixImagesProps) {
     >
        
        {images?.map((image,index) => (
-                    
-                        
-                      
-                        // <Image
-                        //     src={urlFor(image).width(1000).url()}
-                        //     alt={''}
-                       
-                        //     className="w-full relative  object-cover"
-                        //     fill
-                        // />
+                  
 
                         <div
                         key={image._key || `image-${index}`} // 使用 _key 或索引作为 key
