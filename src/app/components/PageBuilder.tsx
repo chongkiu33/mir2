@@ -8,6 +8,7 @@ import { Columimages } from "./blocks/Columimages";
 import { Carousel } from "./blocks/Carousel";
 import { FourtoSiximages } from "./blocks/FourtoSixImages"
 import { Tripleimage } from "./blocks/Tripleimage";
+import { UnAlignImages } from "./blocks/UnAlignImages"
 
 type PageBuilderProps = {
   content: NonNullable<ARTICLE_QUERYResult>["content2"];
@@ -43,6 +44,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
         case "tripeimage":
             return <Tripleimage key={block._key} {...block}  />
+
+        case "unalignimage":
+          return <UnAlignImages key={block._key} {...block} />
             
           default:
             

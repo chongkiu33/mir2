@@ -3,21 +3,19 @@ import { ARTICLE_QUERYResult } from "../../../sanity/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
-// 假设 "tripeimage" 是您在 Sanity 中为这个三宫格图定义的 _type
-// 并且它包含 'layout' 和 'images' 字段
+
 type TripleImageBlockProps = Extract<
   NonNullable<NonNullable<ARTICLE_QUERYResult>["content2"]>[number],
-  { _type: "tripeimage" } // 请确保这个 _type 与您 Sanity schema 中的定义一致
+  { _type: "tripeimage" } 
 >;
 
 export function Tripleimage(props: TripleImageBlockProps) {
-  // 从 props 中解构 layout 和 images
-  // Sanity schema 中 layout 有 initialValue: 'left'，images 有数量校验
+
   const { layout = 'left', images } = props;
 
   if (!images || images.length !== 3) {
     console.warn("三宫格图组件需要正好 3 张图片。");
-    return null; // 如果图片数量不为3，则不渲染任何内容
+    return null; 
   }
 
   const imageCommonClass = "object-cover rounded-sm";
