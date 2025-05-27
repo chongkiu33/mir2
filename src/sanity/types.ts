@@ -68,6 +68,14 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Columntext = {
+  _type: "columntext";
+  spacing?: "narrow" | "wide";
+  text?: Array<{
+    _key: string;
+  } & Plaintext>;
+};
+
 export type Threeimagetext = {
   _type: "threeimagetext";
   imageLeft?: {
@@ -528,7 +536,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & SplitImage | {
   _key: string;
-} & Columimages>;
+} & Columimages | {
+  _key: string;
+} & Columntext>;
 
 export type Category = {
   _id: string;
@@ -814,7 +824,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Threeimagetext | Twoimagetext | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Columntext | Threeimagetext | Twoimagetext | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY

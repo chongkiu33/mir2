@@ -13,6 +13,7 @@ import { Combineimages } from "./blocks/CombineImages"
 import { TwomoreImage } from "./blocks/Twomoreimages"
 import {Twoimagetext } from "./blocks/Twoimagetext"
 import {Threeimagetext } from "./blocks/threeimagetext"
+import { Columntext } from "./blocks/Columntext"
 
 
 type PageBuilderProps = {
@@ -62,7 +63,10 @@ export function PageBuilder({ content }: PageBuilderProps) {
           return <Twoimagetext key={block._key} {...block}  />;
         
         case "threeimagetext":
-          return <Threeimagetext key={block._key} {...block}  />
+          return <Threeimagetext key={block._key} {...block}  />;
+
+        case "columntext":
+          return <Columntext key={block._key} {...block} />;
             
           default:
             
