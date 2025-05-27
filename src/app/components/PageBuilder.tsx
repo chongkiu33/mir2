@@ -11,6 +11,9 @@ import { Tripleimage } from "./blocks/Tripleimage";
 import { UnAlignImages } from "./blocks/UnAlignImages"
 import { Combineimages } from "./blocks/CombineImages"
 import { TwomoreImage } from "./blocks/Twomoreimages"
+import {Twoimagetext } from "./blocks/Twoimagetext"
+import {Threeimagetext } from "./blocks/threeimagetext"
+
 
 type PageBuilderProps = {
   content: NonNullable<ARTICLE_QUERYResult>["content2"];
@@ -53,7 +56,13 @@ export function PageBuilder({ content }: PageBuilderProps) {
         case "combineimages":
           return <Combineimages key={block._key} {...block}  />;
         case "twotothreeimages":
-          return <TwomoreImage key={block._key} {...block}  />
+          return <TwomoreImage key={block._key} {...block}  />;
+
+        case "twoimagetext":
+          return <Twoimagetext key={block._key} {...block}  />;
+        
+        case "threeimagetext":
+          return <Threeimagetext key={block._key} {...block}  />
             
           default:
             
