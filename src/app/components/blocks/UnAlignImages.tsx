@@ -21,7 +21,7 @@ export function UnAlignImages({ images, align }: UnAlignImagesProps) {
     
     <section 
       
-      className={`mx-auto flex ${alignClass} gap-[10px] pb-[10px]  px-[10vw]`}
+      className={`mx-auto flex ${alignClass} gap-[2vw] pb-[10px]  px-[10vw]`}
     >
        
        {images?.map((image, index) => {
@@ -44,7 +44,7 @@ export function UnAlignImages({ images, align }: UnAlignImagesProps) {
                     alt={""}
                     width={600}
                     height={600}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover rounded-sm"
                   />
                 </div>
               );

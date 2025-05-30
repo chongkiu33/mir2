@@ -13,7 +13,7 @@ type PlaintextProps = Extract<
 
 export function Plaintextblock({  text  }: PlaintextProps) {
     return (
-      <section className=" mx-auto   py-5">
+      <section className=" mx-auto   ">
         
           <div className={`w-full  h-full object-cover`}>
           <div className=" text-base lg:text-lg ">

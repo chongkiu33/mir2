@@ -1,4 +1,4 @@
-"use client"
+
 import { ARTICLE_QUERYResult } from "../../../sanity/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
@@ -10,14 +10,14 @@ type FourtoSixImagesProps = Extract<
 >;
 
 export function FourtoSiximages({ images }: FourtoSixImagesProps) {
-  console.log("FourtoSiximages received images prop:", images);
+
   if (!Array.isArray(images)) {
-    // console.log("FourtoSiximages: images is not an array, returning null.");
+  
     return null;
   }
 
   const numImages = images.length;
-//   console.log("FourtoSiximages: numImages =", numImages);
+
 
   if(!(numImages === 4 || numImages === 5 || numImages === 6)) {
     // console.log(`FourtoSiximages: numImages is ${numImages}, not 4, 5, or 6. Returning null.`);
@@ -35,7 +35,7 @@ export function FourtoSiximages({ images }: FourtoSixImagesProps) {
     
     <section 
       style={currentGridStyle} 
-      className="mx-auto grid w-full gap-[10px] px-[10vw] pb-[10px]"
+      className="mx-auto grid w-full gap-[2vw] px-[10vw] pb-[10px]"
     >
       
        {images?.map((image,index) => (

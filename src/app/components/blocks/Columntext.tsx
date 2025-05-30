@@ -14,7 +14,7 @@ type ColumntextProps = Extract<
 export function Columntext({text, spacing,}:ColumntextProps) {
 
     
-    console.log('Columntext text prop:', text);
+    
 
 
       let currentStyle = {};
@@ -27,18 +27,8 @@ export function Columntext({text, spacing,}:ColumntextProps) {
   return (
     <section 
     style={currentStyle} 
-    className="mx-auto flex flex-row w-[80%]   gap-10 pb-5">
+    className="mx-auto flex flex-col md:flex-row md:gap-10 w-[80%]   gap-5 pb-5">
 
-           
-            {/* {text?.map((paragraph, index) => (
-                 <div className={`flex-1`} key={index}>
-                    <div className="text-base lg:text-lg w-full">
-                        {paragraph? <PortableText  value={paragraph} components={components}  /> : null}
-                    </div>
-                    
-                 </div>
-                 
-            ))} */}
 
 {text?.map((block) => {
         switch (block._type) {

@@ -19,7 +19,7 @@ export function Combineimages({ colums }: CombineimagesProps) {
   }
 
   return (
-    <section className="mx-auto w-[100%] gap-3 py-0 ">
+    <section className="mx-auto w-[100%] gap-[2vw] py-0 ">
 
        
       {colums.map((block) => {

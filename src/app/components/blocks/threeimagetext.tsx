@@ -21,7 +21,7 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
     className={`mx-auto flex  w-[80%] flex-col md:flex-row gap-8 lg:gap-8 pb-5 `}>
         {imageLeft?(
             <div
-              className="relative flex-1"
+              className="relative flex-1 rounded-sm"
               
             >
             <Image
@@ -29,7 +29,7 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
               alt={""}
               width={800}
               height={800}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover  rounded-sm"
             />
             
           </div>
@@ -57,7 +57,7 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
               alt={ ""}
               width={800}
               height={800}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover rounded-sm"
             />
             
           </div>

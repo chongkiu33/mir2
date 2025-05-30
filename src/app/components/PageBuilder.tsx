@@ -14,6 +14,7 @@ import { TwomoreImage } from "./blocks/Twomoreimages"
 import {Twoimagetext } from "./blocks/Twoimagetext"
 import {Threeimagetext } from "./blocks/threeimagetext"
 import { Columntext } from "./blocks/Columntext"
+import { NarrowContent } from "./blocks/NarrowContent"
 
 
 type PageBuilderProps = {
@@ -67,6 +68,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
         case "columntext":
           return <Columntext key={block._key} {...block} />;
+
+        case "narrowcontent":
+          return <NarrowContent key={block._key} {...block}  />
             
           default:
             

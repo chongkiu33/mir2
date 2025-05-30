@@ -35,7 +35,7 @@ export function TwomoreImage({images, spacing, imageWidthRatio}: TwomoreimagesPr
 
       let currentStyle = {};
       if (spacing === 'narrow') {
-        currentStyle = { gap: '10px' };
+        currentStyle = { gap: '2vw' };
       } else{
         currentStyle  = { gap: '5vw' };
       }
@@ -49,7 +49,7 @@ export function TwomoreImage({images, spacing, imageWidthRatio}: TwomoreimagesPr
               image && image.asset ? (
                 <div key={image._key || index} className="flex-1" style={getImageWidthStyle(index)}>
                   <Image
-                    className="w-full h-full object-cover "
+                    className="w-full h-full object-cover rounded-sm"
                     src={urlFor(image)
                       .quality(80)
                       .auto("format")

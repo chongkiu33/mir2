@@ -68,6 +68,22 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Narrowcontent = {
+  _type: "narrowcontent";
+  contentElements?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
 export type Columntext = {
   _type: "columntext";
   spacing?: "narrow" | "wide";
@@ -534,11 +550,13 @@ export type PageBuilder = Array<{
   _key: string;
 } & Threeimagetext | {
   _key: string;
+} & Columntext | {
+  _key: string;
+} & Narrowcontent | {
+  _key: string;
 } & SplitImage | {
   _key: string;
-} & Columimages | {
-  _key: string;
-} & Columntext>;
+} & Columimages>;
 
 export type Category = {
   _id: string;
@@ -824,7 +842,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Columntext | Threeimagetext | Twoimagetext | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Narrowcontent | Columntext | Threeimagetext | Twoimagetext | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY
