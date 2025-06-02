@@ -10,15 +10,20 @@ type PlainProps = Extract<
 >;
 
 
-export function Plain({  PlainHeight  }: PlainProps) {
-    return (
-      <section className=" mx-auto grid grid-cols-10  py-5">
-        
-        <div style={{ height: `${PlainHeight}vw` }}></div>
-       
-        
-       
-       
-      </section>
-    );
+export function Plain({  arrangement }: PlainProps) {
+
+    if (arrangement === "alignTop") {
+        return null;
+    }
+
+    if (arrangement === "firstLineMarginTop") {
+        return (
+          <section className=" mx-auto grid grid-cols-10  py-5">
+             <div style={{ height: `1vh` }}></div>
+          </section>
+        );
+    }
+    
+    
+;
 }

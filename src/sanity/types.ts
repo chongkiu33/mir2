@@ -267,7 +267,9 @@ export type Combineimages = {
     _key: string;
   } & Gridimages | {
     _key: string;
-  } & Unalignimage>;
+  } & Unalignimage | {
+    _key: string;
+  } & Twotothreeimages>;
 };
 
 export type Unalignimage = {
@@ -436,13 +438,12 @@ export type Videoblock = {
   _type: "videoblock";
   videolink?: string;
   videotitle?: string;
-  colstart?: number;
-  colend?: number;
+  spacing?: "full" | "withPadding";
 };
 
 export type Plain = {
   _type: "plain";
-  PlainHeight?: number;
+  arrangement?: "alignTop" | "firstLineMarginTop";
 };
 
 export type Plaintext = {

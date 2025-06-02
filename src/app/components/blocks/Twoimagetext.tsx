@@ -19,7 +19,7 @@ export function Twoimagetext({layout,widthRatio,image,text}: TwoimagetextProps) 
   return (
     <section 
     
-    className={`mx-auto flex  w-[80%] gap-8 md:gap-12 lg:gap-20 pb-5 ${layout === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
+    className={`mx-auto flex w-[80%] gap-8 md:gap-12 lg:gap-20 pb-5 flex-col ${layout === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
         {image?(
             <div
               className="relative"

@@ -52,7 +52,8 @@ export function ImageBlock({ image, alt, colstart, colend }: ImageBlockProps) {
                 alt={alt || ""}
                 width={800}
                 height={800}
-                className="w-full h-auto object-cover"
+                layout="responsive"
+                className="w-full "
               />
               {alt && (
                 <p className="mt-2 text-sm text-gray-600">{alt}</p>

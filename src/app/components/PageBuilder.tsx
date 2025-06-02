@@ -15,6 +15,7 @@ import {Twoimagetext } from "./blocks/Twoimagetext"
 import {Threeimagetext } from "./blocks/threeimagetext"
 import { Columntext } from "./blocks/Columntext"
 import { NarrowContent } from "./blocks/NarrowContent"
+import { Singleimage } from "./blocks/Singleimage"
 
 
 type PageBuilderProps = {
@@ -28,7 +29,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
   return (
     // <main >
-    <div className="flex flex-col gap-40 ">
+    <div className="flex flex-col gap-32 ">
       {content.map((block) => {
         switch (block._type) {
           
@@ -70,9 +71,12 @@ export function PageBuilder({ content }: PageBuilderProps) {
           return <Columntext key={block._key} {...block} />;
 
         case "narrowcontent":
-          return <NarrowContent key={block._key} {...block}  />
+          return <NarrowContent key={block._key} {...block}  />;
+
+        case "singleimage":
+          return <Singleimage key={block._key} {...block}  />;
             
-          default:
+        default:
             
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
         }

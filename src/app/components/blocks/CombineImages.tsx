@@ -6,6 +6,7 @@ import { Carousel } from "./Carousel";
 import { FourtoSiximages } from "./FourtoSixImages"
 import { Tripleimage } from "./Tripleimage";
 import { UnAlignImages } from "./UnAlignImages"
+import { TwomoreImage } from "./Twomoreimages"
 
 
 type CombineimagesProps = Extract<
@@ -38,6 +39,9 @@ export function Combineimages({ colums }: CombineimagesProps) {
     
             case "unalignimage":
               return <UnAlignImages key={block._key} {...block} />;
+
+            case "twotothreeimages":
+               return <TwomoreImage key={block._key} {...block} />;
             
         default:     
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
