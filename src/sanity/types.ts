@@ -68,6 +68,115 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Fourimagestext = {
+  _type: "fourimagestext";
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type SpecialA = {
+  _type: "specialA";
+  texta?: string;
+  textb?: string;
+  textc?: string;
+  ratio?: {
+    textab?: number;
+    textc?: number;
+  };
+};
+
+export type CarouselWText = {
+  _type: "carouselWText";
+  layout?: "left" | "right";
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
+export type Singleimage = {
+  _type: "singleimage";
+  spacing?: "full" | "withPadding";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+};
+
 export type Narrowcontent = {
   _type: "narrowcontent";
   contentElements?: Array<{
@@ -183,6 +292,7 @@ export type Twoimagetext = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   text?: Array<{
@@ -269,7 +379,17 @@ export type Combineimages = {
     _key: string;
   } & Unalignimage | {
     _key: string;
-  } & Twotothreeimages>;
+  } & Twotothreeimages | {
+    _key: string;
+  } & SpecialA | {
+    _key: string;
+  } & Twoimagetext | {
+    _key: string;
+  } & Threeimagetext | {
+    _key: string;
+  } & Fourimagestext | {
+    _key: string;
+  } & CarouselWText>;
 };
 
 export type Unalignimage = {
@@ -436,9 +556,9 @@ export type ImageBlock = {
 
 export type Videoblock = {
   _type: "videoblock";
+  spacing?: "full" | "withPadding";
   videolink?: string;
   videotitle?: string;
-  spacing?: "full" | "withPadding";
 };
 
 export type Plain = {
@@ -535,7 +655,11 @@ export type PageBuilder = Array<{
   _key: string;
 } & Videoblock | {
   _key: string;
+} & Singleimage | {
+  _key: string;
 } & Carousel | {
+  _key: string;
+} & CarouselWText | {
   _key: string;
 } & Tripeimage | {
   _key: string;
@@ -547,17 +671,21 @@ export type PageBuilder = Array<{
   _key: string;
 } & Twotothreeimages | {
   _key: string;
+} & Narrowcontent | {
+  _key: string;
 } & Twoimagetext | {
   _key: string;
 } & Threeimagetext | {
   _key: string;
-} & Columntext | {
+} & Fourimagestext | {
   _key: string;
-} & Narrowcontent | {
+} & Columntext | {
   _key: string;
 } & SplitImage | {
   _key: string;
-} & Columimages>;
+} & Columimages | {
+  _key: string;
+} & SpecialA>;
 
 export type Category = {
   _id: string;
@@ -843,7 +971,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Narrowcontent | Columntext | Threeimagetext | Twoimagetext | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Fourimagestext | SpecialA | CarouselWText | Singleimage | Narrowcontent | Columntext | Threeimagetext | Twoimagetext | Twotothreeimages | Combineimages | Unalignimage | Gridimages | Tripeimage | Order | Carousel | TextBlock | Columimages | ImageBlock | Videoblock | Plain | Plaintext | SplitImage | PageBuilder | Category | Product | Objectpage | Basic | Tag | Archiv | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../mirdog-main/src/app/archiv/[slug]/page.tsx
 // Variable: ARTICLE_QUERY

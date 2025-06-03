@@ -19,7 +19,7 @@ export function Twoimagetext({layout,widthRatio,image,text}: TwoimagetextProps) 
   return (
     <section 
     
-    className={`mx-auto flex w-[80%] gap-8 md:gap-12 lg:gap-20 pb-5 flex-col ${layout === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+    className={`mx-auto flex w-[80%] gap-5 md:gap-12 lg:gap-20 pb-5 flex-col ${layout === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
         {image?(
             <div
               className="relative"
@@ -27,11 +27,14 @@ export function Twoimagetext({layout,widthRatio,image,text}: TwoimagetextProps) 
             >
             <Image
               src={urlFor(image).url()}
-              alt={ ""}
+              alt={image.alt || ""}
               width={800}
               height={800}
               className="w-full h-auto object-cover rounded-sm"
             />
+
+      {image.alt && (<p className="text-center text-sm text-gray-600 mt-2">{image.alt}</p>)}
+            
             
           </div>
 

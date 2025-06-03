@@ -16,6 +16,9 @@ import {Threeimagetext } from "./blocks/threeimagetext"
 import { Columntext } from "./blocks/Columntext"
 import { NarrowContent } from "./blocks/NarrowContent"
 import { Singleimage } from "./blocks/Singleimage"
+import { CarouselwithText } from "./blocks/CarouselwithText"
+import { SpecialA } from "./blocks/SpeciaA"
+import { Fourimagetext } from "./blocks/Fourimagestext"
 
 
 type PageBuilderProps = {
@@ -75,6 +78,15 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
         case "singleimage":
           return <Singleimage key={block._key} {...block}  />;
+
+        case "carouselWText":
+          return <CarouselwithText key={block._key} {...block}  />;
+
+        case "specialA":
+          return <SpecialA key={block._key} {...block}  />;
+        
+        case "fourimagestext":
+          return <Fourimagetext key={block._key} {...block}  />;
             
         default:
             

@@ -7,7 +7,11 @@ import { FourtoSiximages } from "./FourtoSixImages"
 import { Tripleimage } from "./Tripleimage";
 import { UnAlignImages } from "./UnAlignImages"
 import { TwomoreImage } from "./Twomoreimages"
-
+import { SpecialA } from "./SpeciaA"
+import { Twoimagetext } from "./Twoimagetext"
+import { Threeimagetext } from "./threeimagetext"
+import { Fourimagetext } from "./Fourimagestext"
+import { CarouselwithText } from "./CarouselwithText"
 
 type CombineimagesProps = Extract<
   NonNullable<NonNullable<ARTICLE_QUERYResult>["content2"]>[number],
@@ -42,6 +46,17 @@ export function Combineimages({ colums }: CombineimagesProps) {
 
             case "twotothreeimages":
                return <TwomoreImage key={block._key} {...block} />;
+
+            case "specialA":
+              return <SpecialA key={block._key} {...block} />;
+            case "twoimagetext":
+              return <Twoimagetext key={block._key} {...block} />;
+            case "threeimagetext":
+              return <Threeimagetext key={block._key} {...block} />;
+            case "fourimagestext":
+              return <Fourimagetext key={block._key} {...block} />;
+            case "carouselWText":
+              return <CarouselwithText key={block._key} {...block} />;
             
         default:     
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;

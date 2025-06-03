@@ -22,10 +22,10 @@ export default function Objectcarousel({objects}:{objects:any}){
 
     return(
         <section  >
-            <Swiper className="mx-auto  gap-3 pb-5 w-[80%] aspect-[16/4]"
+            <Swiper className="mx-auto  gap-3 pb-10 w-[80%] aspect-[16/4]"
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={20}
-                slidesPerView={8}
+                // slidesPerView={8}
                 navigation
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
@@ -33,6 +33,20 @@ export default function Objectcarousel({objects}:{objects:any}){
                 onSlideChange={() => console.log('slide change')}
                 autoplay={autoplay ? {delay: interval, disableOnInteraction: false} : false}
                 loop={true}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 4,
+                        spaceBetween:10
+                    },
+                    768: {
+                        slidesPerView: 6,
+                        spaceBetween:10
+                    },
+                    1024: {
+                        slidesPerView: 9,
+                        spaceBetween:10
+                    }
+                }}
             >
                 {objects?.map((object:any, index:number) => (
                     <SwiperSlide  key={object._id} >

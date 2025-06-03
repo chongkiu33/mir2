@@ -79,7 +79,7 @@ export default async function ObjectPage({
   
     return( 
       <main>
-      {object?.content ? <PageBuilder content={object.content} /> : null}; 
+      {object?.content ? <PageBuilder content={object.content} /> : null}
       <Objectcarousel objects={objects}/>
       
       <div className="mx-auto grid grid-cols-10">
