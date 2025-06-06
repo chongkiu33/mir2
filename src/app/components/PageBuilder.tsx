@@ -19,6 +19,7 @@ import { Singleimage } from "./blocks/Singleimage"
 import { CarouselwithText } from "./blocks/CarouselwithText"
 import { SpecialA } from "./blocks/SpeciaA"
 import { Fourimagetext } from "./blocks/Fourimagestext"
+import { ImgGalleryblock } from "./blocks/ImgGalleryblock"
 
 
 type PageBuilderProps = {
@@ -32,7 +33,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
 
   return (
     // <main >
-    <div className="flex flex-col gap-32 ">
+    <div className="flex flex-col gap-20 md:gap-32 pb-24 ">
       {content.map((block) => {
         switch (block._type) {
           
@@ -87,6 +88,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
         
         case "fourimagestext":
           return <Fourimagetext key={block._key} {...block}  />;
+
+        case "imggallery":
+          return <ImgGalleryblock key={block._key} {...block}  />;
             
         default:
             

@@ -19,7 +19,7 @@ export function Plain({  arrangement }: PlainProps) {
     if (arrangement === "firstLineMarginTop") {
         return (
           <section className=" mx-auto grid grid-cols-10  py-5">
-             <div style={{ height: `1vh` }}></div>
+             <div style={{ height: `calc(14vw - 8rem)` }}></div>  
           </section>
         );
     }

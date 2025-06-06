@@ -43,7 +43,7 @@ export function TwomoreImage({images, spacing, imageWidthRatio}: TwomoreimagesPr
   return (
     <section 
     style={currentStyle} 
-    className="mx-auto flex flex-row w-[80%]   gap-20 pb-5">
+    className="mx-auto flex flex-row w-[80%]   gap-20 pb-10">
 
             {images?.map((image: any, index: number) => (
               image && image.asset ? (
@@ -59,7 +59,11 @@ export function TwomoreImage({images, spacing, imageWidthRatio}: TwomoreimagesPr
                     height={400} // 可以根据需要调整或移除
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // 响应式尺寸提示
                   />
+                  {image.alt && (<p className="text-center text-sm text-gray-600 mt-2">{image.alt}</p>)}
                 </div>
+
+                
+                
               ) : null
             ))}
          

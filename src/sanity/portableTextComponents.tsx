@@ -145,14 +145,14 @@ export const components: PortableTextComponents = {
       );
 
       if (!hasTextContent) {
-        return <p><br /></p>;
+        return <p style={{ maxWidth: '900px', margin: '0 auto' }}><br /></p>;
       }
       
-      return <p className="font-oppomedium text-sm md:text-sm lg:text-base leading-loose" style={{ textAlign: "justify" }}>{children}</p>;
+      return <p className="font-oppoheavy text-[14px] leading-[28px] md:text-[14px]  " style={{ textAlign: "justify", maxWidth: '900px', margin: '0 auto' }}>{children}</p>;
     },
-    h1: ({ children }) => <h1 className="text-3xl font-bold mb-5">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl  font-bold mb-5">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl  font-bold mb-5">{children}</h3>,
+    h1: ({ children }) => <h1 className="text-3xl font-bold mb-5" style={{ maxWidth: '900px', margin: '0 auto' }}>{children}</h1>,
+    h2: ({ children }) => <h2 className="text-2xl  font-bold mb-5" style={{ maxWidth: '900px', margin: '0 auto' }}>{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl  font-bold mb-5" style={{ maxWidth: '900px', margin: '0 auto' }}>{children}</h3>,
     
    
   },

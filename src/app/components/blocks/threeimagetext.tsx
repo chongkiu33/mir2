@@ -18,10 +18,10 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
   return (
     <section 
     
-    className={`mx-auto flex  w-[80%] flex-col md:flex-row gap-8 lg:gap-8 pb-5 `}>
+    className={`mx-auto flex items-center w-[80%] flex-col md:flex-row gap-8 lg:gap-8 pb-5 `}>
         {imageLeft?(
             <div
-              className="relative flex-1 rounded-sm"
+              className="relative flex-[2] rounded-sm"
               
             >
             <Image
@@ -39,7 +39,7 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
 
 
         <div
-          className="flex-1"
+          className="flex-[3]"
           
         >
           <div className=" text-base lg:text-lg ">
@@ -49,7 +49,7 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
 
           {imageRight?(
             <div
-              className="relative flex-1"
+              className="relative flex-[2.5]"
               
             >
             <Image

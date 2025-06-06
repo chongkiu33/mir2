@@ -1,7 +1,7 @@
 .swiper-button-next,
 .swiper-button-prev {
     color: #fff !important;  /* 箭头颜色 */
-   
+    opacity: 0.2 !important;
     width: 40px !important;  /* 宽度 */
     height: 40px !important;  /* 高度 */
     border-radius: 50%;  /* 圆形 */
@@ -10,7 +10,7 @@
   }
 
 
-  .swiper-button-next:hover,
+.swiper-button-next:hover,
 .swiper-button-prev:hover {
   opacity: 0.5;
 }

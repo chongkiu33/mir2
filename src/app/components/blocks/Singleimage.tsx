@@ -15,7 +15,7 @@ export function Singleimage({ spacing, image,alt }: SingleimageProps) {
     return (
       
         <div 
-          className={`${spacing === "full" ? "w-full" : "w-4/5"}` }
+          className={`${spacing === "full" ? "w-full" : "w-4/5"} mx-auto` }
         >
           {image && (
             <div className="relative w-full">

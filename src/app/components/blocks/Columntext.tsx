@@ -40,6 +40,7 @@ export function Columntext({text, spacing,}:ColumntextProps) {
             case "plaintext":
               return <Plaintextblock key={block._key} {...block} />;
             
+            
         default:     
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
         }

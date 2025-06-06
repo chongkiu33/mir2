@@ -23,7 +23,7 @@ export function SpecialA({texta,textb,textc,ratio}:SpecialAProps) {
   return (
     <section 
     
-    className="mx-auto flex flex-col gap-2 md:flex-row  md:gap-12 lg:gap-20 w-[80%]    pb-5">
+    className="mx-auto text-xl flex flex-col gap-2 md:flex-row  md:gap-12 lg:gap-20 w-[80%]    pb-5">
 
         <div 
         style={{
@@ -40,7 +40,7 @@ export function SpecialA({texta,textb,textc,ratio}:SpecialAProps) {
         style={{
             flex: textFlexVal
         }}
-        className="text-black/40 md:text-black"
+        className="text-black/40 md:text-black "
         >
             <h2>{textc}</h2>
         </div>

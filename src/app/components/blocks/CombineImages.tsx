@@ -12,6 +12,7 @@ import { Twoimagetext } from "./Twoimagetext"
 import { Threeimagetext } from "./threeimagetext"
 import { Fourimagetext } from "./Fourimagestext"
 import { CarouselwithText } from "./CarouselwithText"
+import { Columntext } from "./Columntext"
 
 type CombineimagesProps = Extract<
   NonNullable<NonNullable<ARTICLE_QUERYResult>["content2"]>[number],
@@ -57,6 +58,8 @@ export function Combineimages({ colums }: CombineimagesProps) {
               return <Fourimagetext key={block._key} {...block} />;
             case "carouselWText":
               return <CarouselwithText key={block._key} {...block} />;
+            case "columntext":
+              return <Columntext key={block._key} {...block} />;
             
         default:     
             return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
