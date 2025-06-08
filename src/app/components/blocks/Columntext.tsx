@@ -27,7 +27,7 @@ export function Columntext({text, spacing,}:ColumntextProps) {
   return (
     <section 
     style={currentStyle} 
-    className="mx-auto flex flex-col md:flex-row md:gap-10 w-[80%]   gap-5 pb-5">
+    className="mx-auto flex flex-col md:flex-row md:gap-10 w-[80%]   gap-5 pb-5 ">
 
 
 {text?.map((block) => {

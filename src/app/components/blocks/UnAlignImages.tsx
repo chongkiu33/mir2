@@ -3,7 +3,6 @@ import { ARTICLE_QUERYResult } from "../../../sanity/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
-
 type UnAlignImagesProps = Extract<
   NonNullable<NonNullable<ARTICLE_QUERYResult>["content2"]>[number],
   { _type: "unalignimage" }
@@ -16,29 +15,20 @@ export function UnAlignImages({ images, align }: UnAlignImagesProps) {
 
   const alignClass = align === 'top' ? 'items-start' : 'items-end';
 
-
   return (
-    
     <section 
-      
-      className={`mx-auto flex ${alignClass} gap-[2vw] pb-[10px]  px-[10vw]`}
+      className={`mx-auto flex w-[80%] ${alignClass} gap-[2vw] pb-[2vw] `}
     >
-       
        {images?.map((image, index) => {
             if (image && image.imageFile) {
+              // 获取span值，如果不存在则默认为1
+              const span = (image.imageFile as any).span || 1;
               return (
                 <div
                   key={image._key || `image-${index}`}
-                  className="relative flex-1"
+                  style={{flex: span}}
+                  className="relative w-0 flex-grow"
                 >
-                  {/* <Image
-                          src={urlFor(image).width(600).url()} // 根据需要调整图片宽度以优化质量和加载速度
-                          alt={`图片`}
-                          fill // 'fill' 使图片填充其父容器
-                          className="object-cover rounded-sm" // 'object-cover' 保证图片覆盖整个区域同时保持比例，'rounded-md' 添加圆角
-                          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 200px" // 根据您的布局调整 sizes 属性以优化图片加载
-                        /> */}
-
                   <Image
                     src={urlFor(image.imageFile).width(600).url()}
                     alt={""}
@@ -51,7 +41,6 @@ export function UnAlignImages({ images, align }: UnAlignImagesProps) {
             }
             return null;
           })}
-    
     </section>
   );
 }

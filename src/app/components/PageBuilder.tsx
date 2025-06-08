@@ -1,4 +1,3 @@
-
 import { SplitImage } from "./blocks/SplitImage";
 import { Plaintext } from "./blocks/Plaintext";
 import { Plain } from "./blocks/Plain";
@@ -32,72 +31,72 @@ export function PageBuilder({ content }: PageBuilderProps) {
   }
 
   return (
-    // <main >
-    <div className="flex flex-col gap-20 md:gap-32 pb-24 ">
-      {content.map((block) => {
-        switch (block._type) {
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-20 md:gap-32 pb-24">
+        {content.map((block) => {
+          switch (block._type) {
+            
+            
+           
+          case "plaintext":
+              return <Plaintext key={block._key} {...block} />;
+          case "plain":
+              return <Plain key={block._key} {...block} />;
+          case "videoblock":
+              return <Videoblock key={block._key} {...block} />;
+          case "columimages":
+              return <Columimages key={block._key} {...block} />;
+          case "carousel":
+              return <Carousel key={block._key} {...block} />;
+
+          case "gridimages":
+              return  <FourtoSiximages key={block._key} {...block} />;
+
+          case "tripeimage":
+              return <Tripleimage key={block._key} {...block}  />;
+
+          case "unalignimage":
+            return <UnAlignImages key={block._key} {...block} />;
+
+          case "combineimages":
+            return <Combineimages key={block._key} {...block}  />;
+          case "twotothreeimages":
+            return <TwomoreImage key={block._key} {...block}  />;
+
+          case "twoimagetext":
+            return <Twoimagetext key={block._key} {...block}  />;
           
-          case "splitImage":
-            return <SplitImage key={block._key} {...block} />;
-         
-        case "plaintext":
-            return <Plaintext key={block._key} {...block} />;
-        case "plain":
-            return <Plain key={block._key} {...block} />;
-        case "videoblock":
-            return <Videoblock key={block._key} {...block} />;
-        case "columimages":
-            return <Columimages key={block._key} {...block} />;
-        case "carousel":
-            return <Carousel key={block._key} {...block} />;
+          case "threeimagetext":
+            return <Threeimagetext key={block._key} {...block}  />;
 
-        case "gridimages":
-            return  <FourtoSiximages key={block._key} {...block} />;
+          case "columntext":
+            return <Columntext key={block._key} {...block} />;
 
-        case "tripeimage":
-            return <Tripleimage key={block._key} {...block}  />;
+          case "narrowcontent":
+            return <NarrowContent key={block._key} {...block}  />;
 
-        case "unalignimage":
-          return <UnAlignImages key={block._key} {...block} />;
+          case "singleimage":
+            return <Singleimage key={block._key} {...block}  />;
 
-        case "combineimages":
-          return <Combineimages key={block._key} {...block}  />;
-        case "twotothreeimages":
-          return <TwomoreImage key={block._key} {...block}  />;
+          case "carouselWText":
+            return <CarouselwithText key={block._key} {...block}  />;
 
-        case "twoimagetext":
-          return <Twoimagetext key={block._key} {...block}  />;
-        
-        case "threeimagetext":
-          return <Threeimagetext key={block._key} {...block}  />;
+          case "specialA":
+            return <SpecialA key={block._key} {...block}  />;
+          
+          case "fourimagestext":
+            return <Fourimagetext key={block._key} {...block}  />;
 
-        case "columntext":
-          return <Columntext key={block._key} {...block} />;
-
-        case "narrowcontent":
-          return <NarrowContent key={block._key} {...block}  />;
-
-        case "singleimage":
-          return <Singleimage key={block._key} {...block}  />;
-
-        case "carouselWText":
-          return <CarouselwithText key={block._key} {...block}  />;
-
-        case "specialA":
-          return <SpecialA key={block._key} {...block}  />;
-        
-        case "fourimagestext":
-          return <Fourimagetext key={block._key} {...block}  />;
-
-        case "imggallery":
-          return <ImgGalleryblock key={block._key} {...block}  />;
+          case "imggallery":
+            return <ImgGalleryblock key={block._key} {...block}  />;
             
-        default:
-            
-            return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
-        }
-      })}
-      </div>
-    
+          default:
+              
+              return <div key={(block as any)._key}>Block not found: {(block as any)._type}</div>;
+          }
+        })}
+        </div>
+      
+    </div>
   );
 }

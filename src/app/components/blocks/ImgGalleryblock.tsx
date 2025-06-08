@@ -11,15 +11,6 @@ import {Image} from '@react-three/drei';
 import { client }from '../../../sanity/lib/client'
 import imageUrlBuilder from '@sanity/image-url'
 
-// 定义图片类型
-interface SanityImage {
-  _type: 'image';
-  _id: string;
-  asset: {
-    _ref: string;
-    _type: 'reference';
-  };
-}
 
 
 
@@ -36,12 +27,8 @@ export function ImgGalleryblock({ images }: ImgGalleryblockProps) {
   return (
     
     <section 
-    
-     style={{
-        height: '90vh',
-        marginBottom:'-100px'
-       
-     }}
+    className=" h-[90vh] w-[100vw] "
+     
     >
 
         <Canvas>

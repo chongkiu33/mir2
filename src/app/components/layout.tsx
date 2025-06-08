@@ -124,34 +124,9 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      {/* {loading ? (
-        <Loading onLoadingComplete={() => setLoading(false)} />
-      ) : (
-        <div >
-          <nav className={styles.navbar}>
-            <ul className={styles.navList}>
-              <li className={`${styles.navItem} ${styles.logoItem}`}>
-                <Link href="/">
-                  <Image src="/logo.svg" alt="Home" width={50} height={50} className={styles.navImage} />
-                </Link>
-              </li>
-              <li className={styles.navItem}>
-                <Link href="/archiv" className={`${styles.navLink} ${pathname === '/archiv' ? styles.active : pathname === '/' ? styles.homePage : ''}`}>Archiv</Link>
-              </li>
-              <li className={styles.navItem}>
-                <Link href="/object" className={`${styles.navLink} ${pathname === '/object' ? styles.active : pathname === '/' ? styles.homePage : ''}`}>Object</Link>
-              </li>
-              <li className={styles.navItem}>
-                <Link href="/info" className={`${styles.navLink} ${pathname === '/info' ? styles.active : pathname === '/' ? styles.homePage  : ''}`}>Info</Link>
-              </li>
-              <li className={styles.navItem}>
-                <Link href="/shop" className={`${styles.navLink} ${pathname === '/shop' ? styles.active : pathname === '/' ? styles.homePage  : ''}`}>Shop</Link>
-              </li>
-            </ul>
-          </nav> */}
+      
           <main>{children}</main>
-        {/* </div>
-      )} */}
+        
     </>
   );
 }

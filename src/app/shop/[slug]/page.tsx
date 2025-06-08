@@ -61,12 +61,12 @@ export default async function ShopPage({
                 </div>
                 <div>
                     <h2 className="font-['oppo_Sans_Heavy'] text-xl font-bold">Product Introduction</h2>
-                    <p className="font-['oppo_Sans_Medium']">{product?.description || 'No description available'}</p>
+                    <p className="font-['oppo_Sans_Medium']  text-gray-500">{product?.description || 'No description available'}</p>
                 </div>
                 
                 <div className="flex justify-between">
                     <h2 className="font-['oppo_Sans_Heavy'] text-xl font-bold">Material</h2>
-                    <p className="font-['oppo_Sans_Medium']">{ 'No material information'}</p>
+                    <p className="font-['oppo_Sans_Medium'] text-gray-500">{product?.category?.map((cate:any) => cate.name).join(', ') || 'No material information'}</p>
                 </div>
                 <div className="flex justify-between">
                     <h2 className="font-['oppo_Sans_Heavy'] text-xl font-bold">Price</h2>
@@ -83,7 +83,7 @@ export default async function ShopPage({
                         disabled={isOutOfStock}
                     />
                 )}
-                {/* <Button>Add to Bag</Button> */}
+           
             </div>
 
 

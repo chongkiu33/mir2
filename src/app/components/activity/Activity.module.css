@@ -31,7 +31,7 @@
     height: 150px;  /*设定高度，可以根据需要调整 */
     position: relative;
     z-index: 10;
-    cursor: arrow;
+    /* cursor: arrow; */
 }
 
 
@@ -39,7 +39,7 @@
 .svgLine {
   width: 100%;
   height: 1px;
-  cursor: pointer;
+  
 }
   
   

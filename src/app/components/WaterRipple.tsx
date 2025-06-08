@@ -117,9 +117,7 @@ const WaterRipple = ({ backgroundImageUrl }: { backgroundImageUrl?: string }) =>
       <div className={styles.textContainer1}>
         <div className={styles.text1}>MIR</div>
       </div>
-      {/* <div className={styles.textContainer2}>
-        <div className={styles.text2}>MIR</div>
-      </div> */}
+      
       
     </>
   );

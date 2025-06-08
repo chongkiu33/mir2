@@ -7,25 +7,26 @@ type SingleimageProps = Extract<
   { _type: "singleimage" }
 >;
 
-export function Singleimage({ spacing, image,alt }: SingleimageProps) {
-   
-
-    
-
+export function Singleimage({ spacing, image, alt }: SingleimageProps) {
     return (
       
         <div 
-          className={`${spacing === "full" ? "w-full" : "w-4/5"} mx-auto` }
+      className={`
+        ${spacing === "full" 
+          ? "relative w-screen left-[50%] right-[50%] mx-[-50vw]" 
+          : "w-4/5 mx-auto"
+        }
+      `}
         >
           {image && (
             <div className="relative w-full">
               <Image
                 src={urlFor(image).url()}
-                alt={""}
+            alt={alt || ""}
                 width={1000}
                 height={1000}
                 layout="responsive"
-                className="w-full "
+            className="w-full"
               />
               {alt && (
                 <p className="mt-2 text-sm text-gray-600">{alt}</p>

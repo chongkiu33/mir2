@@ -13,7 +13,7 @@ type PlaintextProps = Extract<
 
 export function Plaintext({  text  }: PlaintextProps) {
     return (
-      <section className=" mx-auto grid grid-cols-10  py-5">
+      <section className=" mx-auto  grid grid-cols-10  py-5">
         
           <div className={`col-start-2 col-end-10  h-full object-cover`}>
           <div className=" text-base lg:text-lg ">

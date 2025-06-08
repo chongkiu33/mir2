@@ -43,23 +43,23 @@ export function TwomoreImage({images, spacing, imageWidthRatio}: TwomoreimagesPr
   return (
     <section 
     style={currentStyle} 
-    className="mx-auto flex flex-row w-[80%]   gap-20 pb-10">
+    className="mx-auto flex flex-row w-[80%]    pb-[2vw]">
 
             {images?.map((image: any, index: number) => (
               image && image.asset ? (
                 <div key={image._key || index} className="flex-1" style={getImageWidthStyle(index)}>
                   <Image
-                    className="w-full h-full object-cover rounded-sm"
+                    className="w-full h-auto object-cover rounded-sm"
                     src={urlFor(image)
-                      .quality(80)
+                      .quality(100)
                       .auto("format")
                       .url()}
                     alt={image?.alt || ""}
                     width={600} // 可以根据需要调整或移除，如果父容器已控制大小
-                    height={400} // 可以根据需要调整或移除
+                    height={600} // 可以根据需要调整或移除
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // 响应式尺寸提示
                   />
-                  {image.alt && (<p className="text-center text-sm text-gray-600 mt-2">{image.alt}</p>)}
+                  {image.alt && (<p className="text-center text-sm text-gray-600 mt-2 ">{image.alt}</p>)}
                 </div>
 
                 

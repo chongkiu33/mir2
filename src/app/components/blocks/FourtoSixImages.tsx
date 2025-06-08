@@ -35,7 +35,7 @@ export function FourtoSiximages({ images }: FourtoSixImagesProps) {
     
     <section 
       style={currentGridStyle} 
-      className="mx-auto grid w-full gap-[2vw] px-[10vw] pb-[10px]"
+      className="mx-auto  grid w-full gap-[2vw] px-[10vw] pb-[10px]"
     >
       
        {images?.map((image,index) => (

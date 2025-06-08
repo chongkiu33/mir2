@@ -37,7 +37,7 @@ export function NarrowContent({ contentElements }: NarrowContentProps) {
                         className="relative" // 'aspect-square' 保持每个格子的宽高比为1:1
                       >
                         <Image
-                          src={urlFor(image).width(600).url()} // 根据需要调整图片宽度以优化质量和加载速度
+                          src={image?.asset ? urlFor(image).width(600).url() : ''} // 添加安全检查
                           alt={`图片`}
                           width={600}
                           height={600}

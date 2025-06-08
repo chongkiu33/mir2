@@ -12,7 +12,7 @@ export const getProductBySlug = async (slug:string) => {
     slug,
     stock,
     description,
-    categories[]->,
+    category[]->,
     price,
     productimage[] {
     asset-> {

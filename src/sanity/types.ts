@@ -120,6 +120,7 @@ export type Fourimagestext = {
 
 export type SpecialA = {
   _type: "specialA";
+  layout?: "abc" | "cab";
   texta?: string;
   textb?: string;
   textc?: string;
@@ -374,6 +375,7 @@ export type Twotothreeimages = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
     _key: string;
   }>;
@@ -423,6 +425,7 @@ export type Unalignimage = {
       };
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
+      span?: number;
       _type: "image";
     };
     _type: "imagesWithWidth";
@@ -699,17 +702,17 @@ export type PageBuilder = Array<{
   _key: string;
 } & CarouselWText | {
   _key: string;
+} & Twotothreeimages | {
+  _key: string;
+} & Unalignimage | {
+  _key: string;
 } & Tripeimage | {
   _key: string;
 } & Gridimages | {
   _key: string;
-} & Unalignimage | {
+} & Narrowcontent | {
   _key: string;
 } & Combineimages | {
-  _key: string;
-} & Twotothreeimages | {
-  _key: string;
-} & Narrowcontent | {
   _key: string;
 } & Imggallery | {
   _key: string;
@@ -721,11 +724,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & Columntext | {
   _key: string;
-} & SplitImage | {
+} & SpecialA | {
   _key: string;
-} & Columimages | {
-  _key: string;
-} & SpecialA>;
+} & Columimages>;
 
 export type Category = {
   _id: string;
@@ -1052,7 +1053,7 @@ export type ARTICLE_QUERYResult = {
 
 // Source: ../mirdog-main/src/app/archiv/page.tsx
 // Variable: ACTIVITIES_QUERY
-// Query: *[  _type == "archiv"   && defined(slug.current)  ] {  _id,  title,  slug,  publishDate,  "tags": tag[]->TagName,  description,  author,  coverImage,} | order(publishDate desc)
+// Query: *[  _type == "archiv"   && defined(slug.current)  ] {  _id,  title,  slug,  publishDate,  "tags": tag[]->TagName,  description,  author,  coverImage {    asset->,    _type,    _key,  },} | order(publishDate desc)
 export type ACTIVITIES_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -1062,15 +1063,30 @@ export type ACTIVITIES_QUERYResult = Array<{
   description: string | null;
   author: string | null;
   coverImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    } | null;
     _type: "image";
+    _key: null;
   } | null;
 }>;
 
@@ -1380,20 +1396,29 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
 
 // Source: ../mirdog-main/src/sanity/lib/products/getProductBySlug.tsx
 // Variable: PRODUCT_BY_SLUG_QUERY
-// Query: *[    _type == "product" && slug.current == $slug    ] |order(name asc) [0]{    _id,    name,    slug,    stock,    description,    categories[]->,    price,    productimage[] {    asset-> {          url        }      }    }
+// Query: *[    _type == "product" && slug.current == $slug    ] |order(name asc) [0]{    _id,    name,    slug,    stock,    description,    category[]->,    price,    productimage[] {    asset-> {          url        }      }    }
 export type PRODUCT_BY_SLUG_QUERYResult = {
   _id: string;
   name: string ;
   slug: Slug ;
   stock: number ;
   description: string ;
-  categories: null;
+  category: Array<{
+    _id: string;
+    _type: "category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    category?: "artist" | "material" | "type";
+    slug?: Slug;
+  }> ;
   price: number;
   productimage: Array<{
     asset: {
-      url: string;
+      url: string ;
     } ;
-  }>;
+  }> ;
 } ;
 
 // Source: ../mirdog-main/src/sanity/lib/products/searchProductsByCategories.ts
@@ -1476,7 +1501,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[\n    _type == \"archiv\" &&\n    slug.current == $slug\n  ][0]{\n    ...,\n    \"date\": coalesce(publishedAt, _createdAt),\n    categories[]->\n}": ARTICLE_QUERYResult | ARTICLE_PAGE_QUERYResult;
-    "*[\n  _type == \"archiv\" \n  && defined(slug.current)\n  ] {\n  _id,\n  title,\n  slug,\n  publishDate,\n  \"tags\": tag[]->TagName,\n  description,\n  author,\n  coverImage,\n} | order(publishDate desc)": ACTIVITIES_QUERYResult;
+    "*[\n  _type == \"archiv\" \n  && defined(slug.current)\n  ] {\n  _id,\n  title,\n  slug,\n  publishDate,\n  \"tags\": tag[]->TagName,\n  description,\n  author,\n  coverImage {\n    asset->,\n    _type,\n    _key,\n  },\n} | order(publishDate desc)": ACTIVITIES_QUERYResult;
     "*[_type == \"basic\"][0]{\n  homeimage\n}": BASIC_IMAGE_QUERYResult | BASIC_INFO_QUERYResult;
     "*[_type == \"basic\"][0]{\n  info1,\n  info2,\n  info3,\n  email,\n  instagram\n}": BASIC_INFO_PAGE_QUERYResult;
     "*[\n  _type == \"objectpage\" &&\n  slug.current == $slug\n][0]{\n  ...,\n  \"date\": coalesce(publishedAt, _createdAt),\n  categories[]->\n}": OBJECT_QUERYResult;
@@ -1486,7 +1511,7 @@ declare module "@sanity/client" {
     "\n        *[_type == \"order\" && clerkUserId == $userId] | order(orderDate desc){\n            ...,\n            products[]{\n                ...,\n                product->\n            }\n        }\n  \n        ": MY_ORDERS_QUERYResult;
     "  \n        *[_type == \"category\"] | order(name asc)\n        \n        ": ALL_CATEGORIES_QUERYResult;
     "*[_type == \"product\"] | order(name asc) {\n      _id,\n      name,\n      slug,\n      stock,\n      price,\n      productimage[] {\n        asset-> {\n          url\n        }\n      }\n    }": ALL_PRODUCTS_QUERYResult;
-    "\n    *[\n    _type == \"product\" && slug.current == $slug\n    ] |order(name asc) [0]{\n\n    _id,\n    name,\n    slug,\n    stock,\n    description,\n    categories[]->,\n    price,\n    productimage[] {\n    asset-> {\n          url\n        }\n      }\n    }": PRODUCT_BY_SLUG_QUERYResult;
+    "\n    *[\n    _type == \"product\" && slug.current == $slug\n    ] |order(name asc) [0]{\n\n    _id,\n    name,\n    slug,\n    stock,\n    description,\n    category[]->,\n    price,\n    productimage[] {\n    asset-> {\n          url\n        }\n      }\n    }": PRODUCT_BY_SLUG_QUERYResult;
     "\n    *[_type == \"product\" && count((category[]->slug.current)[@ in $categories]) == count($categories)] | order(name asc) {\n      _id,\n      name,\n      slug,\n      stock,\n      price,\n      productimage[] {\n        asset-> {\n          url\n        }\n      }\n    }\n    ": PRODUCTS_CATEGORIES_QUERYResult;
     "*[\n    _type == \"archiv\" \n    && defined(slug.current)\n    ] {\n    _id,\n    title,\n    slug,\n    publishDate,\n    \"tags\": tag[]->TagName,\n    description,\n    author,\n    coverImage,\n  } | order(publishDate desc)": ACTIVITIES_LIST_QUERYResult;
   }

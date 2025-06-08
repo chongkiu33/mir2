@@ -31,11 +31,11 @@ export default async function RootLayout({
           {children}
           <SanityLive />
           {(await draftMode()).isEnabled && (
-        <>
-          <DisableDraftMode />
-          <VisualEditing />
-        </>
-      )}
+              <>
+                <DisableDraftMode />
+                <VisualEditing />
+              </>
+          )}
         </main>
         </Suspense>
       </body>

@@ -39,7 +39,7 @@ export function SplitImage({ imageLeft, imageRight, leftSpan, rightSpan }: Split
     const rightColEnd = leftColEnd + (rightSpan ?? 0);    
 
   return (
-    <section className="mx-auto grid grid-cols-10 gap-3 pb-5">
+    <section className="mx-auto  grid grid-cols-10 gap-3 pb-5">
       {leftSpan&&imageLeft ? (
         <Image
           className={`col-start-2 ${colEndClasses[leftColEnd]}  h-full object-cover`}

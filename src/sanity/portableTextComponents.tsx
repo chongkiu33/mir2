@@ -148,11 +148,11 @@ export const components: PortableTextComponents = {
         return <p style={{ maxWidth: '900px', margin: '0 auto' }}><br /></p>;
       }
       
-      return <p className="font-oppoheavy text-[14px] leading-[28px] md:text-[14px]  " style={{ textAlign: "justify", maxWidth: '900px', margin: '0 auto' }}>{children}</p>;
+      return <p className="font-oppoheavy text-[14px] leading-[28px] md:text-[14px]  " style={{ textAlign: "justify", margin: '0 auto' }}>{children}</p>;
     },
-    h1: ({ children }) => <h1 className="text-3xl font-bold mb-5" style={{ maxWidth: '900px', margin: '0 auto' }}>{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl  font-bold mb-5" style={{ maxWidth: '900px', margin: '0 auto' }}>{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl  font-bold mb-5" style={{ maxWidth: '900px', margin: '0 auto' }}>{children}</h3>,
+    h1: ({ children }) => <h1 className="text-3xl font-bold mb-5" style={{  margin: '0 auto' }}>{children}</h1>,
+    h2: ({ children }) => <h2 className="text-2xl  font-bold mb-5" style={{  margin: '0 auto' }}>{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl  font-bold mb-5" style={{ margin: '0 auto' }}>{children}</h3>,
     
    
   },

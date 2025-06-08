@@ -87,6 +87,8 @@ const BouceLine = () => {
   // 如果svgWidth为0，不渲染内容
   if (!svgWidth) return null;
 
+
+
   return (
     <div ref={containerRef} className={styles.container}>
       <svg 

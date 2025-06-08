@@ -24,16 +24,22 @@ export function Tripleimage(props: TripleImageBlockProps) {
   const renderImageCell = (image: any, index: number, altText: string, isLarge: boolean = false) => (
     <div
       key={image._key || `image-cell-${index}`}
-      className={`relative w-full h-full ${isLarge ? '' : 'aspect-[16/9]'}`} // 大图不强制aspect ratio，小图保持4/3
+      className={`relative w-full h-full ${isLarge ? '' : 'aspect-[16/9]'}`}
     >
       <Image
-        src={urlFor(image).width(isLarge ? 800 : 600).url()}
+        src={urlFor(image)
+          .width(isLarge ? 1920 : 1200)
+          .quality(90)
+          .auto('format')
+          .fit('crop')
+          .url()}
         alt={altText}
         fill
         className={imageCommonClass}
         sizes={isLarge ? 
-               "(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" :
-               "(max-width: 768px) 40vw, (max-width: 1200px) 20vw, 15vw"} // 根据布局调整sizes
+               "(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw" :
+               "(max-width: 768px) 50vw, (max-width: 1200px) 30vw, 25vw"} 
+        priority={isLarge}
       />
     </div>
   );
@@ -44,25 +50,18 @@ export function Tripleimage(props: TripleImageBlockProps) {
     >
       {layout === 'left' ? (
         <>
-          
           <div className="row-span-2">
             {renderImageCell(images[0], 0, "左侧图片", true)}
           </div>
-         
           {renderImageCell(images[1], 1, "右上图片")}
-         
           {renderImageCell(images[2], 2, "右下图片")}
         </>
       ) : ( 
         <>
-         
           {renderImageCell(images[0], 0, "左上图片")}
-         
-      
           <div className="row-span-2">
             {renderImageCell(images[2], 2, "右侧图片", true)}
           </div>
-    
           {renderImageCell(images[1], 1, "左下图片")}
         </>
       )}

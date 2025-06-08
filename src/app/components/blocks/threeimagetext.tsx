@@ -18,7 +18,7 @@ export function Threeimagetext({imageLeft,text,imageRight}: ThreeimagetextProps)
   return (
     <section 
     
-    className={`mx-auto flex items-center w-[80%] flex-col md:flex-row gap-8 lg:gap-8 pb-5 `}>
+    className={`mx-auto  flex items-center w-[80%] flex-col md:flex-row gap-8 lg:gap-8 pb-5 `}>
         {imageLeft?(
             <div
               className="relative flex-[2] rounded-sm"

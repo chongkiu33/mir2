@@ -33,7 +33,13 @@ export function Videoblock({  videolink , videotitle, spacing }: VideoblockProps
     
     return (
       
-        <div className={` relative pb-[56.25%] h-0 overflow-hidden mx-auto bg-black rounded-lg ${spacing === "full" ? "w-full" : "w-4/5"}`}>
+        <div className={`
+          relative pb-[56.25%] h-0 overflow-hidden bg-black rounded-lg
+          ${spacing === "full" 
+            ? "w-screen left-[50%] right-[50%] mx-[-50vw] relative" 
+            : "w-4/5 mx-auto"
+          }
+        `}>
          
       <iframe
           src={`https://www.youtube.com/embed/${videoId}`}

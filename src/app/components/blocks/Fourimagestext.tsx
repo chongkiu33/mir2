@@ -18,7 +18,7 @@ export function Fourimagetext({images,text}: FourimagetextProps) {
   return (
     <section 
     
-    className={`mx-auto h-auto flex flex-col md:flex-row justify-center items-center w-[80%] gap-5 md:gap-12 lg:gap-20 pb-5 `}>
+    className={`mx-auto  h-auto flex flex-col md:flex-row justify-center items-center w-[80%] gap-5 md:gap-12 lg:gap-20 pb-5 `}>
        {images && images.length>0  && (
         <div className="w-full  flex-auto md:flex-[4_1_0%] grid grid-cols-2 gap-4">
             {images.map((image, index) => (

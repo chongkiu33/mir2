@@ -11,7 +11,7 @@ type SpecialAProps = Extract<
   { _type: "specialA" }
 >;
 
-export function SpecialA({texta,textb,textc,ratio}:SpecialAProps) {
+export function SpecialA({layout,texta,textb,textc,ratio}:SpecialAProps) {
 
     
     const imageFlexVal = ratio?.textab ?? 1;
@@ -23,7 +23,7 @@ export function SpecialA({texta,textb,textc,ratio}:SpecialAProps) {
   return (
     <section 
     
-    className="mx-auto text-xl flex flex-col gap-2 md:flex-row  md:gap-12 lg:gap-20 w-[80%]    pb-5">
+    className={`mx-auto  text-base md:text-lg flex flex-col gap-2 md:flex-row   md:gap-12 lg:gap-20 w-[80%] pb-5 ${layout === 'cab' ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
 
         <div 
         style={{

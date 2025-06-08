@@ -44,7 +44,7 @@ const Activity: React.FC<ActivityProps> = ({ content, date, description, artistN
                             ))}
                     </div>
                     <div className={styles.activityImage}>
-                        <Image src={imageUrl} alt="Activity Image" width={100} height={100} />
+                        <Image src={imageUrl} alt="Activity Image" width={700} height={700} />
                     </div>
                 </div>
             </div>

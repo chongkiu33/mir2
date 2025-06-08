@@ -52,14 +52,24 @@ export default async function Shopping({
     //     return <div>No products found</div>
     // }
 
+//     display: flex;
+  
+//   justify-content: center;
+//   align-items: center;
+//   width: 90%;
+
     return (
       <>
+      <div className="fixed  z-50">
       <CartButton />
-        <div className="mt-[17vw] font-oppomedium">  
+      </div>
+        <div className="mt-[14vw] font-oppomedium pb-[15vh]">  
             <ProductView products={products} categories={categories}/>
         </div>
 
-        </>
+        
+
+    </>
     );
 }
   
