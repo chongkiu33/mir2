@@ -87,7 +87,7 @@ export default function BasketPage(){
     
     return(
 
-        <div className="bg-[url('/shopbg/AIChatbotConcept02.png')] h-screen bg-contain bg-center bg-no-repeat pt-[calc(15vw-8rem)] ">
+        <div className="bg-[url('/shopbg/AIChatbotConcept02.png')] h-screen bg-contain bg-center bg-no-repeat pt-[15vw] ">
         <div  className="container mx-auto px-4   ">
             
             <div className="flex flex-col lg:flex-row gap-8 ">

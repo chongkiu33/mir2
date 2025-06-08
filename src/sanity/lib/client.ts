@@ -9,9 +9,8 @@ export const client = createClient({
   stega:{
     // studioUrl:'/studio',
 
-    studioUrl: `https://mir-beryl.vercel.app/studio`,
-    //  ? `https://mir-beryl.vercel.app/studio`
-    //  : `${process.env.NEXT_PUBLIC_BASE_URL}/studio`,
-    
+    studioUrl: process.env.NEXT_PUBLIC_VERCEL_URL
+     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/studio`
+     : `${process.env.NEXT_PUBLIC_BASE_URL}/studio`,
   }
 })
