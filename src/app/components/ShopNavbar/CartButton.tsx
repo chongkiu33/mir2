@@ -6,6 +6,9 @@ import { TrolleyIcon } from "@sanity/icons"
 import { ClerkLoaded, useUser, SignInButton, UserButton} from '@clerk/nextjs';
 import useBasketStore from '@/store/store';
 import Link from 'next/link';
+import { dark } from '@clerk/themes'
+
+
 export default function CartButton(){
     const {user} = useUser();
 
