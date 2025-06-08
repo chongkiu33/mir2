@@ -30,12 +30,12 @@ export default async function RootLayout({
         <main>
           {children}
           <SanityLive />
-          {(await draftMode()).isEnabled && (
+            {(await draftMode()).isEnabled && (
               <>
                 <DisableDraftMode />
                 <VisualEditing />
               </>
-          )}
+      )}
         </main>
         </Suspense>
       </body>

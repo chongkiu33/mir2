@@ -49,7 +49,7 @@ export function TwomoreImage({images, spacing, imageWidthRatio}: TwomoreimagesPr
               image && image.asset ? (
                 <div key={image._key || index} className="flex-1" style={getImageWidthStyle(index)}>
                   <Image
-                    className="w-full h-auto object-cover rounded-sm"
+                    className="w-full h-full object-cover rounded-sm"
                     src={urlFor(image)
                       .quality(100)
                       .auto("format")
