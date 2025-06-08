@@ -4,9 +4,10 @@ import type { AppProps } from 'next/app';
 import Navbar from "./components/Navbar/Navbar";
 import Layout from "./components/layout";
 import { SanityLive } from "../sanity/lib/live";
-import { DisableDraftMode } from "./components/DisableDraftMode";
+
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
+import { DisableDraftMode } from "./components/DisableDraftMode";
 import { Suspense } from "react";
 import Loading from "./loading";
 
@@ -22,6 +23,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isDraftMode = await draftMode();
+  console.log('Draft mode status:', isDraftMode.isEnabled);
+
   return (
     <html lang="en">
       <body >
@@ -31,11 +35,11 @@ export default async function RootLayout({
           {children}
           <SanityLive />
             {(await draftMode()).isEnabled && (
-              <>
-                <DisableDraftMode />
-                <VisualEditing />
-              </>
-      )}
+                  <>
+                    <DisableDraftMode />
+                    <VisualEditing />
+                  </>
+            )}
         </main>
         </Suspense>
       </body>

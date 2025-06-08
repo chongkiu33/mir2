@@ -7,8 +7,8 @@ export const { sanityFetch, SanityLive } = defineLive({
   client,
   serverToken: token,
   browserToken: token,
-  fetchOptions: {
-    revalidate: 0,
-  },
+  // fetchOptions: {
+  //   revalidate: 0,
+  // },
  
 });
