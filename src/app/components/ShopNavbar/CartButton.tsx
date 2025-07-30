@@ -34,11 +34,16 @@ export default function CartButton(){
             <div className='flex items-center  px-[10px] py-[10px] rounded-3xl bg-[rgba(217,217,217,0.5)] '>
         {user ? (
             <div className="flex items-center space-x-2">
-                <UserButton />
-                {/* <div className="hidden sm:block text-s">
-                
-                    <p className='text-gray-400 whitespace-nowrap'>{user.fullName}</p>
-                </div> */}
+                 <UserButton>
+              {/* 自定义菜单项 */}
+              <UserButton.MenuItems>
+                {/* 新增：跳转到你的订单页 */}
+                <UserButton.Link labelIcon="orders" label="Orders" href="/shop/orders" />
+                <UserButton.Action label="manageAccount" />
+                <UserButton.Action label="signOut" />
+              </UserButton.MenuItems>
+            </UserButton>
+              
             </div>
         ):(
             <div className='px-[10px]'>
